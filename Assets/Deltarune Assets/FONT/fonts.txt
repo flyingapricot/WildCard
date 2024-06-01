@@ -1,0 +1,12 @@
+﻿0;fnt_tinynoelle.font.gmx;5;730;982
+1;fnt_dotumche.font.gmx;1;1918;318
+2;fnt_mainbig.font.gmx;4;922;1710
+3;fnt_main.font.gmx;1;1918;450
+4;fnt_small.font.gmx;5;226;978
+5;fnt_ja_comicsans.font.gmx;1;2;2
+6;fnt_ja_small.font.gmx;1;1530;1166
+7;fnt_ja_main.font.gmx;1;2;1030
+8;fnt_ja_dotumche.font.gmx;0;2;1030
+9;fnt_ja_tinynoelle.font.gmx;1;1530;1166
+10;fnt_ja_mainbig.font.gmx;0;0;2
+11;fnt_comicsans.font.gmx;3;406;306
