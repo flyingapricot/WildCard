@@ -1,2 +1,3 @@
-m_EditorVersion: UnknownUnityVersion
-m_EditorVersionWithRevision: UnknownUnityVersion
+m_EditorVersion: 2022.3.27f1
+m_EditorVersionWithRevision: 2022.3.27f1 (73effa14754f)
+
