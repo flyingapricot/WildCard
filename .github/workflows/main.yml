@@ -105,6 +105,12 @@ jobs:
           rm -rf gh-pages/TemplateData/
           shopt -s extglob
           cp -r build/WebGL/* gh-pages/
+      
+      - name: Unzip files
+        run: |
+          gzip -d gh-pages/Build/WebGL.framework.js.gz
+          gzip -d gh-pages/Build/WebGL.data.js.gz
+          gzip -d gh-pages/Build/WebGL.wasm.js.gz
   
       - name: Commit and push changes
         run: |
