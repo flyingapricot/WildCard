@@ -102,8 +102,9 @@ jobs:
       - name: Update build folder
         run: |
           rm -rf gh-pages/Build
-          mkdir gh-pages/Build
-          cp -r build/WebGL/* gh-pages/Build/
+          rm -rf gh-pages/TemplateBuild
+          shopt -s extglob
+          cp -r build/WebGL/!(index.html) gh-pages/
   
       - name: Commit and push changes
         run: |
