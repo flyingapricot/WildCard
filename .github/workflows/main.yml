@@ -101,10 +101,10 @@ jobs:
   
       - name: Update build folder
         run: |
-          rm -rf gh-pages/Build
-          rm -rf gh-pages/TemplateData
+          rm -rf gh-pages/Build/
+          rm -rf gh-pages/TemplateData/
           shopt -s extglob
-          cp -r build/WebGL/ gh-pages/
+          cp -r build/WebGL/* gh-pages/
   
       - name: Commit and push changes
         run: |
