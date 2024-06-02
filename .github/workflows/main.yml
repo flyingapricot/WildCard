@@ -102,6 +102,7 @@ jobs:
       - name: Update build folder
         run: |
           rm -rf gh-pages/Build
+          mkdir gh-pages/Build
           cp -r build/WebGL/* gh-pages/Build/
   
       - name: Commit and push changes
