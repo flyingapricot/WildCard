@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        footer {
+            margin-top: auto;
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+      @font-face {
+        font-family: 'SuperFont';
+        src: url('super.ttf') format('truetype');
+      }
+
+      .navbar {
+        font-family: 'SuperFont', sans-serif;
+      }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="game_logo.png" width="187" height="100" class="d-inline-block align-top" alt="">
+                <span class="ms-4" style="font-size: 20px;">WildCard</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto" style="font-size: 15px;">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about_us">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Poster & Videos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Development Logs</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+   <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card text-center">
+                    <img src="https://nus.instructure.com/images/thumbnails/2165658/P0DRGfmRdp6BKt1CnPn6ujRzVWvDBddaffAoZ4wE" class="card-img-top mx-auto mt-3" style="width: 50%;" alt="Image 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Mark Neo</h5>
+                        <p class="card-text text-left">Mark Neo is proficient in web development programming languages such as Javascript, ReactJS, HTML, CSS, and game development engines such as Godot. Mark picked up web development skills as part of an external module he pursued out of interest during his Junior College times. He has worked on unique websites that showcase his passion for games such as a Clash Royale deck selector site. These projects often required an understanding and application of software engineering concepts which he picked up while developing these projects.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card text-center">
+                    <img src="https://nus.instructure.com/images/thumbnails/1889759/an0Mp6dUc8X7JQSsTru3w37v24OKL2CvjasETO58" class="card-img-top mx-auto mt-3" style="width: 50%;" alt="Image 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Neeraj Kumbar</h5>
+                        <p class="card-text text-left">Neeraj Kumbar is also proficient in web development programming languages that he picked up during his own free time and worked on projects like an event management website using React and Javascript. He has had prior experience with integrating MongoDB into web applications. He also picked up other languages like C#, Java to develop desktop and mobile applications. For example, he worked on the development of Dementis, an Android app that aims to slow down the rate of dementia progression in dementia patients through memory games. The app also stored game data on an online database (Google Firebase) which could be retrieved from a helper desktop application, which was to be used by the doctors of the Dementia patient to track their progress and adjust their treatment plan accordingly. In addition, he has also collaborated on software development projects with other programmers through CCAs in school and externally where he was formally introduced to software engineering concepts, version control systems, code sprints, testing principles, Agile Methodology and Scrum.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+<footer class="bg-dark text-white py-2">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-6 text-md-left text-center mb-md-0 mb-2">
+              <p style="font-size: 14px;">&copy; 2024 PocketAces. All rights reserved.</p>
+          </div>
+          <div class="col-md-6 text-md-left text-center">
+              <p style="font-size: 12px;">Singapore baby</p>
+              <p style="font-size: 12px;">Email (Mark): neoqihao@gmail.com</p>
+              <p style="font-size: 12px;">Email (Neeraj): myinfocom3@gmail.com</p>
+          </div>
+      </div>
+  </div>
+</footer>
+</html>
