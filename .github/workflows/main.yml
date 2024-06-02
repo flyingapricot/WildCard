@@ -102,14 +102,14 @@ jobs:
       - name: Update build folder
         run: |
           rm -rf gh-pages/*
-          cp -r build/WebGL/* gh-pages/build/
+          cp -r build/WebGL/* gh-pages/Build/
   
       - name: Commit and push changes
         run: |
           cd gh-pages
           git config user.name "GitHub Actions"
-          git config user.email "<YOUR-EMAIL>"
-          git add build/*
+          git config user.email "neerajkumbar44@gmail.com"
+          git add Build/*
           git commit -m "Update build folder"
           git push origin gh-pages
   
