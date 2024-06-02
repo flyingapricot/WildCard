@@ -114,4 +114,15 @@ jobs:
           git add Build/*
           git commit -m "Update build folder"
           git push origin gh-pages
+
+      - name: Unzip
+        run: |
+          cd gh-pages
+          git config user.name "GitHub Actions"
+          git config user.email "neerajkumbar44@gmail.com"
+          gzip -d Build/WebGL.data.gz
+          gzip -d Build/WebGL.framework.js.gz
+          gzip -d Build/WebGL.wasm.gz
+          git commit -m "Unzipped files"
+          git push origin gh-pages
   
