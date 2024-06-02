@@ -83,33 +83,33 @@ jobs:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
           
-deployPages:
-  needs: buildForAllSupportedPlatforms
-  name: Deploy to Github Pages 🚀
-  runs-on: ubuntu-latest
-  steps:
-    - name: Checkout gh-pages branch
-      uses: actions/checkout@v2
-      with:
-        ref: gh-pages
-        path: gh-pages
-
-    - uses: actions/download-artifact@v2
-      with:
-        name: Build-WebGL
-        path: build
-
-    - name: Update build folder
-      run: |
-        rm -rf gh-pages/*
-        cp -r build/WebGL/* gh-pages/build/
-
-    - name: Commit and push changes
-      run: |
-        cd gh-pages
-        git config user.name "GitHub Actions"
-        git config user.email "<YOUR-EMAIL>"
-        git add build/*
-        git commit -m "Update build folder"
-        git push origin gh-pages
-
+  deployPages:
+    needs: buildForAllSupportedPlatforms
+    name: Deploy to Github Pages 🚀
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+          path: gh-pages
+  
+      - uses: actions/download-artifact@v2
+        with:
+          name: Build-WebGL
+          path: build
+  
+      - name: Update build folder
+        run: |
+          rm -rf gh-pages/*
+          cp -r build/WebGL/* gh-pages/build/
+  
+      - name: Commit and push changes
+        run: |
+          cd gh-pages
+          git config user.name "GitHub Actions"
+          git config user.email "<YOUR-EMAIL>"
+          git add build/*
+          git commit -m "Update build folder"
+          git push origin gh-pages
+  
