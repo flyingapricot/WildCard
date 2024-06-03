@@ -7,7 +7,6 @@
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
             display: flex;
@@ -18,22 +17,6 @@
             background-repeat: no-repeat;
             background-position: center;
         }
-        .content-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
-        }
-        .navbar-brand img {
-            width: 100%;
-            max-width: 187px;
-            height: auto;
-        }
         footer {
             margin-top: auto;
             background-color: #333;
@@ -42,51 +25,22 @@
             text-align: center;
         }
 
-        @font-face {
-            font-family: 'SuperFont';
-            src: url('super.ttf') format('truetype');
-        }
+      @font-face {
+        font-family: 'SuperFont';
+        src: url('super.ttf') format('truetype');
+      }
 
-        .navbar {
-            font-family: 'SuperFont', sans-serif;
-        }
+      .navbar {
+        font-family: 'SuperFont', sans-serif;
+      }
 
-        #unity-container {
-            width: 100%;
-            max-width: 1000px;
-            height: auto;
-            margin: 20px 0;
-        }
-        canvas {
-            width: 100%;
-            height: auto;
-        }
-        @media (max-width: 768px) {
-            .navbar-brand span {
-                font-size: 16px;
-            }
-            .navbar-nav .nav-link {
-                font-size: 12px;
-            }
-        }
-        @media (max-width: 576px) {
-            .navbar-brand img {
-                max-width: 100px;
-            }
-            .navbar-brand span {
-                font-size: 14px;
-            }
-            .navbar-nav .nav-link {
-                font-size: 10px;
-            }
-        }
     </style>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="#">
-                <img src="game_logo.png" class="d-inline-block align-top" alt="Game Logo">
+                <img src="game_logo.png" width="187" height="100" class="d-inline-block align-top" alt="">
                 <span class="ms-4" style="font-size: 20px;">WildCard</span>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -112,25 +66,23 @@
         </div>
     </nav>
 
-    <div class="content-container">
-        <div id="unity-container">
-            <canvas id="unity-canvas" width="1920" height="1080" tabindex="-1"></canvas>
-            <div id="unity-loading-bar">
-                <div id="unity-logo"></div>
-                <div id="unity-progress-bar-empty">
-                    <div id="unity-progress-bar-full"></div>
-                </div>
-            </div>
-            <div id="unity-warning"></div>
-            <div id="unity-footer">
-                <div id="unity-webgl-logo"></div>
-                <div id="unity-fullscreen-button"></div>
-                <div id="unity-build-title">WildCard</div>
-            </div>
+    <div id="unity-container" class="unity-desktop">
+      <canvas id="unity-canvas" width=1920 height=1080 tabindex="-1"></canvas>
+      <div id="unity-loading-bar">
+        <div id="unity-logo"></div>
+        <div id="unity-progress-bar-empty">
+          <div id="unity-progress-bar-full"></div>
         </div>
+      </div>
+      <div id="unity-warning"> </div>
+      <div id="unity-footer">
+        <div id="unity-webgl-logo"></div>
+        <div id="unity-fullscreen-button"></div>
+        <div id="unity-build-title">WildCard</div>
+      </div>
     </div>
-
     <script>
+
       var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
       var loadingBar = document.querySelector("#unity-loading-bar");
@@ -138,6 +90,12 @@
       var fullscreenButton = document.querySelector("#unity-fullscreen-button");
       var warningBanner = document.querySelector("#unity-warning");
 
+      // Shows a temporary message banner/ribbon for a few seconds, or
+      // a permanent error message on top of the canvas if type=='error'.
+      // If type=='warning', a yellow highlight color is used.
+      // Modify or remove this function to customize the visually presented
+      // way that non-critical warnings and error messages are presented to the
+      // user.
       function unityShowBanner(msg, type) {
         function updateBannerVisibility() {
           warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
@@ -169,13 +127,33 @@
         showBanner: unityShowBanner,
       };
 
+      // By default, Unity keeps WebGL canvas render target size matched with
+      // the DOM size of the canvas element (scaled by window.devicePixelRatio)
+      // Set this to false if you want to decouple this synchronization from
+      // happening inside the engine, and you would instead like to size up
+      // the canvas DOM size and WebGL render target sizes yourself.
+      // config.matchWebGLToCanvasSize = false;
+
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        // Mobile device style: fill the whole browser client area with the game canvas:
+
         var meta = document.createElement('meta');
         meta.name = 'viewport';
         meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
         document.getElementsByTagName('head')[0].appendChild(meta);
         container.className = "unity-mobile";
         canvas.className = "unity-mobile";
+
+        // To lower canvas resolution on mobile devices to gain some
+        // performance, uncomment the following line:
+        // config.devicePixelRatio = 1;
+
+
+      } else {
+        // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
+
+        canvas.style.width = "1920px";
+        canvas.style.height = "1080px";
       }
 
       loadingBar.style.display = "block";
@@ -185,32 +163,32 @@
       script.onload = () => {
         createUnityInstance(canvas, config, (progress) => {
           progressBarFull.style.width = 100 * progress + "%";
-        }).then((unityInstance) => {
-          loadingBar.style.display = "none";
-          fullscreenButton.onclick = () => {
-            unityInstance.SetFullscreen(1);
-          };
-        }).catch((message) => {
-          alert(message);
-        });
-      };
+              }).then((unityInstance) => {
+                loadingBar.style.display = "none";
+                fullscreenButton.onclick = () => {
+                  unityInstance.SetFullscreen(1);
+                };
+              }).catch((message) => {
+                alert(message);
+              });
+            };
 
       document.body.appendChild(script);
-    </script>
 
-    <footer class="bg-dark text-white py-2">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 text-md-left text-center mb-md-0 mb-2">
-                    <p style="font-size: 14px;">&copy; 2024 PocketAces. All rights reserved.</p>
-                </div>
-                <div class="col-md-6 text-md-left text-center">
-                    <p style="font-size: 12px;">Singapore baby</p>
-                    <p style="font-size: 12px;">Email (Mark): neoqihao@gmail.com</p>
-                    <p style="font-size: 12px;">Email (Neeraj): myinfocom3@gmail.com</p>
-                </div>
-            </div>
-        </div>
-    </footer>
+    </script>
   </body>
+  <footer class="bg-dark text-white py-2">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-6 text-md-left text-center mb-md-0 mb-2">
+                  <p style="font-size: 14px;">&copy; 2024 PocketAces. All rights reserved.</p>
+              </div>
+              <div class="col-md-6 text-md-left text-center">
+                  <p style="font-size: 12px;">Singapore baby</p>
+                  <p style="font-size: 12px;">Email (Mark): neoqihao@gmail.com</p>
+                  <p style="font-size: 12px;">Email (Neeraj): myinfocom3@gmail.com</p>
+              </div>
+          </div>
+      </div>
+  </footer>
 </html>
