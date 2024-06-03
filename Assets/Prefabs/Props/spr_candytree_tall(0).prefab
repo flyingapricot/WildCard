@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 84262349196337586}
   - component: {fileID: 7679198267218271397}
-  - component: {fileID: -3399345080595429201}
+  - component: {fileID: -7476348710068047675}
   m_Layer: 0
   m_Name: spr_candytree_tall(0)
   m_TagString: Prop
@@ -85,8 +85,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &-3399345080595429201
-CircleCollider2D:
+--- !u!60 &-7476348710068047675
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -118,5 +118,33 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.41
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.7, y: 0.82}
+    newSize: {x: 0.7, y: 0.82}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.31, y: -0.14}
+      - {x: 0.35, y: -0.03}
+      - {x: 0.35, y: 0.26999998}
+      - {x: 0.19, y: 0.41}
+      - {x: -0.16, y: 0.41}
+      - {x: -0.19, y: 0.39999998}
+      - {x: -0.26999998, y: 0.38}
+      - {x: -0.35, y: 0.26999998}
+      - {x: -0.35, y: -0.08}
+      - {x: -0.29999998, y: -0.19}
+      - {x: -0.14999999, y: -0.26}
+      - {x: -0.22999999, y: -0.34}
+      - {x: -0.21, y: -0.39}
+      - {x: -0.06, y: -0.41}
+      - {x: 0.17999999, y: -0.41}
+      - {x: 0.22, y: -0.39999998}
+      - {x: 0.25, y: -0.34}
+      - {x: 0.17, y: -0.28}
+  m_UseDelaunayMesh: 0

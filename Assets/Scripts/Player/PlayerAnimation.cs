@@ -21,8 +21,8 @@ public class PlayerAnimation : MonoBehaviour
     private void Update()
     {
         isMoving = pm.movementVector.sqrMagnitude > 0;
-        horizontal = pm.movementVector.x;
-        vertical = pm.movementVector.y;
+        horizontal = pm.lastMovementVector.x;
+        vertical = pm.lastMovementVector.y;
 
         animator.SetBool("IsMoving", isMoving);
         animator.SetFloat("Horizontal", horizontal);

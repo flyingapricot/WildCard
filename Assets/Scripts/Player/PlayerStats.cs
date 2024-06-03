@@ -14,6 +14,7 @@ public class PlayerStats : MonoBehaviour
     // Current Enemy Stats
     [HideInInspector] public float currentMoveSpeed; // Accessed by movement
     float currentHealth;
+    float currentMaxHealth;
     float currentRecovery;
     float currentMight;
     float currentProjectileSpeed;
@@ -52,6 +53,7 @@ public class PlayerStats : MonoBehaviour
 
         currentMoveSpeed = characterData.MoveSpeed;
         currentHealth = characterData.MaxHealth;
+        currentMaxHealth = characterData.MaxHealth;
         currentRecovery = characterData.Recovery;
         currentMight = characterData.Might;
         currentProjectileSpeed = characterData.ProjectileSpeed;
@@ -106,6 +108,10 @@ public class PlayerStats : MonoBehaviour
             }
             experienceCap += experienceCapIncrease;
             expBar.SetExp(experience, experienceCap);
+
+            // Stat increases
+            currentMaxHealth++;
+            Heal(currentMaxHealth); // fully heal
         }
     }
 
@@ -122,14 +128,14 @@ public class PlayerStats : MonoBehaviour
                 // Destroy(gameObject);
                 Debug.Log("Player is Dead. GAME OVER.");
             }
-            healthBar.SetHealth(currentHealth, characterData.MaxHealth); 
+            healthBar.SetHealth(currentHealth, currentMaxHealth); 
         }
     }
 
     public void Heal(float heal)
     {
         // Only heal if player health not max
-        if (currentHealth < characterData.MaxHealth)
+        if (currentHealth < currentMaxHealth)
         {
             if (currentHealth <= 0)
             {
@@ -138,11 +144,11 @@ public class PlayerStats : MonoBehaviour
 
             currentHealth += heal;
 
-            if (currentHealth > characterData.MaxHealth)
+            if (currentHealth > currentMaxHealth)
             {
-                currentHealth = characterData.MaxHealth;
+                currentHealth = currentMaxHealth;
             }
-            healthBar.SetHealth(currentHealth, characterData.MaxHealth);
+            healthBar.SetHealth(currentHealth, currentMaxHealth);
         }
     }
 }

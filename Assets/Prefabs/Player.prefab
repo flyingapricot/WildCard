@@ -197,6 +197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterData: {fileID: 11400000, guid: 3a78747d582f62743a0750de658828ad, type: 2}
   healthBar: {fileID: 0}
+  expBar: {fileID: 0}
   currentMoveSpeed: 0
   invincibilityDuration: 0.5
   experience: 0

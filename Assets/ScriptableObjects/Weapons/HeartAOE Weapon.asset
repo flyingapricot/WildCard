@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HeartAOE Weapon
   m_EditorClassIdentifier: 
   prefab: {fileID: 5758240656589971305, guid: 5a9be736cda9e51458591a3df4f3213f, type: 3}
-  damage: 5
+  damage: 1
   speed: 0
   cooldownDuration: 3
   pierce: 0

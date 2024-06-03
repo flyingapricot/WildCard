@@ -42,30 +42,43 @@ public class PlayerMovement : MonoBehaviour
         // If you press 'A' or the left arrow key, or push a joystick to the left, it returns -1.
         // If there is no input or the joystick is in the neutral position along the horizontal axis, it returns 0.
 
-        movementVector.x = Input.GetAxisRaw("Horizontal");
-        movementVector.y = Input.GetAxisRaw("Vertical");
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float verticalInput = Input.GetAxisRaw("Vertical");
+
+        movementVector.x = horizontalInput;
+        movementVector.y = verticalInput;
         
-        // Stores latest player direction
-        if (movementVector.x != 0)
+        // Update the latest movement vector based on input
+        if (horizontalInput != 0 || verticalInput != 0)
         {
-            lastHorizontalVector = movementVector.x;
-            lastMovementVector = new Vector3(lastHorizontalVector, 0f, 0f);
+            lastMovementVector = new Vector3(horizontalInput, verticalInput, 0f);
         }
-        if (movementVector.y != 0)
-        {
-            lastVerticalVector = movementVector.y;
-            lastMovementVector = new Vector3(0f, lastVerticalVector, 0f);
-        }
-        if (movementVector.x != 0 && movementVector.y != 0) // Diagonal
-        {
-            lastMovementVector = new Vector3(lastHorizontalVector, lastVerticalVector, 0f);
-        }
+    
+        // movementVector.x = Input.GetAxisRaw("Horizontal");
+        // movementVector.y = Input.GetAxisRaw("Vertical");
+        
+        // if (movementVector.x != 0)
+        // {
+        //     lastHorizontalVector = movementVector.x;
+        //     lastMovementVector = new Vector3(lastHorizontalVector, 0f, 0f);
+        // }
+        // if (movementVector.y != 0)
+        // {
+        //     lastVerticalVector = movementVector.y;
+        //     lastMovementVector = new Vector3(0f, lastVerticalVector, 0f);
+        // }
+        // if (movementVector.x != 0 && movementVector.y != 0) // Diagonal
+        // {
+        //     lastMovementVector = new Vector3(lastHorizontalVector, lastVerticalVector, 0f);
+        // }
     }
 
     void Move()
     {
-        // The movement is multiplied by a speed factor and Time.deltaTime to make sure it's smooth and frame-rate independent.
-        movementVector *= stats.currentMoveSpeed;
-        player.velocity = movementVector;
+        // The movement is multiplied by a speed factor to make sure it's smooth and frame-rate independent.
+        Vector3 movement = movementVector * stats.currentMoveSpeed;
+        
+        // Apply the movement to the Rigidbody2D's velocity
+        player.velocity = movement;
     }
 }

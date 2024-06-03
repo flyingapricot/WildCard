@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 630070124606761961}
   - component: {fileID: 8415253034408921534}
   - component: {fileID: 7873878884039451452}
-  - component: {fileID: 5667966281827617554}
+  - component: {fileID: 6194128249770924480}
   m_Layer: 0
   m_Name: DiamondEnemy
   m_TagString: Enemy
@@ -106,8 +106,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &5667966281827617554
-BoxCollider2D:
+--- !u!60 &6194128249770924480
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -148,9 +148,24 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.53037024, y: -0.28660178}
+      - {x: 0.44962692, y: -0.2196095}
+      - {x: 0.44531465, y: -0.09744543}
+      - {x: 0.6019795, y: 0.16474164}
+      - {x: 0.41913772, y: 0.6590942}
+      - {x: 0.008026838, y: 0.5037251}
+      - {x: -0.23162651, y: 0.17431188}
+      - {x: -0.4192927, y: 0.46490908}
+      - {x: -0.57759076, y: 0.25315383}
+      - {x: -0.5186505, y: -0.29174292}
+      - {x: -0.30408144, y: -0.4010123}
+      - {x: -0.30946732, y: -0.51671106}
+      - {x: -0.183447, y: -0.62727153}
+      - {x: 0.2153678, y: -0.6409978}
+      - {x: 0.52674603, y: -0.5633232}
+  m_UseDelaunayMesh: 0
 --- !u!1 &5455972692051220082
 GameObject:
   m_ObjectHideFlags: 0
