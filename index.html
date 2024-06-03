@@ -16,6 +16,7 @@
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
+            margin: 0;
         }
         footer {
             margin-top: auto;
@@ -25,15 +26,51 @@
             text-align: center;
         }
 
-      @font-face {
-        font-family: 'SuperFont';
-        src: url('super.ttf') format('truetype');
-      }
+        @font-face {
+            font-family: 'SuperFont';
+            src: url('super.ttf') format('truetype');
+        }
 
-      .navbar {
-        font-family: 'SuperFont', sans-serif;
-      }
+        .navbar {
+            font-family: 'SuperFont', sans-serif;
+        }
 
+        .unity-desktop, .unity-mobile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #unity-canvas {
+            max-width: 100%;
+            height: auto;
+        }
+
+        #unity-loading-bar {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        @media (min-width: 576px) {
+            #unity-canvas {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        @media (min-width: 768px) {
+            #unity-canvas {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        @media (min-width: 992px) {
+            #unity-canvas {
+                width: 800px;
+                height: 600px;
+            }
+        }
     </style>
   </head>
   <body>
@@ -67,7 +104,7 @@
     </nav>
 
     <div id="unity-container" class="unity-desktop">
-      <canvas id="unity-canvas" width=800 height=600 tabindex="-1"></canvas>
+      <canvas id="unity-canvas" tabindex="-1"></canvas>
       <div id="unity-loading-bar">
         <div id="unity-logo"></div>
         <div id="unity-progress-bar-empty">
@@ -148,12 +185,11 @@
         // performance, uncomment the following line:
         // config.devicePixelRatio = 1;
 
-
       } else {
         // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
 
-        canvas.style.width = "800px";
-        canvas.style.height = "600px";
+        canvas.style.width = "100%";
+        canvas.style.height = "auto";
       }
 
       loadingBar.style.display = "block";
