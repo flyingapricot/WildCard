@@ -57,6 +57,7 @@ jobs:
       matrix:
         targetPlatform:
           - StandaloneWindows	# Windows
+          - WebGL #WebGL Build
     steps:
       - uses: actions/checkout@v4
         with:
@@ -81,3 +82,49 @@ jobs:
         with:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
+          
+  deployPages:
+    needs: buildForAllSupportedPlatforms
+    name: Deploy to Github Pages 🚀
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+          path: gh-pages
+  
+      - uses: actions/download-artifact@v2
+        with:
+          name: Build-WebGL
+          path: build
+  
+      - name: Update build folder
+        run: |
+          rm -rf gh-pages/Build/
+          rm -rf gh-pages/TemplateData/
+          shopt -s extglob
+          cp -r build/WebGL/* gh-pages/
+      
+      - name: Commit and push changes
+        run: |
+          cd gh-pages
+          git config user.name "GitHub Actions"
+          git config user.email "neerajkumbar44@gmail.com"
+          git add Build/*
+          git commit -m "Update build folder"
+          git push origin gh-pages
+
+      - name: Unzip
+        run: |
+          cd gh-pages
+          git config user.name "GitHub Actions"
+          git config user.email "neerajkumbar44@gmail.com"
+          gzip -d Build/WebGL.data.gz
+          gzip -d Build/WebGL.framework.js.gz
+          gzip -d Build/WebGL.wasm.gz
+          git add .
+          git reset HEAD index.html
+          git commit -m "Unzipped files"
+          git push origin gh-pages
+  
