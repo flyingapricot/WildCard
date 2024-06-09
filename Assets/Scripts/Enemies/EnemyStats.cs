@@ -9,9 +9,9 @@ public class EnemyStats : MonoBehaviour
     public EnemyScriptableObject enemyData;
 
     // Current Enemy Stats
-    float currentDamage;
+    [HideInInspector] public float currentDamage;
     [HideInInspector] public float currentSpeed; // Accessed by movement
-    float currentHealth;
+    [HideInInspector] public float currentHealth;
 
     void Awake()
     {
@@ -36,7 +36,6 @@ public class EnemyStats : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Attack();
-            Debug.Log("Player Attacked!");
         }
     }
 

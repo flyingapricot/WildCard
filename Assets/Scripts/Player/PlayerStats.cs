@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.U2D.Animation;
 using UnityEngine;
 
 // To be placed on Character Prefabs
@@ -7,22 +8,31 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     public static PlayerStats instance;
-    public CharacterScriptableObject characterData;
+    CharacterScriptableObject characterData;
+    [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] Animator animator;
     [SerializeField] HealthBar healthBar;
     [SerializeField] EXPBar expBar;
 
-    // Current Enemy Stats
+    // Current Player Stats
     [HideInInspector] public float currentMoveSpeed; // Accessed by movement
-    float currentHealth;
-    float currentMaxHealth;
-    float currentRecovery;
-    float currentMight;
-    float currentProjectileSpeed;
+    [HideInInspector] public float currentHealth;
+    [HideInInspector] public float currentMaxHealth;
+    [HideInInspector] public float currentRecovery;
+    [HideInInspector] public float currentMight;
+    [HideInInspector] public float currentProjectileSpeed;
+    [HideInInspector] public float currentMagnet;
+
 
     [Header("Invincibility Frames")]
     public float invincibilityDuration;
     float invincibilityTimer;
     bool isInvincible;
+
+
+    [Header("Spawned Weapons")]
+    public List<GameObject> weaponList;
+
 
     [Header("Experience / Level")]
     public int experience = 0;
@@ -39,6 +49,7 @@ public class PlayerStats : MonoBehaviour
     }
     public List<LevelRange> levelRanges;
 
+
     void Awake()
     {
         if (instance == null) // Singleton Pattern
@@ -49,7 +60,11 @@ public class PlayerStats : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            Debug.LogWarning("EXTRA " + this + " DELETED");
         }
+
+        characterData = CharacterSelector.GetData();
+        CharacterSelector.instance.DestorySingleton();
 
         currentMoveSpeed = characterData.MoveSpeed;
         currentHealth = characterData.MaxHealth;
@@ -57,8 +72,16 @@ public class PlayerStats : MonoBehaviour
         currentRecovery = characterData.Recovery;
         currentMight = characterData.Might;
         currentProjectileSpeed = characterData.ProjectileSpeed;
+        currentMagnet = characterData.Magnet;
 
         healthBar.InitializeHealthBar(currentHealth); // Initialize the health bar
+
+        // Spawn the starting weapon
+        SpawnWeapon(characterData.StartingWeapon);
+
+        // Set sprite and animator from CharacterScriptableObject
+        spriteRenderer.sprite = characterData.CharacterSprite;
+        animator.runtimeAnimatorController = characterData.CharacterAnimation;
     }
 
     void Start()
@@ -78,6 +101,8 @@ public class PlayerStats : MonoBehaviour
         {
             isInvincible = false; // i-frame runs out
         }
+
+        Recover();
     }
 
     public void GainExperience(int amount)
@@ -139,16 +164,38 @@ public class PlayerStats : MonoBehaviour
         {
             if (currentHealth <= 0)
             {
-                return;
+                return; // Does not heal if player is dead
             }
 
             currentHealth += heal;
 
             if (currentHealth > currentMaxHealth)
             {
-                currentHealth = currentMaxHealth;
+                currentHealth = currentMaxHealth; // Prevent exceeding max health
             }
-            healthBar.SetHealth(currentHealth, currentMaxHealth);
+            healthBar.SetHealth(currentHealth, currentMaxHealth); // Update Health Bar
         }
+    }
+
+    void Recover()
+    {
+        if (currentHealth < currentMaxHealth)
+        {
+            currentHealth += currentRecovery * Time.deltaTime;
+
+            if (currentHealth > currentMaxHealth)
+            {
+                currentHealth = currentMaxHealth; // Prevent exceeding max health
+            }
+            healthBar.SetHealth(currentHealth, currentMaxHealth); // Update Health Bar
+        }
+    }
+
+    public void SpawnWeapon(GameObject weapon)
+    {
+        // Spawn the starting weapon
+        GameObject spawnedWeapon = Instantiate(weapon, transform.position, Quaternion.identity);
+        spawnedWeapon.transform.SetParent(transform); // Place weapon inside player gameobject
+        weaponList.Add(spawnedWeapon); // Add it to the list of spawned weapons
     }
 }

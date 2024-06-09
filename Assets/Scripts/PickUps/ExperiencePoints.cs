@@ -9,8 +9,16 @@ public class ExperiencePoints : MonoBehaviour, ICollectible
     {
         PlayerStats player = FindObjectOfType<PlayerStats>();
         player.GainExperience(experienceValue);
-        Destroy(gameObject);
+        Destroy(gameObject); // Destroys once collected
 
         //throw new System.NotImplementedException();
     }
+
+    /* void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.CompareTag("Player"))
+        {
+            Destroy(gameObject); // Destroys once collected
+        }
+    } */
 }

@@ -13,6 +13,6 @@ public class BulletBehaviour : ProjectileBehaviour // Inheritence
 
     void Update()
     {
-        transform.position += direction * weaponData.Speed * Time.deltaTime; // Set movement of bullet
+        transform.position += direction * currentSpeed * Time.deltaTime; // Set movement of bullet
     }
 }
