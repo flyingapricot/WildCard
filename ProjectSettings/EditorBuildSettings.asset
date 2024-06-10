@@ -14,10 +14,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Gameplay.unity
     guid: 4b5508c44a3c131448bb2be8fa75c0c7
-  - enabled: 0
-    path: Assets/Scenes/Tutorial.unity
-    guid: a5d9797d0a8618947af84f37c44cc582
   - enabled: 1
     path: Assets/Scenes/DarkForest.unity
     guid: 9bb99b17e6be2da4f8cabaef5158d28e
+  - enabled: 0
+    path: Assets/Scenes/Tutorial.unity
+    guid: a5d9797d0a8618947af84f37c44cc582
+  - enabled: 0
+    path: Assets/Scenes/MongoDB.unity
+    guid: f0790e92d6724ba459bdba582336b34f
   m_configObjects: {}

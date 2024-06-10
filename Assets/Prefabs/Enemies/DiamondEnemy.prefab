@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: d486c0f9a3d56fe408b199e07a394601, type: 2}
+  despawnDistance: 50
   currentDamage: 0
   currentSpeed: 2
   currentHealth: 0

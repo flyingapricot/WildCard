@@ -152,9 +152,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c60cb26c206e614aa921ed55495f500, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 3996832791091268854, guid: 78e1eb3bade098647b3a775b62ebc2e5, type: 3}
   spawnArea: {x: 15, y: 8}
-  spawnTimer: 2
+  enemiesAlive: 0
+  maxEnemiesAllowed: 10
+  maxEnemiesReached: 0
+  currentWave: 0
+  waveInterval: 10
+  waves:
+  - waveName: Wave 1
+    enemyGroups:
+    - enemyName: Diamonds
+      enemyPrefab: {fileID: 3996832791091268854, guid: 78e1eb3bade098647b3a775b62ebc2e5, type: 3}
+      enemyCount: 10
+      spawnCount: 0
+    - enemyName: Hearts
+      enemyPrefab: {fileID: 3996832791091268854, guid: c04a79939b9f00e43a9e4348d6bd8800, type: 3}
+      enemyCount: 5
+      spawnCount: 0
+    waveQuota: 0
+    spawnInterval: 3
+    spawnCount: 0
 --- !u!4 &257623553
 Transform:
   m_ObjectHideFlags: 0
