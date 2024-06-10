@@ -7,6 +7,9 @@ using UnityEngine;
 public class EnemyStats : MonoBehaviour
 {
     public EnemyScriptableObject enemyData;
+    EnemySpawner es;
+    float despawnDistance = 50f; // Distance from player for the enemy to despawn
+    float enemyDistance; // Distance of enemy from player
 
     // Current Enemy Stats
     [HideInInspector] public float currentDamage;
@@ -15,9 +18,21 @@ public class EnemyStats : MonoBehaviour
 
     void Awake()
     {
+        es = FindObjectOfType<EnemySpawner>();
+
         currentDamage = enemyData.Damage;
         currentSpeed = enemyData.Speed;
         currentHealth = enemyData.MaxHealth;
+    }
+
+    void Update()
+    {
+        enemyDistance = Vector3.Distance(transform.position, PlayerStats.instance.transform.position);
+        if (enemyDistance > despawnDistance)
+        {
+            // Respawn the despawned enemy near the player 
+            transform.position = PlayerStats.instance.transform.position + es.GenerateRandomPosition();
+        }
     }
 
     public void TakeDamage(float dmg)
@@ -26,6 +41,7 @@ public class EnemyStats : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            es.OnEnemyKilled();
             Destroy(gameObject); // Dies
         }
     }
