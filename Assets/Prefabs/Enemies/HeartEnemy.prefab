@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8415253034408921534}
   - component: {fileID: 7873878884039451452}
   - component: {fileID: 6194128249770924480}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HeartEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -50,7 +50,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: f776cd7d853712e44ba201ebcbcb9019, type: 2}
-  despawnDistance: 50
   currentDamage: 0
   currentSpeed: 2
   currentHealth: 0
@@ -181,7 +180,7 @@ GameObject:
   - component: {fileID: 3357681188904967450}
   - component: {fileID: 1361000127611414543}
   - component: {fileID: 1911489200773809243}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HeartSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

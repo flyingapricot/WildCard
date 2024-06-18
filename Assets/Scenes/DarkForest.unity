@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 257623553}
   - component: {fileID: 257623552}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ---ENEMIES---
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,7 +196,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 777651197}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ---WORLD---
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229,7 +229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2015294310}
   - component: {fileID: 2015294311}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MapController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
