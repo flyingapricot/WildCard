@@ -305,6 +305,18 @@ MonoBehaviour:
           m_StringArgument: DarkForest
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1914291340}
+        m_TargetAssemblyTypeName: CharacterSelector, Assembly-CSharp
+        m_MethodName: SelectWeapon
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 021dd16009454d84f9a9811812a1d0ce, type: 2}
+          m_ObjectArgumentAssemblyTypeName: WeaponScriptableObject, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &188214803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1283,7 +1295,7 @@ GameObject:
   - component: {fileID: 906096712}
   - component: {fileID: 906096711}
   m_Layer: 5
-  m_Name: CharacterScreen
+  m_Name: ---Characters---
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1821,6 +1833,18 @@ MonoBehaviour:
           m_StringArgument: DarkForest
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1914291340}
+        m_TargetAssemblyTypeName: CharacterSelector, Assembly-CSharp
+        m_MethodName: SelectWeapon
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 021dd16009454d84f9a9811812a1d0ce, type: 2}
+          m_ObjectArgumentAssemblyTypeName: WeaponScriptableObject, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1545638015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2223,6 +2247,18 @@ MonoBehaviour:
           m_StringArgument: DarkForest
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1914291340}
+        m_TargetAssemblyTypeName: CharacterSelector, Assembly-CSharp
+        m_MethodName: SelectWeapon
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 4b6f86e99af977d49bd0176ce1563697, type: 2}
+          m_ObjectArgumentAssemblyTypeName: WeaponScriptableObject, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1704578783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2274,7 +2310,7 @@ GameObject:
   - component: {fileID: 1719951133}
   - component: {fileID: 1719951132}
   m_Layer: 5
-  m_Name: TitleScreen
+  m_Name: ---Title---
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2625,6 +2661,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterData: {fileID: 0}
+  weaponData: {fileID: 0}
 --- !u!4 &1914291341
 Transform:
   m_ObjectHideFlags: 0

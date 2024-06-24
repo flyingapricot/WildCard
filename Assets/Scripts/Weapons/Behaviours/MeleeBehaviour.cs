@@ -12,16 +12,16 @@ public class MeleeBehaviour : MonoBehaviour
 
     // Current Melee Stats
     protected float currentDamage;
-    protected float currentSpeed;
-    protected float currentCooldownDuration;
-    //protected int currentPierce;
+    protected float currentArea;
+    protected float currentDuration;
+    //protected float currentCooldown;
 
     void Awake()
     {
         currentDamage = weaponData.Damage;
-        currentSpeed = weaponData.Speed;
-        currentCooldownDuration = weaponData.CooldownDuration;
-        //currentPierce = weaponData.Pierce;
+        currentArea = weaponData.Area;
+        currentDuration = weaponData.Duration;
+        //currentCooldown = weaponData.Cooldown;
     }
 
     protected virtual void Start()
@@ -29,18 +29,23 @@ public class MeleeBehaviour : MonoBehaviour
         Destroy(gameObject, destroyAfterSeconds);
     }
 
+    public float GetCurrentDamage()
+    {
+        return currentDamage *= FindObjectOfType<PlayerStats>().currentDamage;
+    }
+
     protected virtual void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Enemy"))
         {
             EnemyStats enemy = col.GetComponent<EnemyStats>();
-            enemy.TakeDamage(currentDamage); // Use currentDamage since multiplier might be applied
+            enemy.TakeDamage(GetCurrentDamage()); // Use GetCurrentDamage() since multiplier might be applied
         }
         else if (col.CompareTag("Prop"))
         {
             if (col.gameObject.TryGetComponent(out BreakableProps breakable))
             {
-                breakable.TakeDamage(currentDamage);
+                breakable.TakeDamage(GetCurrentDamage());
             }
         }
     }

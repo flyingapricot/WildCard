@@ -13,15 +13,21 @@ public class ProjectileBehaviour : MonoBehaviour
 
     // Current Projectile Stats
     protected float currentDamage;
+    protected float currentArea;
     protected float currentSpeed;
-    protected float currentCooldownDuration;
+    protected float currentDuration;
+    protected float currentAmount;
+    //protected float currentCooldown;
     protected int currentPierce;
 
     void Awake()
     {
         currentDamage = weaponData.Damage;
-        currentSpeed = weaponData.Speed;
-        currentCooldownDuration = weaponData.CooldownDuration;
+        currentArea = weaponData.Area;
+        currentSpeed = weaponData.ProjectileSpeed;
+        currentDuration = weaponData.Duration;
+        currentAmount = weaponData.Amount;
+        //currentCooldown = weaponData.Cooldown;
         currentPierce = weaponData.Pierce;
     }
 
@@ -30,19 +36,24 @@ public class ProjectileBehaviour : MonoBehaviour
         Destroy(gameObject, destroyAfterSeconds);
     }
 
+    public float GetCurrentDamage()
+    {
+        return currentDamage *= FindObjectOfType<PlayerStats>().currentDamage;
+    }
+
     protected virtual void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Enemy"))
         {
             EnemyStats enemy = col.GetComponent<EnemyStats>();
-            enemy.TakeDamage(currentDamage); // Use currentDamage since multiplier might be applied
+            enemy.TakeDamage(GetCurrentDamage()); // Use GetCurrentDamage() since multiplier might be applied
             ReducePierce(); 
         }
         else if (col.CompareTag("Prop"))
         {
             if (col.gameObject.TryGetComponent(out BreakableProps breakable))
             {
-                breakable.TakeDamage(currentDamage);
+                breakable.TakeDamage(GetCurrentDamage());
                 ReducePierce(); 
             }
         }

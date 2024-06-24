@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce8644a6a15d22542b99bc07d7b07e74, type: 3}
-  m_Name: DiamondBullet Weapon
+  m_Script: {fileID: 11500000, guid: dbc66a0723ba8fd4d87af533088bf6f4, type: 3}
+  m_Name: DamagePassiveItem 2
   m_EditorClassIdentifier: 
-  prefab: {fileID: 115846657216147525, guid: c5b9c1844b3de684c99cf81138287460, type: 3}
-  damage: 1
-  speed: 10
-  cooldownDuration: 1
-  pierce: 1
+  icon: {fileID: 21300000, guid: 8440c781e0439c448bb3c96bfa4c1274, type: 3}
+  multiplier: 100
+  level: 2
+  nextLevelPrefab: {fileID: 0}

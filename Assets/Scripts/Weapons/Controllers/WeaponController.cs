@@ -16,7 +16,7 @@ public class WeaponController : MonoBehaviour
     protected virtual void Start()
     {
         pm = FindObjectOfType<PlayerMovement>();
-        currentCooldown = weaponData.CooldownDuration; // Initialize to prevent weapon from firing immediately
+        currentCooldown = weaponData.Cooldown; // Initialize to prevent weapon from firing immediately
     }
 
     protected virtual void Update()
@@ -30,6 +30,6 @@ public class WeaponController : MonoBehaviour
 
     protected virtual void Attack()
     {
-        currentCooldown = weaponData.CooldownDuration;
+        currentCooldown = weaponData.Cooldown;
     }
 }

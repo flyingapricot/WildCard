@@ -13,7 +13,13 @@ MonoBehaviour:
   m_Name: HeartAOE Weapon
   m_EditorClassIdentifier: 
   prefab: {fileID: 5758240656589971305, guid: 5a9be736cda9e51458591a3df4f3213f, type: 3}
+  icon: {fileID: 21300000, guid: 78d6cb81aa4a8024d8d728386a77840b, type: 3}
+  level: 1
+  nextLevelPrefab: {fileID: 5301497842009333730, guid: f0a8991ee53fbb643be82886bde5073a, type: 3}
   damage: 1
-  speed: 0
-  cooldownDuration: 3
+  area: 0
+  projectileSpeed: 0
+  duration: 0
+  amount: 0
+  cooldown: 3
   pierce: 0

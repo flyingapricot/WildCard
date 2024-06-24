@@ -19,7 +19,7 @@ public class HeartAOEBehaviour : MeleeBehaviour // Inheritence
         if (col.CompareTag("Enemy") && !markedEnemies.Contains(col.gameObject))
         {
             EnemyStats enemy = col.GetComponent<EnemyStats>();
-            enemy.TakeDamage(currentDamage);
+            enemy.TakeDamage(GetCurrentDamage());
 
             markedEnemies.Add(col.gameObject); // Mark the Enemy so that you cannot spam damage on the same enemy
         }
@@ -27,7 +27,7 @@ public class HeartAOEBehaviour : MeleeBehaviour // Inheritence
         {
             if (col.gameObject.TryGetComponent(out BreakableProps breakable))
             {
-                breakable.TakeDamage(currentDamage);
+                breakable.TakeDamage(GetCurrentDamage());
                 markedEnemies.Add(col.gameObject);
             }
         }

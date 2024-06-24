@@ -9,15 +9,59 @@ using UnityEngine;
 
 public class WeaponScriptableObject : ScriptableObject // Inheritance
 {
-    public GameObject prefab;
+    [SerializeField] public GameObject prefab;
+    public GameObject Prefab { get => prefab; private set => prefab = value; }
+
+    [SerializeField] Sprite icon; // Editor only
+    public Sprite Icon { get => icon; private set => icon = value; }
+
+    [SerializeField] int level; // Editor only
+    public int Level { get => level; private set => level = value; }
+
+    [SerializeField] GameObject nextLevelPrefab; // Prefab of the next level weapon
+    public GameObject NextLevelPrefab { get => nextLevelPrefab; private set => nextLevelPrefab = value; }
+
 
     [Header("Weapon Stats")]
+
+    // Modifies the damage of all attacks.
+    // Base value = 100%
+    // Max value = 1000%
     [SerializeField] float damage;
     public float Damage { get => damage; private set => damage = value; }
-    [SerializeField] float speed;
-    public float Speed { get => speed; private set => speed = value; }
-    [SerializeField] float cooldownDuration; // Needs to be > destroyAfterSeconds
-    public float CooldownDuration { get => cooldownDuration; private set => cooldownDuration = value; }
+
+    // Modifies the area of all attacks.
+    // Base value = 100%
+    // Max value = 1000%
+    [SerializeField] float area;
+    public float Area { get => area; private set => area = value; }
+
+    // Modifies the movement speed of all projectiles.
+    // Base value = 100%
+    // Max value = 500%
+    [SerializeField] float projectileSpeed;
+    public float ProjectileSpeed { get => projectileSpeed; private set => projectileSpeed = value; }
+
+    // Modifies the duration of weapon effects.
+    // Base value = 100%
+    // Max value = 500%
+    [SerializeField] float duration;
+    public float Duration { get => duration; private set => duration = value; }
+
+    // Determines the amount of extra projectiles weapons have.
+    // Base value = 0
+    // Max value = 10
+    [SerializeField] float amount;
+    public float Amount { get => amount; private set => amount = value; }
+
+    // Modifies the duration of the cooldown between attacks.
+    // Base value = 100%
+    // Max value = 10%
+    [SerializeField] float cooldown; // Needs to be > destroyAfterSeconds
+    public float Cooldown { get => cooldown; private set => cooldown = value; }
+
+    // Modifies the amount of targets the projectile can hit before being destroyed.
+    // Base value = 0
     [SerializeField] int pierce;
     public int Pierce { get => pierce; private set => pierce = value; }
 }
