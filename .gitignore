@@ -80,4 +80,10 @@ ProjectSettings/SceneTemplateSettings.json
 ProjectSettings/ShaderGraphSettings.asset
 ProjectSettings/URPProjectSettings.asset
 
+# Visual Studio Code directory
+.vscode/
+
+# Visual Studio configuration file
+.vsconfig
+
 # End of https://www.toptal.com/developers/gitignore/api/unity
