@@ -6,6 +6,6 @@ public class DamagePassiveItem : PassiveItem
 {
     protected override void ApplyModifier()
     {
-        player.currentDamage *= 1 + passiveItemData.Multiplier / 100f; // Original multiplied by multiplier %
+        player.CurrentDamage *= 1 + passiveItemData.Multiplier / 100f; // Original multiplied by multiplier %
     }
 }

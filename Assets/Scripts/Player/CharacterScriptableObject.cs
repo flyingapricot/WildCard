@@ -9,6 +9,9 @@ using UnityEngine;
 
 public class CharacterScriptableObject : ScriptableObject 
 {
+    [SerializeField] Sprite characterName;
+    public Sprite CharacterName { get => characterName; private set => characterName = value; }
+
     [SerializeField] Sprite characterSprite;
     public Sprite CharacterSprite { get => characterSprite; private set => characterSprite = value; }
 

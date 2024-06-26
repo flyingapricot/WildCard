@@ -38,7 +38,7 @@ public class ProjectileBehaviour : MonoBehaviour
 
     public float GetCurrentDamage()
     {
-        return currentDamage *= FindObjectOfType<PlayerStats>().currentDamage;
+        return currentDamage *= FindObjectOfType<PlayerStats>().CurrentDamage;
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D col)

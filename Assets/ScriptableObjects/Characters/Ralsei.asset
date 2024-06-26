@@ -12,12 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5a24c457768cb7428029de8df4805a5, type: 3}
   m_Name: Ralsei
   m_EditorClassIdentifier: 
+  characterName: {fileID: 21300000, guid: 55256c0d31626434da9c686d310bc42a, type: 3}
   characterSprite: {fileID: 21300000, guid: 948402faaf898b240ba26226fc321604, type: 3}
   characterAnimation: {fileID: 9100000, guid: 9f479f1d8e47b2b42b7ff4980b08eb0f, type: 2}
   startingWeapon: {fileID: 5301497842009333730, guid: 741fdf52bceb1eb458b5734219662476, type: 3}
-  moveSpeed: 5
   maxHealth: 20
   recovery: 0.5
-  might: 0
-  projectileSpeed: 0
+  armour: 0
+  moveSpeed: 5
   magnet: 2
+  luck: 0
+  growth: 0
+  greed: 0
+  curse: 0
+  revival: 0
+  reroll: 0
+  skip: 0
+  banish: 0
