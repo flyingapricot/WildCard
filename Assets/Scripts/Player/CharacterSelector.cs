@@ -6,6 +6,7 @@ public class CharacterSelector : MonoBehaviour
 {
     public static CharacterSelector instance;
     public CharacterScriptableObject characterData;
+    public WeaponScriptableObject weaponData;
 
     void Awake()
     {
@@ -21,13 +22,13 @@ public class CharacterSelector : MonoBehaviour
         }
     }
 
-    public void DestorySingleton()
+    public void DestroySingleton()
     {
         instance = null;
         Destroy(gameObject);
     }
 
-    public static CharacterScriptableObject GetData()
+    public static CharacterScriptableObject GetCharacterData()
     {
         return instance.characterData;
     }
@@ -35,5 +36,15 @@ public class CharacterSelector : MonoBehaviour
     public void SelectCharacter(CharacterScriptableObject character)
     {
         characterData = character;
+    }
+
+    public static WeaponScriptableObject GetWeaponData()
+    {
+        return instance.weaponData;
+    }
+
+    public void SelectWeapon(WeaponScriptableObject weapon)
+    {
+        weaponData = weapon;
     }
 }

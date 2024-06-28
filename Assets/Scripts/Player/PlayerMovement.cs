@@ -37,6 +37,11 @@ public class PlayerMovement : MonoBehaviour
 
     void InputManagement()
     {
+        if (GameManager.instance.isGameOver)
+        {
+            return; // Prevents inputs if game over
+        }
+
         // When Input.GetAxisRaw("Horizontal") is called, it checks the current state of the input devices associated with the "Horizontal" axis:
         // If you press 'D' or the right arrow key, or push a joystick to the right, it returns 1.
         // If you press 'A' or the left arrow key, or push a joystick to the left, it returns -1.
@@ -75,8 +80,13 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
+        if (GameManager.instance.isGameOver)
+        {
+            return; // Prevents movement if game over
+        }
+
         // The movement is multiplied by a speed factor to make sure it's smooth and frame-rate independent.
-        Vector3 movement = movementVector * stats.currentMoveSpeed;
+        Vector3 movement = movementVector * stats.CurrentMoveSpeed;
         
         // Apply the movement to the Rigidbody2D's velocity
         player.velocity = movement;

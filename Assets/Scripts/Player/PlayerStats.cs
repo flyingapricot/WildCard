@@ -3,37 +3,173 @@ using System.Collections.Generic;
 //using UnityEditor.U2D.Animation;
 using UnityEngine;
 
-// To be placed on Character Prefabs
 
 public class PlayerStats : MonoBehaviour
 {
     public static PlayerStats instance;
     CharacterScriptableObject characterData;
+    WeaponScriptableObject weaponData;
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] Animator animator;
     [SerializeField] HealthBar healthBar;
     [SerializeField] EXPBar expBar;
 
-    // Current Player Stats
-    [HideInInspector] public float currentMoveSpeed; // Accessed by movement
-    [HideInInspector] public float currentHealth;
-    [HideInInspector] public float currentMaxHealth;
-    [HideInInspector] public float currentRecovery;
-    [HideInInspector] public float currentMight;
+    #region Current Player Stats
+    float currentMaxHealth;
+    float currentHealth;
+    float currentRecovery;
+    float currentArmour;
+    float currentMoveSpeed; // Accessed by movement
+    float currentMagnet;
+
+    public float CurrentMaxHealth
+    {
+        get { return currentMaxHealth; }
+        set
+        {
+            // Check if value has changed
+            if (currentMaxHealth != value)
+            {
+                currentMaxHealth = value;
+            }
+        }
+    }
+
+    public float CurrentHealth
+    {
+        get { return currentHealth; }
+        set
+        {
+            // Clamp the value to ensure it's within valid range
+            value = Mathf.Clamp(value, 0, CurrentMaxHealth);
+            // Check if value has changed
+            if (currentHealth != value)
+            {
+                currentHealth = value;
+                if (GameManager.instance != null)
+                {
+                    GameManager.instance.Health.text = "Health: " + Mathf.RoundToInt(currentHealth) + " / " + CurrentMaxHealth; // Round off to nearest int
+                }
+                healthBar.SetHealth(currentHealth, CurrentMaxHealth); 
+            }
+        }
+    }
+
+    public float CurrentRecovery
+    {
+        get { return currentRecovery; }
+        set
+        {
+            // Check if value has changed
+            if (currentRecovery != value)
+            {
+                currentRecovery = value;
+                if (GameManager.instance != null)
+                {
+                    GameManager.instance.Recovery.text = "Recovery: " + currentRecovery;
+                }
+            }
+        }
+    }
+
+    public float CurrentArmour
+    {
+        get { return currentArmour; }
+        set
+        {
+            // Check if value has changed
+            if (currentArmour != value)
+            {
+                currentArmour = value;
+                if (GameManager.instance != null)
+                {
+                    GameManager.instance.Defence.text = "Defence: " + currentArmour;
+                }
+            }
+        }
+    }
+
+    public float CurrentMoveSpeed
+    {
+        get { return currentMoveSpeed; }
+        set
+        {
+            // Check if value has changed
+            if (currentMoveSpeed != value)
+            {
+                currentMoveSpeed = value;
+                if (GameManager.instance != null)
+                {
+                    GameManager.instance.Speed.text = "Speed: " + currentMoveSpeed;
+                }
+            }
+        }
+    }
+
+    public float CurrentMagnet
+    {
+        get { return currentMagnet; }
+        set
+        {
+            // Check if value has changed
+            if (currentMagnet != value)
+            {
+                currentMagnet = value;
+                if (GameManager.instance != null)
+                {
+                    GameManager.instance.Magnet.text = "Magnet: " + currentMagnet;
+                }
+            }
+        }
+    }
+    #endregion
+
+    #region Current Weapon Stats
+    float currentDamage;
+    [HideInInspector] public float currentArea;
     [HideInInspector] public float currentProjectileSpeed;
-    [HideInInspector] public float currentMagnet;
+    [HideInInspector] public float currentDuration;
+    [HideInInspector] public float currentAmount; 
+    [HideInInspector] public float currentCooldown;
+    [HideInInspector] public float currentPierce;
 
+    public float CurrentDamage
+    {
+        get { return currentDamage; }
+        set
+        {
+            // Check if value has changed
+            if (currentDamage != value)
+            {
+                currentDamage = value;
+                if (GameManager.instance != null)
+                {
+                    GameManager.instance.Attack.text = "Attack: " + currentDamage;
+                }
+            }
+        }
+    }
+    #endregion
 
+    #region Current Passive Stats
+    [HideInInspector] public float currentLuck;
+    [HideInInspector] public float currentGrowth;
+    [HideInInspector] public float currentGreed;
+    [HideInInspector] public float currentCurse;
+    [HideInInspector] public float currentRevival; 
+    [HideInInspector] public float currentReroll;
+    [HideInInspector] public float currentSkip;
+    [HideInInspector] public float currentBanish;
+    #endregion
+
+    #region Invincibility Frames
     [Header("Invincibility Frames")]
     public float invincibilityDuration;
     float invincibilityTimer;
     bool isInvincible;
+    #endregion
 
-
-    [Header("Spawned Weapons")]
-    public List<GameObject> weaponList;
-
-
+    #region Experience / Levels
     [Header("Experience / Level")]
     public int experience = 0;
     public int level = 1;
@@ -48,7 +184,13 @@ public class PlayerStats : MonoBehaviour
         public int experienceCapIncrease;
     }
     public List<LevelRange> levelRanges;
+    #endregion
 
+    #region Inventory
+    InventoryManager inventory;
+    public int weaponIndex;
+    public int passiveItemIndex;
+    #endregion
 
     void Awake()
     {
@@ -63,18 +205,39 @@ public class PlayerStats : MonoBehaviour
             Debug.LogWarning("EXTRA " + this + " DELETED");
         }
 
-        characterData = CharacterSelector.GetData();
-        CharacterSelector.instance.DestorySingleton();
+        characterData = CharacterSelector.GetCharacterData();
+        weaponData = CharacterSelector.GetWeaponData();
+        CharacterSelector.instance.DestroySingleton();
 
-        currentMoveSpeed = characterData.MoveSpeed;
-        currentHealth = characterData.MaxHealth;
-        currentMaxHealth = characterData.MaxHealth;
-        currentRecovery = characterData.Recovery;
-        currentMight = characterData.Might;
-        currentProjectileSpeed = characterData.ProjectileSpeed;
-        currentMagnet = characterData.Magnet;
+        inventory = GetComponent<InventoryManager>();
 
-        healthBar.InitializeHealthBar(currentHealth); // Initialize the health bar
+        #region Getting Data
+        CurrentMaxHealth = characterData.MaxHealth;
+        CurrentHealth = characterData.MaxHealth;
+        CurrentRecovery = characterData.Recovery;
+        CurrentArmour = characterData.Armour;
+        CurrentMoveSpeed = characterData.MoveSpeed;
+        CurrentMagnet = characterData.Magnet;
+
+        CurrentDamage = weaponData.Damage;
+        currentArea = weaponData.Area;
+        currentProjectileSpeed = weaponData.ProjectileSpeed;
+        currentDuration = weaponData.Duration;
+        currentAmount = weaponData.Amount;
+        currentCooldown = weaponData.Cooldown;
+        currentPierce = weaponData.Pierce;
+
+        currentLuck = characterData.Luck;
+        currentGrowth = characterData.Growth;
+        currentGreed = characterData.Greed;
+        currentCurse = characterData.Curse;
+        currentRevival = characterData.Revival;
+        currentReroll = characterData.Reroll;
+        currentSkip = characterData.Skip;
+        currentBanish = characterData.Banish;
+        #endregion
+
+        healthBar.InitializeHealthBar(CurrentMaxHealth); // Initialize the health bar
 
         // Spawn the starting weapon
         SpawnWeapon(characterData.StartingWeapon);
@@ -89,6 +252,16 @@ public class PlayerStats : MonoBehaviour
         // Initialize experience cap to prevent player from immediately leveling up
         experienceCap = 5;
         //experienceCap = levelRanges[0].experienceCapIncrease;
+
+        // Set the current stats display
+        GameManager.instance.Health.text = "Health: " + Mathf.RoundToInt(currentHealth) + " / " + CurrentMaxHealth; // Round off to nearest int
+        GameManager.instance.Attack.text = "Attack: " + currentDamage;
+        GameManager.instance.Defence.text = "Defence: " + currentArmour;
+        GameManager.instance.Recovery.text = "Recovery: " + currentRecovery;
+        GameManager.instance.Speed.text = "Speed: " + currentMoveSpeed;
+        GameManager.instance.Magnet.text = "Magnet: " + currentMagnet;
+
+        GameManager.instance.AssignCharacterUI(characterData);
     }
 
     void Update()
@@ -102,7 +275,7 @@ public class PlayerStats : MonoBehaviour
             isInvincible = false; // i-frame runs out
         }
 
-        Recover();
+        Recover(); // Call Recover in Update to enable passive recovery
     }
 
     public void GainExperience(int amount)
@@ -135,8 +308,8 @@ public class PlayerStats : MonoBehaviour
             expBar.SetExp(experience, experienceCap);
 
             // Stat increases
-            currentMaxHealth++;
-            Heal(currentMaxHealth); // fully heal
+            CurrentMaxHealth++;
+            Heal(CurrentMaxHealth); // fully heal
         }
     }
 
@@ -147,55 +320,79 @@ public class PlayerStats : MonoBehaviour
             invincibilityTimer = invincibilityDuration;
             isInvincible = true;
 
-            currentHealth -= dmg;
-            if (currentHealth <= 0)
+            CurrentHealth -= dmg;
+            if (CurrentHealth <= 0)
             {
-                // Destroy(gameObject);
-                Debug.Log("Player is Dead. GAME OVER.");
+                Kill();
             }
-            healthBar.SetHealth(currentHealth, currentMaxHealth); 
         }
     }
 
-    public void Heal(float heal)
+    public void Kill()
+    {
+        if (!GameManager.instance.isGameOver)
+        {
+            GameManager.instance.AssignLevelReached(level);
+            GameManager.instance.AssignInventory(inventory.weaponUISlots, inventory.passiveItemUISlots);
+            GameManager.instance.GameOver();
+        }
+    }
+
+    public void Heal(float heal) // Active healing
     {
         // Only heal if player health not max
-        if (currentHealth < currentMaxHealth)
+        if (CurrentHealth < CurrentMaxHealth)
         {
-            if (currentHealth <= 0)
+            if (CurrentHealth <= 0)
             {
                 return; // Does not heal if player is dead
             }
 
-            currentHealth += heal;
-
-            if (currentHealth > currentMaxHealth)
-            {
-                currentHealth = currentMaxHealth; // Prevent exceeding max health
-            }
-            healthBar.SetHealth(currentHealth, currentMaxHealth); // Update Health Bar
+            CurrentHealth += heal;
         }
     }
 
-    void Recover()
+    void Recover() // Passive recovery
     {
-        if (currentHealth < currentMaxHealth)
+        if (CurrentHealth < CurrentMaxHealth)
         {
-            currentHealth += currentRecovery * Time.deltaTime;
-
-            if (currentHealth > currentMaxHealth)
-            {
-                currentHealth = currentMaxHealth; // Prevent exceeding max health
-            }
-            healthBar.SetHealth(currentHealth, currentMaxHealth); // Update Health Bar
+            CurrentHealth += CurrentRecovery * Time.deltaTime;
         }
     }
 
     public void SpawnWeapon(GameObject weapon)
     {
+        if (weaponIndex >= inventory.weaponSlots.Count - 1)
+        {
+            Debug.LogError("Inventory Full.");
+            return;
+        }
+        
         // Spawn the starting weapon
         GameObject spawnedWeapon = Instantiate(weapon, transform.position, Quaternion.identity);
         spawnedWeapon.transform.SetParent(transform); // Place weapon inside player gameobject
-        weaponList.Add(spawnedWeapon); // Add it to the list of spawned weapons
+        inventory.AddWeapon(weaponIndex, spawnedWeapon.GetComponent<WeaponController>()); // Adds weapon to its inventory slot
+        weaponIndex++;
+    }
+
+    public void SpawnPassiveItem(GameObject passiveItem)
+    {
+        if (passiveItemIndex >= inventory.passiveItemSlots.Count - 1)
+        {
+            Debug.LogError("Inventory Full.");
+            return;
+        }
+
+        // Spawn the starting passive item
+        GameObject spawnedPassiveItem = Instantiate(passiveItem, transform.position, Quaternion.identity);
+        spawnedPassiveItem.transform.SetParent(transform); // Place passive item inside player gameobject
+        inventory.AddPassiveItem(passiveItemIndex, spawnedPassiveItem.GetComponent<PassiveItem>()); // Adds passive item to its inventory slot
+        passiveItemIndex++;
+    }
+
+    public void DestroySingleton()
+    {
+        instance = null;
+        Destroy(gameObject);
     }
 }
