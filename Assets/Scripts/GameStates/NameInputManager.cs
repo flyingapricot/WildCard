@@ -28,6 +28,7 @@ public class NameInputManager : MonoBehaviour
     void Start()
     {
         InitializeCharacterGrid();
+        nameText.text = "hello";
         headerText.text = "Name the Challenger.";
         instructionText.text = "[ENTER or SPACE] - Confirm          [ARROW KEYS] - Move          [BACKSPACE] - Remove Character";
     }
@@ -88,7 +89,12 @@ public class NameInputManager : MonoBehaviour
         DrawUI();
     }
 
-    void HandleInputName()
+    void updateUsername()
+    {
+        
+    }
+
+     void HandleInputName()
     {
         bool moved = false;
 
@@ -181,7 +187,9 @@ public class NameInputManager : MonoBehaviour
 
     void DrawUI()
     {
+        //currentString = PlayerInfo.getInstance().getUsername();
         nameText.text = currentString;
+        
 
         for (int i = 0; i < asciiButtons.Count; i++)
         {
