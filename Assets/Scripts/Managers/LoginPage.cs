@@ -26,6 +26,7 @@ public class LoginPage : MonoBehaviour
     private IMongoDatabase db;
     IMongoCollection<BsonDocument> collection;
     // Start is called before the first frame update
+
     void Start()
     {
         client = new MongoClient(MONGO_URI);
@@ -38,6 +39,10 @@ public class LoginPage : MonoBehaviour
         //setUsernamePage.SetActive(false);
     }
 
+    public void Quit()
+    {
+        SceneController.instance.LoadMainMenu();
+    }
 
 /*    public async void updateUsername()
     {
@@ -118,11 +123,5 @@ public class LoginPage : MonoBehaviour
                 Debug.Log(password.GetComponent<TMP_InputField>().text);*/
         /*        var document = new BsonDocument { { "email", "username@gmail.com" }, { "password", "abcd1234" } };
                 collection.InsertOne(document);*/
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

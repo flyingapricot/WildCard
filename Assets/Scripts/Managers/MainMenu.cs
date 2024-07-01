@@ -26,6 +26,11 @@ public class MainMenu : MonoBehaviour
         SceneController.instance.LoadGameplay(levelName);
     }
 
+    public void LoginSelect()
+    {
+        SceneController.instance.LoadLogin();
+    }
+
     public void ExitGame()
     {
         Application.Quit();

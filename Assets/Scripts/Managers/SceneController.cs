@@ -10,6 +10,7 @@ public class SceneController : MonoBehaviour // Cannot be called SceneManager
     public string gameplaySceneName = "Gameplay"; 
     public string tutorialSceneName = "Tutorial"; 
     public string levelSceneName = "DarkForest"; 
+    public string loginSceneName = "MongoDB"; 
 
     void Awake()
     {
@@ -53,6 +54,16 @@ public class SceneController : MonoBehaviour // Cannot be called SceneManager
     public void LoadLevel()
     {
         StartCoroutine(SwitchScene(levelSceneName));
+    }
+
+    public void LoadLogin()
+    {
+        if (CharacterSelector.instance != null)
+        {
+            CharacterSelector.instance.DestroySingleton();
+        }
+
+        StartCoroutine(SwitchScene(loginSceneName));
     }
 
     IEnumerator SwitchScene(string targetScene, string additionalScene = null)
