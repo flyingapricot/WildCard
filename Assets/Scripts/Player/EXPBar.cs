@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,8 +9,9 @@ public class EXPBar : MonoBehaviour
     public Slider slider;
     public Gradient gradient;
     public Image fill;
+    public TMP_Text levelText;
 
-    public void SetExp(float current, float max)
+    public void SetExp(float current, float max, int level)
     {
         slider.maxValue = max;
         slider.value = current;
@@ -20,5 +22,6 @@ public class EXPBar : MonoBehaviour
         }
         
         fill.color = gradient.Evaluate(slider.normalizedValue);
+        levelText.text = "LV " + level.ToString(); // Update level text
     }
 }

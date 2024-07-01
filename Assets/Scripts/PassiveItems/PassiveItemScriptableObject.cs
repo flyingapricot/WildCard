@@ -6,8 +6,14 @@ using UnityEngine;
 
 public class PassiveItemScriptableObject : ScriptableObject // Inheritance
 {
+    [SerializeField] new string name; // Name of the Passive item or its upgrade
+    public string Name { get => name; private set => name = value; }
+    
     [SerializeField] Sprite icon; // Editor only
     public Sprite Icon { get => icon; private set => icon = value; }
+    
+    [SerializeField] string description; // Description of the Passive item or its upgrade
+    public string Description { get => description; private set => description = value; }
     
     [SerializeField] float multiplier; // In Percentage %
     public float Multiplier { get => multiplier; private set => multiplier = value; }

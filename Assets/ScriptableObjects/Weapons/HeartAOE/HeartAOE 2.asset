@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce8644a6a15d22542b99bc07d7b07e74, type: 3}
   m_Name: HeartAOE 2
   m_EditorClassIdentifier: 
-  prefab: {fileID: 5758240656589971305, guid: 5a9be736cda9e51458591a3df4f3213f, type: 3}
+  name: <3 Level 2
+  prefab: {fileID: 5758240656589971305, guid: 0dc6fa26d11112d4cb62f2e3a5dcfed5, type: 3}
   icon: {fileID: 21300000, guid: f6db7bfb8b0af98438c45964fb244de0, type: 3}
+  description: Love hurts faster.
   level: 2
   nextLevelPrefab: {fileID: 0}
   damage: 1

@@ -9,11 +9,17 @@ using UnityEngine;
 
 public class WeaponScriptableObject : ScriptableObject // Inheritance
 {
+    [SerializeField] new string name; // Name of the Weapon or its upgrade
+    public string Name { get => name; private set => name = value; }
+
     [SerializeField] public GameObject prefab;
     public GameObject Prefab { get => prefab; private set => prefab = value; }
 
     [SerializeField] Sprite icon; // Editor only
     public Sprite Icon { get => icon; private set => icon = value; }
+
+    [SerializeField] string description; // Description of the Weapon or its upgrade
+    public string Description { get => description; private set => description = value; }
 
     [SerializeField] int level; // Editor only
     public int Level { get => level; private set => level = value; }
