@@ -15,6 +15,7 @@ public class MeleeBehaviour : MonoBehaviour
     protected float currentArea;
     protected float currentDuration;
     //protected float currentCooldown;
+    protected float currentKnockback;
 
     void Awake()
     {
@@ -22,6 +23,7 @@ public class MeleeBehaviour : MonoBehaviour
         currentArea = weaponData.Area;
         currentDuration = weaponData.Duration;
         //currentCooldown = weaponData.Cooldown;
+        currentKnockback = weaponData.Knockback;
     }
 
     protected virtual void Start()
@@ -39,7 +41,7 @@ public class MeleeBehaviour : MonoBehaviour
         if (col.CompareTag("Enemy"))
         {
             EnemyStats enemy = col.GetComponent<EnemyStats>();
-            enemy.TakeDamage(GetCurrentDamage()); // Use GetCurrentDamage() since multiplier might be applied
+            enemy.TakeDamage(GetCurrentDamage(), transform.position, currentKnockback); // Use GetCurrentDamage() since multiplier might be applied
         }
         else if (col.CompareTag("Prop"))
         {

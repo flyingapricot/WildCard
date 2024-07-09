@@ -7,7 +7,7 @@ public class DropRateManager : MonoBehaviour
     [System.Serializable]
     public class Drops
     {
-        public string name;
+        // public string name;
         public GameObject itemPrefab; // To be destroyed when picked up by player
         public float dropRate; // Chance in % for item to drop (MAX 100)
     }

@@ -70,4 +70,9 @@ public class WeaponScriptableObject : ScriptableObject // Inheritance
     // Base value = 0
     [SerializeField] int pierce;
     public int Pierce { get => pierce; private set => pierce = value; }
+
+    // Modifies the amount that enemies are pushed backwards whenever they are damaged by the player.
+    // Base value = 0, 120 milliseconds
+    [SerializeField] int knockback;
+    public int Knockback { get => knockback; private set => knockback = value; }
 }

@@ -20,7 +20,7 @@ MonoBehaviour:
   recovery: 0.1
   armour: 0
   moveSpeed: 5
-  magnet: 2
+  magnet: 1
   luck: 0
   growth: 0
   greed: 0

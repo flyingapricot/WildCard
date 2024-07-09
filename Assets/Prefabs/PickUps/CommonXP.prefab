@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: 639411006851844768}
   - component: {fileID: 7115289392273096980}
   - component: {fileID: 3160289199715943812}
+  - component: {fileID: 20765460457453932}
   m_Layer: 0
   m_Name: CommonXP
   m_TagString: Untagged
@@ -152,7 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88bdec3fcf63e884f885be9181ffbaf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experienceValue: 2
+  minExperienceValue: 1
+  maxExperienceValue: 10
 --- !u!58 &3160289199715943812
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -188,3 +190,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
+--- !u!114 &20765460457453932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5969430364891984471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c9ef34f0469bb6458cbc90200539d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frequency: 5
+  magnitude: 0.2
+  direction: {x: 0, y: 1, z: 0}

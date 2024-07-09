@@ -19,8 +19,8 @@ MonoBehaviour:
   maxHealth: 20
   recovery: 0.5
   armour: 0
-  moveSpeed: 5
-  magnet: 2
+  moveSpeed: 3
+  magnet: 1
   luck: 0
   growth: 0
   greed: 0

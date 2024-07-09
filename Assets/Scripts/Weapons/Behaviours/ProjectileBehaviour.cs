@@ -19,6 +19,7 @@ public class ProjectileBehaviour : MonoBehaviour
     protected float currentAmount;
     //protected float currentCooldown;
     protected int currentPierce;
+    protected int currentKnockback;
 
     void Awake()
     {
@@ -29,6 +30,7 @@ public class ProjectileBehaviour : MonoBehaviour
         currentAmount = weaponData.Amount;
         //currentCooldown = weaponData.Cooldown;
         currentPierce = weaponData.Pierce;
+        currentKnockback = weaponData.Knockback;
     }
 
     protected virtual void Start()
@@ -46,7 +48,7 @@ public class ProjectileBehaviour : MonoBehaviour
         if (col.CompareTag("Enemy"))
         {
             EnemyStats enemy = col.GetComponent<EnemyStats>();
-            enemy.TakeDamage(GetCurrentDamage()); // Use GetCurrentDamage() since multiplier might be applied
+            enemy.TakeDamage(GetCurrentDamage(), transform.position, currentKnockback); // Use GetCurrentDamage() since multiplier might be applied
             ReducePierce(); 
         }
         else if (col.CompareTag("Prop"))
@@ -75,46 +77,4 @@ public class ProjectileBehaviour : MonoBehaviour
         // angle += spriteAngleOffset;
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
-
-    /*public void DirectionChecker(Vector3 dir)
-    {
-        direction = dir;
-        float dirx = direction.x;
-        float diry = direction.y;
-        Vector3 scale = transform.localScale;
-        Vector3 rotation = transform.rotation.eulerAngles;
-
-        // Default direction is right, rotation.z = 0f
-        if (dirx < 0 && diry == 0) // Left
-        {
-            rotation.z = 180f;
-        }
-        else if (dirx == 0 && diry > 0) // Up
-        {
-            rotation.z = 90f;
-        }
-        else if (dirx == 0 && diry < 0) // Down
-        {
-            rotation.z = -90f;
-        }
-        else if (dirx > 0 && diry > 0) // Top Right
-        {
-            rotation.z = 45f;
-        }
-        else if (dirx > 0 && diry < 0) // Bottom Right
-        {
-            rotation.z = -45f;
-        }
-        else if (dirx < 0 && diry < 0) // Bottom Left
-        {
-            rotation.z = -135f;
-        }
-        else if (dirx < 0 && diry > 0) // Top Left
-        {
-            rotation.z = 135f;
-        }
-
-        transform.localScale = scale;
-        transform.rotation = Quaternion.Euler(rotation); // Vector3 cannot be converted
-    }*/
 }

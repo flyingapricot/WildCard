@@ -25,6 +25,12 @@ public class PlayerCollector : MonoBehaviour
         // Checks if the Drops GameObjects have the ICollectible Interface
         if (col.gameObject.TryGetComponent(out ICollectible collectible))
         {
+            // Stop bobbing animation if it exists
+            if (col.gameObject.TryGetComponent(out BobbingAnimation bobbingAnimation))
+            {
+                bobbingAnimation.StopBobbing();
+            }
+
             // Start the coroutine to pull and collect the item
             StartCoroutine(PullAndCollect(col.gameObject, collectible));
         }

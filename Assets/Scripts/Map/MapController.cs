@@ -7,9 +7,9 @@ public class MapController : MonoBehaviour
     public List<GameObject> terrainChunks;
     public GameObject currentChunk;
     public float checkerRadius;
-    Vector3 noTerrainPosition;
     public LayerMask terrainMask;
-    PlayerMovement pm;
+    private Vector3 previousPlayerPosition;
+
 
     [Header("Optimization")]
     public List<GameObject> spawnedChunks;
@@ -18,9 +18,10 @@ public class MapController : MonoBehaviour
     float opCooldown;
     public float opCooldownDur;
 
+
     void Start()
     {
-        pm = FindObjectOfType<PlayerMovement>();
+        previousPlayerPosition = PlayerStats.instance.transform.position;
 
         if (currentChunk == null && terrainChunks.Count > 0)
         {
@@ -36,6 +37,42 @@ public class MapController : MonoBehaviour
         ChunkOptimizer();
     }
 
+    string GetDirectionName(Vector3 direction)
+    {
+        direction = direction.normalized; // When normalized, a vector keeps the same direction but its length is 1.0.
+
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y)) // Horizontal movement
+        {
+            if (direction.y > 0.5f) // + Upwards movement
+            {
+                return direction.x > 0 ? "TopRight" : "TopLeft";
+            }
+            else if (direction.y < -0.5f) // + Downwards movement
+            {
+                return direction.x > 0 ? "BottomRight" : "BottomLeft";
+            }
+            else
+            {
+                return direction.x > 0 ? "Right" : "Left";
+            }
+        }
+        else // Vertical movement
+        {
+            if (direction.x > 0.5f) // + Rightwards movement
+            {
+                return direction.y > 0 ? "TopRight" : "BottomRight";
+            }
+            else if (direction.x < -0.5f) // + Leftwards movement
+            {
+                return direction.y > 0 ? "TopLeft" : "BottomLeft";
+            }
+            else
+            {
+                return direction.y > 0 ? "Up" : "Down";
+            }
+        }
+    }
+
     void ChunkChecker()
     {
         if (!currentChunk)
@@ -44,6 +81,12 @@ public class MapController : MonoBehaviour
             return;
         }
 
+        // Find what direction the player is moving in by comparing positions between frames
+        Vector3 moveDir = PlayerStats.instance.transform.position - previousPlayerPosition;
+        previousPlayerPosition = PlayerStats.instance.transform.position;
+
+        string dirName = GetDirectionName(moveDir);
+
         Transform dir = currentChunk.transform.Find("Directions");
         if (dir == null)
         {
@@ -51,40 +94,40 @@ public class MapController : MonoBehaviour
             return;
         }
 
-        // Spawns 3 chunks in the direction of player
-        if (pm.movementVector.x > 0 && pm.movementVector.y == 0) // Right
+        // Spawns 3 chunks in the direction of movement
+        if (dirName == "Right") 
         {
             ChunkDir(dir, "Right", "TopRight", "BottomRight");
         }
-        else if (pm.movementVector.x < 0 && pm.movementVector.y == 0) // Left
+        else if (dirName == "Left") 
         {
             ChunkDir(dir, "Left", "TopLeft", "BottomLeft");
         }
-        else if (pm.movementVector.x == 0 && pm.movementVector.y > 0) // Up
+        else if (dirName == "Up") 
         {
             ChunkDir(dir, "Up", "TopRight", "TopLeft");
         }
-        else if (pm.movementVector.x == 0 && pm.movementVector.y < 0) // Down
+        else if (dirName == "Down") 
         {
             ChunkDir(dir, "Down", "BottomRight", "BottomLeft");
         }
-        else if (pm.movementVector.x > 0 && pm.movementVector.y > 0) // Top Right
+        else if (dirName == "TopRight") 
         {
             ChunkDir(dir, "TopRight", "Right", "Up");
         }
-        else if (pm.movementVector.x > 0 && pm.movementVector.y < 0) // Bottom Right
+        else if (dirName == "BottomRight")
         {
             ChunkDir(dir, "BottomRight", "Right", "Down");
         }
-        else if (pm.movementVector.x < 0 && pm.movementVector.y < 0) // Bottom Left
+        else if (dirName == "BottomLeft") 
         {
             ChunkDir(dir, "BottomLeft", "Left", "Down");
         }
-        else if (pm.movementVector.x < 0 && pm.movementVector.y > 0) // Top Left
+        else if (dirName == "TopLeft")
         {
             ChunkDir(dir, "TopLeft", "Left", "Up");
         }
-    }
+    }    
     
     void ChunkDir(Transform dir, string direction1, string direction2, string direction3)
     {
@@ -93,26 +136,27 @@ public class MapController : MonoBehaviour
         ChunkSpawner(dir, direction3);
     }
 
-    void ChunkSpawner(Transform dir, string direction)
+    void ChunkSpawner(Transform dir, string dirName)
     {
-        Transform targetTransform = dir.Find(direction);
+        Transform targetTransform = dir.Find(dirName); // Get the chunk in this direction
         if (targetTransform == null)
         {
-            Debug.LogError($"Direction {direction} not found in Directions transform.");
+            Debug.LogError($"Direction {dirName} not found in Directions transform.");
             return;
         }
 
+        // Checks if chunk is already spawned in direction.
         if (!Physics2D.OverlapCircle(targetTransform.position, checkerRadius, terrainMask))
         {
-            noTerrainPosition = targetTransform.position;
-            SpawnChunk();
+            //noTerrainPosition = targetTransform.position;
+            SpawnChunk(targetTransform.position);
         }
     }
 
-    void SpawnChunk()
+    void SpawnChunk(Vector3 spawnPosition)
     {
         int rng = Random.Range(0, terrainChunks.Count); // Randomize which chunk to spawn
-        GameObject newChunk = Instantiate(terrainChunks[rng], noTerrainPosition, Quaternion.identity);
+        GameObject newChunk = Instantiate(terrainChunks[rng], spawnPosition, Quaternion.identity);
         currentChunk = newChunk; // Update current chunk
         //Debug.Log("Spawned new chunk at: " + noTerrainPosition);
         newChunk.transform.parent = transform; // Organize chunks into MapController GameObject

@@ -57,6 +57,12 @@ public class GameManager : MonoBehaviour
     float stopwatchTime; // Time elapsed (in seconds)
     public TMP_Text stopwatchDisplay;
 
+    [Header("Damage Text")]
+    public Canvas damageTextCanvas;
+    public Camera referenceCamera;
+    public Vector3 initialOffset = new(0, 2f, 0); // You can adjust the initial vertical offset here
+    private Transform damageTextParent; // Place to keep the texts
+
     void Awake()
     {
         // Singleton pattern implementation
@@ -68,6 +74,9 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        // Find the "DamageTexts" GameObject
+        damageTextParent = damageTextCanvas.transform.Find("DamageTexts");
 
         DisableScreens();
     }
@@ -291,6 +300,64 @@ public class GameManager : MonoBehaviour
         int seconds = Mathf.FloorToInt(stopwatchTime % 60);
         // Display the elapsed time in minutes:seconds
         stopwatchDisplay.text = string.Format("{0:00} : {1:00}", minutes, seconds);
+    }
+    #endregion
+
+    #region Damage Text
+    public static void GenerateDamageText(string text, Transform target, float duration = 0.2f, float speed = 1f, Color? color = null)
+    {
+        // If no canvas, no damage text
+        if (!instance.damageTextCanvas) return;
+        // Find relevant camera to convert world position to screen position
+        if (!instance.referenceCamera) instance.referenceCamera = Camera.main;
+
+        instance.StartCoroutine(instance.DamageTextCoroutine(text, target, duration, speed, color ?? Color.white));
+    }
+
+    private IEnumerator DamageTextCoroutine(string text, Transform target, float duration, float speed, Color color)
+    {
+        // Start generating the damage text
+        GameObject textObj = ObjectPool.instance.GetPooledObject();
+        // Parent the generated text object to the "DamageTexts" folder
+        textObj.transform.SetParent(instance.damageTextParent.transform, false);
+
+        TextMeshProUGUI tmPro = textObj.GetComponent<TextMeshProUGUI>();
+        RectTransform rect = textObj.GetComponent<RectTransform>();
+
+        tmPro.text = text;
+        tmPro.color = color;
+        // tmPro.alpha = 1f;
+
+        // Initial position offset above the enemy
+        Vector3 startPosition = referenceCamera.WorldToScreenPoint(target.position + initialOffset);
+        rect.position = startPosition;
+
+        textObj.SetActive(true);
+
+        float t = 0;
+        Vector3 offset = new(0, speed * Time.deltaTime);
+
+        while (t < duration)
+        {
+            // Wait for a frame and update time
+            yield return null;
+            t += Time.deltaTime;
+
+            // Fade out the text
+            // tmPro.alpha = Mathf.Lerp(1, 0, t / duration);
+
+            // Move the text upwards, check if target is still valid
+            if (target != null)
+            {
+                rect.position = referenceCamera.WorldToScreenPoint(target.position + initialOffset) + offset * (t / duration);
+            }
+            else
+            {
+                rect.position += offset * (t / duration);
+            }
+        }
+
+        textObj.SetActive(false);
     }
     #endregion
 }

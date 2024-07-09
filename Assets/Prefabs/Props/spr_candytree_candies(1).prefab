@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1690555856624145671}
   - component: {fileID: 4789549845149399660}
   - component: {fileID: 6249660495257167546}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: spr_candytree_candies(1)
   m_TagString: Prop
   m_Icon: {fileID: 0}
