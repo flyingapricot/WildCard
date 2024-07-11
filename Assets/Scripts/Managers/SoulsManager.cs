@@ -1,11 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SoulsManager : MonoBehaviour
 {
-    public static SoulsManager instance { get; private set; } // Singleton instance
+    public static SoulsManager instance; // Singleton instance
     public int soulCount;
+    public event Action OnSoulsChanged;
 
     void Awake()
     {
@@ -23,8 +25,7 @@ public class SoulsManager : MonoBehaviour
 
     void Start()
     {
-        // Load the saved soul count
-        soulCount = PlayerPrefs.GetInt("soulCount", 0);
+        LoadSouls();
     }
 
     public void AddSouls(int amount)
@@ -32,11 +33,14 @@ public class SoulsManager : MonoBehaviour
         soulCount += amount;
         // Save the updated soul count
         PlayerPrefs.SetInt("soulCount", soulCount);
+        OnSoulsChanged?.Invoke();
     }
 
-    public int GetSoulCount()
+    public void LoadSouls()
     {
-        return soulCount;
+        // Load the saved soul count
+        soulCount = PlayerPrefs.GetInt("soulCount", 0);
+        OnSoulsChanged?.Invoke();
     }
 
     // Optional: Use this method to reset souls if needed
@@ -44,6 +48,7 @@ public class SoulsManager : MonoBehaviour
     {
         soulCount = 0;
         PlayerPrefs.SetInt("soulCount", soulCount);
+        OnSoulsChanged?.Invoke();
     }
 }
 

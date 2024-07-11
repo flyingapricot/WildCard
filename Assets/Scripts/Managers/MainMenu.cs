@@ -9,19 +9,43 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject titleScreen;
     public GameObject characterScreen;
-    public TMP_Text soulsText;
+    public GameObject settingsScreen;
+    public GameObject creditsScreen;
+    public GameObject shopScreen;
 
     void Start()
     {
+        MenuSelect();
+    }
+
+    public void MenuSelect()
+    {
         titleScreen.SetActive(true);
         characterScreen.SetActive(false);
-        UpdateSoulsDisplay();
+        settingsScreen.SetActive(false);
+        creditsScreen.SetActive(false);
+        shopScreen.SetActive(false);
     }
 
     public void CharacterSelect()
     {
         titleScreen.SetActive(false);
         characterScreen.SetActive(true);
+    }
+
+    public void SettingsSelect()
+    {
+        settingsScreen.SetActive(true);
+    }
+
+    public void CreditsSelect()
+    {
+        creditsScreen.SetActive(true);
+    }
+
+    public void ShopSelect()
+    {
+        shopScreen.SetActive(true);
     }
 
     public void LevelSelect(string levelName)
@@ -38,10 +62,5 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
         Debug.Log("Game is exiting");
-    }
-
-    void UpdateSoulsDisplay()
-    {
-        soulsText.text = SoulsManager.instance.soulCount.ToString();
     }
 }
