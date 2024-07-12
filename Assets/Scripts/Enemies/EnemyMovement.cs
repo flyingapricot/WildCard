@@ -7,29 +7,45 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     EnemyStats stats;
-    Rigidbody2D rgbd2D;
     SpriteRenderer sprite;
+    Vector2 knockbackVelocity;
+    float knockbackDuration;
 
     private void Awake()
     {
         stats = GetComponent<EnemyStats>();
-        rgbd2D = GetComponent<Rigidbody2D>();
         sprite = GetComponentInChildren<SpriteRenderer>(); // Get the SpriteRenderer from the child GameObject
+    }
+
+    public void Knockback(Vector2 velocity, float duration)
+    {
+        // Ignore the knockback if the duration is >0
+        if (knockbackDuration > 0) return;
+        
+        // Begin the knockback
+        knockbackVelocity = velocity;
+        knockbackDuration = duration;
     }
 
     private void FixedUpdate()
     {
         if (PlayerStats.instance != null)
         {
-            Vector3 targetPosition = PlayerStats.instance.transform.position; // Player is target destination
-            // Move the enemy towards player
-            rgbd2D.position = Vector3.MoveTowards(rgbd2D.position, targetPosition, stats.currentSpeed * Time.fixedDeltaTime);
-
-            Vector3 moveDirection = (targetPosition - transform.position).normalized;
-            // Flip the sprite based on the horizontal direction
-            if (moveDirection.x != 0)
+            if (knockbackDuration > 0) // Currently being knockedback
             {
-                sprite.flipX = moveDirection.x > 0; // Flip when moving right
+                transform.position += (Vector3)knockbackVelocity * Time.deltaTime;
+                knockbackDuration -= Time.deltaTime;
+            }
+            else // Otherwise, Move the enemy towards player
+            {
+                Vector3 targetPosition = PlayerStats.instance.transform.position; // Player is target destination
+                transform.position = Vector2.MoveTowards(transform.position, targetPosition, stats.currentSpeed * Time.fixedDeltaTime);
+
+                Vector2 moveDirection = (targetPosition - transform.position).normalized;
+                if (moveDirection.x != 0) // Flip the sprite based on the horizontal direction
+                {
+                    sprite.flipX = moveDirection.x > 0; // Flip when moving right
+                }
             }
         }
     }

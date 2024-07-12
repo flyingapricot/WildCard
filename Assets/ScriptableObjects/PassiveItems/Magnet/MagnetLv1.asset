@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbc66a0723ba8fd4d87af533088bf6f4, type: 3}
+  m_Name: MagnetLv1
+  m_EditorClassIdentifier: 
+  name: Torn Book
+  icon: {fileID: 1539947043, guid: fe911cba32f4ad944aaac69fd608cc13, type: 3}
+  description: Contains illegible scrawls. Increases your collection radius.
+  multiplier: 1
+  level: 1
+  nextLevelPrefab: {fileID: 2503796442059804731, guid: 54b2cf91652d9064d99d766d2bbd0000, type: 3}

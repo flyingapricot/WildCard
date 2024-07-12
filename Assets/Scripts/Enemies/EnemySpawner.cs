@@ -35,6 +35,7 @@ public class EnemySpawner : MonoBehaviour
     [Header("Wave Attributes")]
     public int currentWave; // Index of the current wave (Starting from 0)
     public float waveInterval; // Time interval between waves
+    bool isWaveActive = false; // Checks if a wave is currently ongoing
     public List<Wave> waves; // List of all waves in the game
 
 
@@ -46,17 +47,19 @@ public class EnemySpawner : MonoBehaviour
     private void Update()
     {
         // Checks if current wave has ended, starts next wave after wave interval
-        if (currentWave < waves.Count && waves[currentWave].spawnCount == 0)
+        if (currentWave < waves.Count && waves[currentWave].spawnCount == 0 && !isWaveActive)
         {
+            isWaveActive = true;
             StartCoroutine(BeginNextWave());
         }
 
-        // Spawn enemies until current wave quota is reached
         spawnTimer += Time.deltaTime;
+
+        // Spawn enemies until current wave quota is reached
         if (spawnTimer >= waves[currentWave].spawnInterval)
         {
             spawnTimer = 0f; // Reset timer
-            SpawnEnemy();
+            SpawnEnemies();
         }
     }
 
@@ -66,6 +69,7 @@ public class EnemySpawner : MonoBehaviour
 
         if (currentWave < waves.Count - 1) // Index starts from 0
         {
+            isWaveActive = false; // Prevents multiple waves from starting simultaneously
             currentWave++; // Go through each wave
             CalculateWaveQuota();
         }
@@ -84,7 +88,7 @@ public class EnemySpawner : MonoBehaviour
 
     // This method will stop spawning enemies if the amount of enemies existing on the map is maximum.
     // This method will only spawn enemies in a particular wave until it is time for the next wave enemies to be spawned.
-    private void SpawnEnemy()
+    private void SpawnEnemies()
     {
         // If minimum amount of enemies to be spawned in the current wave not yet reached, keep spawning
         if (waves[currentWave].spawnCount < waves[currentWave].waveQuota && !maxEnemiesReached) 
@@ -95,13 +99,6 @@ public class EnemySpawner : MonoBehaviour
                 // If minimum amount of unique enemy to be spawned is not yet reached, keep spawning
                 if (enemyGroup.spawnCount < enemyGroup.enemyCount)
                 {
-                    // Limits the number of enemies that can exist at a time
-                    if (enemiesAlive >= maxEnemiesAllowed)
-                    {
-                        maxEnemiesReached = true;
-                        return;
-                    }
-
                     Vector3 spawnPosition = GenerateRandomPosition();
                     spawnPosition += PlayerStats.instance.transform.position; // Relative to Player
 
@@ -111,14 +108,15 @@ public class EnemySpawner : MonoBehaviour
                     enemyGroup.spawnCount++; // Increment unique enemy spawn count
                     waves[currentWave].spawnCount++; // Increment total enemy spawned in wave
                     enemiesAlive++; // Increment no. of enemies existing
+
+                    // Limits the number of enemies that can exist at a time
+                    if (enemiesAlive >= maxEnemiesAllowed)
+                    {
+                        maxEnemiesReached = true;
+                        return;
+                    }
                 }
             }
-        }
-
-        // Reset flag if no. of enemies dropped below maximum
-        if (enemiesAlive < maxEnemiesAllowed)
-        {
-            maxEnemiesReached = false;
         }
     }
 
@@ -147,5 +145,11 @@ public class EnemySpawner : MonoBehaviour
     public void OnEnemyKilled()
     {
         enemiesAlive--;
+
+        // Reset flag if no. of enemies dropped below maximum
+        if (enemiesAlive < maxEnemiesAllowed)
+        {
+            maxEnemiesReached = false;
+        }
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class HeartAOEBehaviour : MeleeBehaviour // Inheritence
 {
-    List<GameObject> markedEnemies;
+    List<GameObject> markedEnemies; // List of enemies that is already damaged
 
     protected override void Start()
     {
@@ -19,7 +19,7 @@ public class HeartAOEBehaviour : MeleeBehaviour // Inheritence
         if (col.CompareTag("Enemy") && !markedEnemies.Contains(col.gameObject))
         {
             EnemyStats enemy = col.GetComponent<EnemyStats>();
-            enemy.TakeDamage(GetCurrentDamage());
+            enemy.TakeDamage(GetCurrentDamage(), transform.position, currentKnockback);
 
             markedEnemies.Add(col.gameObject); // Mark the Enemy so that you cannot spam damage on the same enemy
         }

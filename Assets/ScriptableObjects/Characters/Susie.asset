@@ -16,11 +16,11 @@ MonoBehaviour:
   characterSprite: {fileID: 21300000, guid: d1e765e798604a5449ae44e23d34aa95, type: 3}
   characterAnimation: {fileID: 9100000, guid: ee7b86a093c444b42ba3aa7135b902bd, type: 2}
   startingWeapon: {fileID: 8716238328816551162, guid: 70c52688402a35c4bbe817b7dd653274, type: 3}
-  maxHealth: 10
-  recovery: 0.1
-  armour: 0
-  moveSpeed: 5
-  magnet: 2
+  maxHealth: 999
+  recovery: 99
+  armour: 99
+  moveSpeed: 10
+  magnet: 1
   luck: 0
   growth: 0
   greed: 0

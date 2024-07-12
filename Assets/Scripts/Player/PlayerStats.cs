@@ -3,17 +3,21 @@ using System.Collections.Generic;
 //using UnityEditor.U2D.Animation;
 using UnityEngine;
 
-
 public class PlayerStats : MonoBehaviour
 {
     public static PlayerStats instance;
     CharacterScriptableObject characterData;
     WeaponScriptableObject weaponData;
+
     [Header("UI")]
     [SerializeField] SpriteRenderer playerSprite;
     [SerializeField] Animator playerAnimator;
     [SerializeField] HealthBar healthBar;
     [SerializeField] EXPBar expBar;
+
+    [Header("Visual Feedback")]
+    public GameObject healingEffect; // Healing animation
+    public GameObject hitEffect; // Getting Damaged animation
 
     #region Current Player Stats
     float currentMaxHealth;
@@ -172,19 +176,19 @@ public class PlayerStats : MonoBehaviour
 
     #region Experience / Levels
     [Header("Experience / Level")]
-    public int experience = 0;
-    public int level = 1;
-    public int experienceCap;
+    public int experience; // Player current experience points
+    public int level; // Player current level
+    public int experienceCap; // Experience needed to level up
 
     // Class for defining level ranges and the corresponding increase in experience cap
-    [System.Serializable]
-    public class LevelRange
-    {
-        public int startLevel;
-        public int endLevel;
-        public int experienceCapIncrease;
-    }
-    public List<LevelRange> levelRanges;
+    // [System.Serializable]
+    // public class LevelRange
+    // {
+    //     public int startLevel;
+    //     public int endLevel;
+    //     public int experienceCapIncrease;
+    // }
+    // public List<LevelRange> levelRanges;
     #endregion
 
     #region Inventory
@@ -251,7 +255,9 @@ public class PlayerStats : MonoBehaviour
     void Start()
     {
         // Initialize experience cap to prevent player from immediately leveling up
-        experienceCap = 5;
+        experienceCap = 79;
+        experience = 0;
+        level = 1;
         //experienceCap = levelRanges[0].experienceCapIncrease;
 
         // Set the current stats display
@@ -287,27 +293,34 @@ public class PlayerStats : MonoBehaviour
     // Increment of 10 XP to the experience cap until level 20 = 195 XP required.
     // Level 21 = 208 XP >> Level 40 = 455 XP, increments the cap by 13 XP each level
     // Level 41 = 471 XP onwards increments the cap by 16 XP each level.
+
+    // Method to calculate the experience required for the next level
+    public int ExperienceCapIncrease(int currentLevel)
+    {
+        float nextLevelExp = Mathf.Pow(4 * (currentLevel + 1), 2.1f);
+        float currentLevelExp = Mathf.Pow(4 * currentLevel, 2.1f);
+
+        return Mathf.RoundToInt(nextLevelExp) - Mathf.RoundToInt(currentLevelExp);
+    }
+
     void LevelUp()
     {
         while (experience >= experienceCap) // Using a loop in case the player gains multiple levels at once
         {
             level++;
             experience -= experienceCap;
+            experienceCap = ExperienceCapIncrease(level);
 
-            int experienceCapIncrease = 0;
-            foreach (LevelRange range in levelRanges) // Updates experienceCapIncrease to the relevant level range
-            {
-                if (level >= range.startLevel && level <= range.endLevel)
-                {
-                    experienceCapIncrease = range.experienceCapIncrease;
-                    break;
-                }
-            }
-            experienceCap += experienceCapIncrease;
-
-            // Stat increases
-            CurrentMaxHealth++;
-            Heal(CurrentMaxHealth); // Fully heal
+            // int experienceCapIncrease = 0;
+            // foreach (LevelRange range in levelRanges) // Updates experienceCapIncrease to the relevant level range
+            // {
+            //     if (level >= range.startLevel && level <= range.endLevel)
+            //     {
+            //         experienceCapIncrease = range.experienceCapIncrease;
+            //         break;
+            //     }
+            // }
+            // experienceCap += experienceCapIncrease;
 
             GameManager.instance.StartLevelUp();
         }
@@ -320,7 +333,18 @@ public class PlayerStats : MonoBehaviour
             invincibilityTimer = invincibilityDuration;
             isInvincible = true;
 
-            CurrentHealth -= dmg;
+            // Calculate incoming damage ensuring it doesn't drop below 1
+            float incomingDmg = Mathf.Max(dmg - CurrentArmour, 1);
+            CurrentHealth -= incomingDmg;
+
+            // Instantiate the damage effect
+            if (hitEffect != null)
+            {
+                GameObject damageAnimation = Instantiate(hitEffect, transform.position, Quaternion.identity, transform);
+                StartCoroutine(DestroyAfterAnimation(damageAnimation)); // Remove effect after the animation
+            }
+
+            // Check if the player's health has dropped to or below 0
             if (CurrentHealth <= 0)
             {
                 Kill();
@@ -341,7 +365,7 @@ public class PlayerStats : MonoBehaviour
 
     public void Heal(float heal) // Active healing
     {
-        // Only heal if player health not max
+        // Only heal if player health is not max
         if (CurrentHealth < CurrentMaxHealth)
         {
             if (CurrentHealth <= 0)
@@ -350,6 +374,16 @@ public class PlayerStats : MonoBehaviour
             }
 
             CurrentHealth += heal;
+
+            // Optionally, ensure the health doesn't exceed the maximum health
+            CurrentHealth = Mathf.Min(CurrentHealth, CurrentMaxHealth);
+        }
+
+        // Instantiate the healing effect
+        if (healingEffect != null)
+        {
+            GameObject healingAnimation = Instantiate(healingEffect, transform.position, Quaternion.identity, transform);
+            StartCoroutine(DestroyAfterAnimation(healingAnimation)); // Remove effect after the animation
         }
     }
 
@@ -395,5 +429,28 @@ public class PlayerStats : MonoBehaviour
     {
         instance = null;
         Destroy(gameObject);
+    }
+
+    private IEnumerator DestroyAfterAnimation(GameObject statusEffect)
+    {
+        Animator statusAnimator = statusEffect.GetComponent<Animator>();
+        float animationLength = 0;
+
+        // If the status effect has an Animator, get the length of the animation
+        if (statusAnimator != null)
+        {
+            animationLength = statusAnimator.GetCurrentAnimatorStateInfo(0).length;
+        }
+        else
+        {
+            // If there's no Animator, set a default duration (e.g., 1 second)
+            animationLength = 1.0f;
+        }
+
+        // Wait for the animation to finish
+        yield return new WaitForSeconds(animationLength);
+
+        // Destroy the status effect GameObject
+        Destroy(statusEffect);
     }
 }

@@ -154,20 +154,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnArea: {x: 15, y: 8}
   enemiesAlive: 0
-  maxEnemiesAllowed: 10
+  maxEnemiesAllowed: 50
   maxEnemiesReached: 0
   currentWave: 0
-  waveInterval: 10
+  waveInterval: 30
   waves:
   - waveName: Wave 1
     enemyGroups:
     - enemyName: Diamonds
-      enemyPrefab: {fileID: 3996832791091268854, guid: 78e1eb3bade098647b3a775b62ebc2e5, type: 3}
-      enemyCount: 50
+      enemyPrefab: {fileID: 3996832791091268854, guid: 87827efc02035e94d8cf5efaf401bf07, type: 3}
+      enemyCount: 100
       spawnCount: 0
+    waveQuota: 0
+    spawnInterval: 1
+    spawnCount: 0
+  - waveName: Wave 2
+    enemyGroups:
     - enemyName: Hearts
       enemyPrefab: {fileID: 3996832791091268854, guid: c04a79939b9f00e43a9e4348d6bd8800, type: 3}
-      enemyCount: 20
+      enemyCount: 5
+      spawnCount: 0
+    - enemyName: 
+      enemyPrefab: {fileID: 3996832791091268854, guid: 3b990247c7d79ef4da2432fe8e1580a9, type: 3}
+      enemyCount: 5
+      spawnCount: 0
+    - enemyName: 
+      enemyPrefab: {fileID: 3996832791091268854, guid: 31450095757fe0e459e418e658e0cb14, type: 3}
+      enemyCount: 5
+      spawnCount: 0
+    - enemyName: 
+      enemyPrefab: {fileID: 3996832791091268854, guid: f6b9751f77386604ca5c086b07da30e5, type: 3}
+      enemyCount: 2
+      spawnCount: 0
+    - enemyName: 
+      enemyPrefab: {fileID: 3996832791091268854, guid: 3aafd9a1999bec440b7dc8e38b903f3f, type: 3}
+      enemyCount: 2
+      spawnCount: 0
+    - enemyName: 
+      enemyPrefab: {fileID: 3996832791091268854, guid: 0ea0ab84732725f458611692855dd461, type: 3}
+      enemyCount: 2
+      spawnCount: 0
+    - enemyName: 
+      enemyPrefab: {fileID: 3996832791091268854, guid: 78e1eb3bade098647b3a775b62ebc2e5, type: 3}
+      enemyCount: 1
+      spawnCount: 0
+    - enemyName: 
+      enemyPrefab: {fileID: 3996832791091268854, guid: 874be290923538947be2228e450f7478, type: 3}
+      enemyCount: 1
+      spawnCount: 0
+    - enemyName: 
+      enemyPrefab: {fileID: 3996832791091268854, guid: 09c6b47211f975c4086a6af56e4ba311, type: 3}
+      enemyCount: 1
       spawnCount: 0
     waveQuota: 0
     spawnInterval: 3
@@ -277,5 +314,5 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 257623553}
   - {fileID: 777651197}
+  - {fileID: 257623553}

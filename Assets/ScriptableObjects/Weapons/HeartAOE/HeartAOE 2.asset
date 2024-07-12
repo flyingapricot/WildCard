@@ -25,3 +25,4 @@ MonoBehaviour:
   amount: 0
   cooldown: 2.5
   pierce: 0
+  knockback: 5

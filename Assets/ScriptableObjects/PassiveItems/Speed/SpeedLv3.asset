@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbc66a0723ba8fd4d87af533088bf6f4, type: 3}
+  m_Name: SpeedLv3
+  m_EditorClassIdentifier: 
+  name: Ballet Shoes
+  icon: {fileID: 21300000, guid: fa75a99aefbe86643bfae857a0f444c1, type: 3}
+  description: These used shoes make you feel incredibly agile. Speed increased tremendously.
+  multiplier: 200
+  level: 3
+  nextLevelPrefab: {fileID: 0}
