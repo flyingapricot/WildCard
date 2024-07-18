@@ -12885,18 +12885,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17b7dbd5ca524aa4fb916018d90da734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseStats:
+    maxhealth: 0
+    might: 0
+    armour: 0
+    recovery: 0
+    moveSpeed: 0
+    magnet: 0
+  actualStats:
+    maxhealth: 0
+    might: 0
+    armour: 0
+    recovery: 0
+    moveSpeed: 0
+    magnet: 0
   playerSprite: {fileID: 5372007683700839743}
   playerAnimator: {fileID: 8943857123949385038}
   healthBar: {fileID: 763645420}
   expBar: {fileID: 835074088}
   healingEffect: {fileID: 3089034428271069611, guid: 62688e19b3b54e14584f5280f624a0ed, type: 3}
   hitEffect: {fileID: 7615206535168829390, guid: 440453039e6e03247a2d6c6fe5078176, type: 3}
-  currentArea: 0
-  currentProjectileSpeed: 0
-  currentDuration: 0
-  currentAmount: 0
-  currentCooldown: 0
-  currentPierce: 0
   currentLuck: 0
   currentGrowth: 0
   currentGreed: 0
@@ -13112,7 +13120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3764472197911079002}
   - component: {fileID: 3353389005380414569}
-  - component: {fileID: 8730070102159066363}
+  - component: {fileID: 8730070102159066364}
   - component: {fileID: 3097978850778896241}
   - component: {fileID: 3301958870160780952}
   - component: {fileID: 6372950567980031654}
@@ -13124,7 +13132,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &8730070102159066363
+--- !u!114 &8730070102159066364
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13133,77 +13141,62 @@ MonoBehaviour:
   m_GameObject: {fileID: 8730070102159066362}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c0f55947eba88643a99ec59aea5725e, type: 3}
+  m_Script: {fileID: 11500000, guid: c11b496c591aaac40a8300b452aedb7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   weaponSlots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  weaponUISlots:
-  - {fileID: 983892727}
-  - {fileID: 1085069806}
-  - {fileID: 572708752}
-  - {fileID: 1128283717}
-  - {fileID: 1760706606}
-  - {fileID: 903538370}
-  weaponLevels: 000000000000000000000000000000000000000000000000
-  weaponUpgradeOptions:
-  - weaponUpgradeIndex: 0
-    initialWeapon: {fileID: 8716238328816551162, guid: 70c52688402a35c4bbe817b7dd653274, type: 3}
-    weaponData: {fileID: 11400000, guid: 021dd16009454d84f9a9811812a1d0ce, type: 2}
-  - weaponUpgradeIndex: 1
-    initialWeapon: {fileID: 5301497842009333730, guid: 741fdf52bceb1eb458b5734219662476, type: 3}
-    weaponData: {fileID: 11400000, guid: 4b6f86e99af977d49bd0176ce1563697, type: 2}
-  passiveItemSlots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  passiveItemUISlots:
-  - {fileID: 1339411161}
-  - {fileID: 1541808808}
-  - {fileID: 1298856521}
-  - {fileID: 54046314}
-  - {fileID: 1735942276}
-  - {fileID: 25355033}
-  passiveItemLevels: 000000000000000000000000000000000000000000000000
-  passiveItemUpgradeOptions:
-  - passiveItemUpgradeIndex: 0
-    initialPassiveItem: {fileID: 6622722524784520938, guid: bfa5bc9fa7c75214e9c3a93f2c9bb44e, type: 3}
-    passiveItemData: {fileID: 11400000, guid: 3a4b3618b7286a840ad324841bf50046, type: 2}
-  - passiveItemUpgradeIndex: 1
-    initialPassiveItem: {fileID: 8416781905661360638, guid: 75276b31352083040a74fd672245b70f, type: 3}
-    passiveItemData: {fileID: 11400000, guid: 7c613a19f7ae69a4c8f7c1ba17e05467, type: 2}
-  - passiveItemUpgradeIndex: 2
-    initialPassiveItem: {fileID: 340028771709545206, guid: d343552ce424b254694139e6454eb030, type: 3}
-    passiveItemData: {fileID: 11400000, guid: f745ce20cd243f147822841a5286d2d2, type: 2}
-  - passiveItemUpgradeIndex: 3
-    initialPassiveItem: {fileID: 5344998808116514401, guid: 654be25229f857844928aebcaf6a6d21, type: 3}
-    passiveItemData: {fileID: 11400000, guid: 59877467c7708e14e9814ed59aedd11b, type: 2}
-  - passiveItemUpgradeIndex: 4
-    initialPassiveItem: {fileID: 3896441235604202008, guid: a26566ef3a4fe8045844cf8dba6e914a, type: 3}
-    passiveItemData: {fileID: 11400000, guid: 6c7bc473fd55cd3479d9b40ee87a7830, type: 2}
-  - passiveItemUpgradeIndex: 5
-    initialPassiveItem: {fileID: 2503796442059804731, guid: 28204e51e0e9cb4469740ab0d0eaa342, type: 3}
-    passiveItemData: {fileID: 11400000, guid: ba5a851551ef52a49b02f10e5fc63991, type: 2}
+  - item: {fileID: 0}
+    image: {fileID: 983892727}
+  - item: {fileID: 0}
+    image: {fileID: 1085069806}
+  - item: {fileID: 0}
+    image: {fileID: 572708752}
+  - item: {fileID: 0}
+    image: {fileID: 1128283717}
+  - item: {fileID: 0}
+    image: {fileID: 1760706606}
+  - item: {fileID: 0}
+    image: {fileID: 903538370}
+  passiveSlots:
+  - item: {fileID: 0}
+    image: {fileID: 1339411161}
+  - item: {fileID: 0}
+    image: {fileID: 1541808808}
+  - item: {fileID: 0}
+    image: {fileID: 1298856521}
+  - item: {fileID: 0}
+    image: {fileID: 54046314}
+  - item: {fileID: 0}
+    image: {fileID: 1735942276}
+  - item: {fileID: 0}
+    image: {fileID: 25355033}
+  availableWeapons:
+  - {fileID: 11400000, guid: f500b721334a25c46a2e1236e5dc06a0, type: 2}
+  - {fileID: 11400000, guid: b4d39224dfc09aa4dae823e15245119e, type: 2}
+  - {fileID: 11400000, guid: 59ef75900426e324c9564ea2d98d7564, type: 2}
+  - {fileID: 11400000, guid: c70534bd36c7bbf49894d659621d1067, type: 2}
+  - {fileID: 11400000, guid: da3134956b5883a4aab2d597ac1db733, type: 2}
+  - {fileID: 11400000, guid: 04dd2502190fc1345a7c3c0048a85b1f, type: 2}
+  - {fileID: 11400000, guid: ff78ae705765ce8409b48696856c843a, type: 2}
+  availablePassives:
+  - {fileID: 11400000, guid: ef3ae94e54739bf46b1bf26819ce280c, type: 2}
+  - {fileID: 11400000, guid: f1b143b1c63b35441b663b6ad4dd5362, type: 2}
+  - {fileID: 11400000, guid: a3b3781db98cf2141b3c4e8c42425981, type: 2}
+  - {fileID: 11400000, guid: 51eb242225a84144eae313386dc312f2, type: 2}
+  - {fileID: 11400000, guid: 4d7ce1ad0541c334c93af43e6f499f56, type: 2}
+  - {fileID: 11400000, guid: fe81fb5a928005a44b5aa79271cdddd1, type: 2}
   upgradeUIOptions:
-  - upgradeNameDisplay: {fileID: 1890726431}
+  - upgradeIcon: {fileID: 1714601568}
+    upgradeNameDisplay: {fileID: 1890726431}
     upgradeDescriptionDisplay: {fileID: 1512174655}
-    upgradeIcon: {fileID: 1714601568}
     upgradeButton: {fileID: 2023644919}
-  - upgradeNameDisplay: {fileID: 273571211}
+  - upgradeIcon: {fileID: 1706434426}
+    upgradeNameDisplay: {fileID: 273571211}
     upgradeDescriptionDisplay: {fileID: 557894295}
-    upgradeIcon: {fileID: 1706434426}
     upgradeButton: {fileID: 1761902846}
-  - upgradeNameDisplay: {fileID: 1851050772}
+  - upgradeIcon: {fileID: 1859910794}
+    upgradeNameDisplay: {fileID: 1851050772}
     upgradeDescriptionDisplay: {fileID: 2063084667}
-    upgradeIcon: {fileID: 1859910794}
     upgradeButton: {fileID: 1857707811}
 --- !u!95 &8943857123949385038
 Animator:
