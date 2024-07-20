@@ -52,7 +52,7 @@ public class EnemyStats : MonoBehaviour
 
     // Optional parameters for knockback since weapon might not always have knockback
     // Knockback duration is always 120 milliseconds
-    public void TakeDamage(float dmg, Vector2 sourcePosition, float knockbackForce, float knockbackDuration = 0.12f)
+    public void TakeDamage(float dmg, Vector2 sourcePosition, float knockbackForce = 0f, float knockbackDuration = 0.12f)
     {
         currentHealth -= dmg;
         StartCoroutine(DamageFlash());

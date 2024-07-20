@@ -210,10 +210,10 @@ public class GameManager : MonoBehaviour
         resultsScreen.SetActive(true);
     }
 
-    public void AssignCharacterUI(CharacterScriptableObject characterData)
+    public void AssignCharacterUI(CharacterData characterData)
     {
-        chosenCharacterSprite.sprite = characterData.CharacterSprite;
-        chosenCharacterName.sprite = characterData.CharacterName;
+        chosenCharacterName.sprite = characterData.Name;
+        chosenCharacterSprite.sprite = characterData.Sprite;
     }
 
     public void AssignLevelReached(int levelData)
@@ -221,8 +221,9 @@ public class GameManager : MonoBehaviour
         levelReached.text = levelData.ToString();
     }
 
-    public void AssignInventory(List<Image> weaponsData, List<Image> passiveItemsData)
+    public void AssignInventory(List<PlayerInventory.Slot> weaponsData, List<PlayerInventory.Slot> passiveItemsData)
     {
+        // Check that both lists have the same length
         if (weaponsData.Count != weaponsUI.Count || passiveItemsData.Count != passiveItemsUI.Count)
         {
             Debug.Log("Inventory data list have different lengths.");
@@ -233,11 +234,11 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < weaponsUI.Count; i++)
         {
             // Check the sprite of the corresponding element in weapons data is not null
-            if (weaponsData[i].sprite)
+            if (weaponsData[i].image.sprite)
             {
                 // Enables the corresponding element in weapons UI and set its sprite
                 weaponsUI[i].enabled = true;
-                weaponsUI[i].sprite = weaponsData[i].sprite;
+                weaponsUI[i].sprite = weaponsData[i].image.sprite;
                 Debug.Log("Weapon equipped.");
             }
             else
@@ -251,11 +252,11 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < passiveItemsUI.Count; i++)
         {
             // Check the sprite of the corresponding element in passive items data is not null
-            if (passiveItemsData[i].sprite)
+            if (passiveItemsData[i].image.sprite)
             {
                 // Enables the corresponding element in passive items UI and set its sprite
                 passiveItemsUI[i].enabled = true;
-                passiveItemsUI[i].sprite = passiveItemsData[i].sprite;
+                passiveItemsUI[i].sprite = passiveItemsData[i].image.sprite;
                 Debug.Log("Item equipped.");
             }
             else
