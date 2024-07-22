@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class NameInputManager : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class NameInputManager : MonoBehaviour
     public Color normalColor;
     public Color highlightColor;
 
-    private string currentString = "";
+    private string currentString = "Default001";
     private int maxStringLength = 10;
     private int stringPositionX = -1;
     private int stringPositionY = -1;
@@ -28,7 +29,8 @@ public class NameInputManager : MonoBehaviour
     void Start()
     {
         InitializeCharacterGrid();
-        nameText.text = "hello";
+        //nameText.text = "hello";
+        //currentString = PlayFabManager.username;
         headerText.text = "Name the Challenger.";
         instructionText.text = "[ENTER or SPACE] - Confirm          [ARROW KEYS] - Move          [BACKSPACE] - Remove Character";
     }
@@ -89,12 +91,7 @@ public class NameInputManager : MonoBehaviour
         DrawUI();
     }
 
-    void updateUsername()
-    {
-        
-    }
-
-     void HandleInputName()
+    void HandleInputName()
     {
         bool moved = false;
 
@@ -187,7 +184,6 @@ public class NameInputManager : MonoBehaviour
 
     void DrawUI()
     {
-        //currentString = PlayerInfo.getInstance().getUsername();
         nameText.text = currentString;
         
 
