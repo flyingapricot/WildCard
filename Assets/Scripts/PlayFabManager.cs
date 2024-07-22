@@ -5,7 +5,6 @@ using PlayFab;
 using PlayFab.ClientModels;
 using UnityEngine.UI;
 using TMPro;
-using UnityEditor.PackageManager;
 using System.Text.RegularExpressions;
 
 public class PlayFabManager : MonoBehaviour
