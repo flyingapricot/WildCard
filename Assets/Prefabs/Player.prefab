@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7752122853957645140}
   m_Layer: 0
   m_Name: WeaponHeartAOE
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -195,30 +195,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17b7dbd5ca524aa4fb916018d90da734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterData: {fileID: 0}
+  baseStats:
+    maxhealth: 0
+    might: 0
+    armour: 0
+    recovery: 0
+    moveSpeed: 0
+    magnet: 0
+  actualStats:
+    maxhealth: 0
+    might: 0
+    armour: 0
+    recovery: 0
+    moveSpeed: 0
+    magnet: 0
+  playerSprite: {fileID: 0}
+  playerAnimator: {fileID: 0}
   healthBar: {fileID: 0}
   expBar: {fileID: 0}
-  currentMoveSpeed: 0
-  currentHealth: 0
-  currentMaxHealth: 0
-  currentRecovery: 0
-  currentMight: 0
-  currentProjectileSpeed: 0
-  currentMagnet: 0
+  healingEffect: {fileID: 0}
+  hitEffect: {fileID: 0}
+  currentLuck: 0
+  currentGrowth: 0
+  currentGreed: 0
+  currentCurse: 0
+  currentRevival: 0
+  currentReroll: 0
+  currentSkip: 0
+  currentBanish: 0
   invincibilityDuration: 0.5
   experience: 0
   level: 1
   experienceCap: 5
-  levelRanges:
-  - startLevel: 1
-    endLevel: 20
-    experienceCapIncrease: 10
-  - startLevel: 21
-    endLevel: 40
-    experienceCapIncrease: 13
-  - startLevel: 41
-    endLevel: 100
-    experienceCapIncrease: 16
+  weaponIndex: 0
+  passiveItemIndex: 0
 --- !u!114 &5143215389561917803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,7 +316,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -432,7 +442,7 @@ GameObject:
   - component: {fileID: 4487059271048494269}
   m_Layer: 0
   m_Name: Collector
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -513,7 +523,7 @@ GameObject:
   - component: {fileID: 586835986665072223}
   m_Layer: 0
   m_Name: WeaponBullet
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -557,9 +567,10 @@ GameObject:
   - component: {fileID: 6874599057673275747}
   - component: {fileID: 2815683230833316645}
   - component: {fileID: 1261169346347651924}
+  - component: {fileID: 4726322302891396088}
   m_Layer: 0
   m_Name: KrisSprite
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -652,6 +663,51 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!61 &4726322302891396088
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9017868559634552563}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.19, y: 0.38}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.19, y: 0.38}
+  m_EdgeRadius: 0
 --- !u!1 &9171546335001238302
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,7 +720,7 @@ GameObject:
   - component: {fileID: 2841356119300028814}
   m_Layer: 0
   m_Name: WeaponSword
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
