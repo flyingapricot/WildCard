@@ -23,7 +23,7 @@ MonoBehaviour:
       armour: 0
       recovery: 0
       moveSpeed: 0
-      magnet: 20
+      magnet: 1
   growth:
   - name: New Book
     description: Mmm... The smell of brand new pages... Expands your collection radius
@@ -34,7 +34,7 @@ MonoBehaviour:
       armour: 0
       recovery: 0
       moveSpeed: 0
-      magnet: 20
+      magnet: 1
   - name: Someone's Diary
     description: Whose diary is this? They have such a magnetic personality your
       collection radius got even bigger!
@@ -44,4 +44,4 @@ MonoBehaviour:
       armour: 0
       recovery: 0
       moveSpeed: 0
-      magnet: 30
+      magnet: 2

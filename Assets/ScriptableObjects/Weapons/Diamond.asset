@@ -17,7 +17,7 @@ MonoBehaviour:
   behaviour: ProjectileWeapon
   baseStats:
     name: Diamond Bullet
-    description: Fires quickly in the faced diarection.
+    description: Fires quickly in the faced direction.
     projectilePrefab: {fileID: 241943984323791842, guid: c5b9c1844b3de684c99cf81138287460, type: 3}
     auraPrefab: {fileID: 0}
     hitEffect: {fileID: 0}
