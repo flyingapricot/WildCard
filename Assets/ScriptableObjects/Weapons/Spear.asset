@@ -17,7 +17,7 @@ MonoBehaviour:
   behaviour: ProjectileWeapon
   baseStats:
     name: Spear
-    description: Fire a fast piercng spear targeted at a random target.
+    description: Fire a fast piercing spear targeted at a random target.
     projectilePrefab: {fileID: 241943984323791842, guid: 6a28591a5c269e7498b925a61bd04711, type: 3}
     auraPrefab: {fileID: 0}
     hitEffect: {fileID: 0}

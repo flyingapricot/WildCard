@@ -150,7 +150,7 @@ MonoBehaviour:
     pierce: 0
     maxInstances: 0
   - name: Level 7
-    description: Increase damage and size of beam by 30%.
+    description: Increase damage and size of lightning by 30%.
     projectilePrefab: {fileID: 0}
     auraPrefab: {fileID: 0}
     hitEffect: {fileID: 0}
