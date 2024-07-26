@@ -8,6 +8,7 @@ public class SoulsManager : MonoBehaviour
     public static SoulsManager instance; // Singleton instance
     public int soulCount;
     public event Action OnSoulsChanged;
+    private CharacterUnlocker characterUnlocker;
 
     void Awake()
     {
@@ -25,6 +26,9 @@ public class SoulsManager : MonoBehaviour
 
     void Start()
     {
+        // Find the CharacterUnlocker instance
+        characterUnlocker = FindObjectOfType<CharacterUnlocker>();
+
         LoadSouls();
     }
 
@@ -34,6 +38,21 @@ public class SoulsManager : MonoBehaviour
         // Save the updated soul count
         PlayerPrefs.SetInt("soulCount", soulCount);
         OnSoulsChanged?.Invoke();
+    }
+
+    public bool SpendSouls(int amount)
+    {
+        if (soulCount >= amount)
+        {
+            soulCount -= amount;
+            PlayerPrefs.SetInt("SoulCount", soulCount);
+            OnSoulsChanged?.Invoke();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public void LoadSouls()
@@ -49,6 +68,12 @@ public class SoulsManager : MonoBehaviour
         soulCount = 0;
         PlayerPrefs.SetInt("soulCount", soulCount);
         OnSoulsChanged?.Invoke();
+        
+        // Reset the character unlock status
+        if (characterUnlocker != null)
+        {
+            characterUnlocker.ResetCharacter();
+        }
     }
 }
 

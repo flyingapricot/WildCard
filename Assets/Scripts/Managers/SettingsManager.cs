@@ -7,13 +7,14 @@ public class SettingsMenu : MonoBehaviour
     public TMP_Text masterVolumeText;
     public TMP_Text bgmVolumeText;
     public TMP_Text sfxVolumeText;
+    public TMP_Text controlsText;
     public TMP_Text fullscreenText;
 
     private int masterVolumeIndex = 5; // Default to 100%
     private int bgmVolumeIndex = 5; // Default to 100%
     private int sfxVolumeIndex = 5; // Default to 100%
     private bool isFullscreen = true;
-
+    public GameObject controlsPanel;
     private readonly int[] volumeLevels = { 0, 20, 40, 60, 80, 100 };
 
     private int selectedOptionIndex = 0;
@@ -22,7 +23,7 @@ public class SettingsMenu : MonoBehaviour
     void Start()
     {
         // Initialize UI Text components with default values
-        options = new TMP_Text[] { masterVolumeText, bgmVolumeText, sfxVolumeText, fullscreenText };
+        options = new TMP_Text[] { masterVolumeText, bgmVolumeText, sfxVolumeText, controlsText, fullscreenText };
         UpdateVolumeText();
         UpdateFullscreenText();
         HighlightSelectedOption();
@@ -42,7 +43,7 @@ public class SettingsMenu : MonoBehaviour
             HighlightSelectedOption();
         }
 
-        // Adjust volume or toggle fullscreen based on selected option
+        // Adjust volume, view controls or toggle fullscreen based on selected option
         if (selectedOptionIndex < 3)
         {
             if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
@@ -55,6 +56,10 @@ public class SettingsMenu : MonoBehaviour
             }
         }
         else if (selectedOptionIndex == 3 && Input.GetKeyDown(KeyCode.Return))
+        {
+            ToggleControls();
+        }
+        else if (selectedOptionIndex == 4 && Input.GetKeyDown(KeyCode.Return))
         {
             ToggleFullscreen();
         }
@@ -76,6 +81,11 @@ public class SettingsMenu : MonoBehaviour
         }
         UpdateVolumeText();
         ApplyVolumeSettings();
+    }
+
+    public void ToggleControls()
+    {
+        controlsPanel.SetActive(!controlsPanel.activeSelf);
     }
 
     void ToggleFullscreen()

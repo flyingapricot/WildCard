@@ -4,7 +4,7 @@ using UnityEngine;
 
 // To be placed on Enemy Prefabs
 
-public class EnemyStats : MonoBehaviour
+public class EnemyStats : MonoBehaviour, IDamageable
 {
     public EnemyScriptableObject enemyData;
     EnemySpawner es;
@@ -124,5 +124,10 @@ public class EnemyStats : MonoBehaviour
         {
             PlayerStats.instance.TakeDamage(currentDamage); // Refer to PlayerStats.cs
         }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        // This method is left empty, for IDamageable
     }
 }

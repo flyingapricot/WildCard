@@ -9,18 +9,27 @@ using UnityEngine;
 
 public class Aura : WeaponEffect
 {
-    Dictionary<EnemyStats, float> affectedTargets = new();
-    List<EnemyStats> targetsToUnaffect = new();
+    Dictionary<IDamageable, float> affectedTargets = new();
+    List<IDamageable> targetsToUnaffect = new();
 
     void Update()
     {
-        Dictionary<EnemyStats, float> affectedTargsCopy = new(affectedTargets);
+        Weapon.Stats stats = weapon.GetStats();
+        Dictionary<IDamageable, float> affectedTargsCopy = new(affectedTargets);
 
         // Loop through every target affected by the aura
         // Reduce the cooldown of the aura for the target
         // Once cooldown reaches 0, deal dmg to target
-        foreach (KeyValuePair<EnemyStats, float> pair in affectedTargsCopy)
+        foreach (KeyValuePair<IDamageable, float> pair in affectedTargsCopy)
         {
+            // if (pair.Key == null)
+            // {
+            //     // Remove null targets
+            //     affectedTargets.Remove(pair.Key);
+            //     targetsToUnaffect.Remove(pair.Key);
+            //     continue;
+            // }
+
             affectedTargets[pair.Key] -= Time.deltaTime;
             if (pair.Value <= 0)
             {
@@ -33,9 +42,15 @@ public class Aura : WeaponEffect
                 else
                 {
                     // Reset the cooldown and deal damage
-                    Weapon.Stats stats = weapon.GetStats();
                     affectedTargets[pair.Key] = stats.cooldown;
-                    pair.Key.TakeDamage(GetDamage(), transform.position, stats.knockback);
+                    if (pair.Key is EnemyStats)
+                    {
+                        pair.Key.TakeDamage(GetDamage(), transform.position, stats.knockback);
+                    }
+                    else if (pair.Key is BreakableProps)
+                    {
+                        pair.Key.TakeDamage(GetDamage());
+                    }
                 }
             }
         }
@@ -43,21 +58,21 @@ public class Aura : WeaponEffect
 
     void OnTriggerEnter2D(Collider2D other) 
     {
-        if (other.TryGetComponent(out EnemyStats es))
+        if (other.TryGetComponent(out IDamageable damageable))
         {
             // If the target is not yet affected by this aura
             // Add it to our list of affected targets
-            if (!affectedTargets.ContainsKey(es))
+            if (!affectedTargets.ContainsKey(damageable))
             {
                 // Always starts with an interval of 0
                 // So that it will get damaged in the next Update() tick
-                affectedTargets.Add(es, 0);
+                affectedTargets.Add(damageable, 0);
             }
             else
             {
-                if (targetsToUnaffect.Contains(es))
+                if (targetsToUnaffect.Contains(damageable))
                 {
-                    targetsToUnaffect.Remove(es);
+                    targetsToUnaffect.Remove(damageable);
                 }
             }
         }
@@ -65,13 +80,13 @@ public class Aura : WeaponEffect
 
     void OnTriggerExit2D(Collider2D other) 
     {
-        if (other.TryGetComponent(out EnemyStats es))
+        if (other.TryGetComponent(out IDamageable damageable))
         {
             // Do not directly remove the target upon leaving
             // Since we still have to track their cooldowns
-            if (!affectedTargets.ContainsKey(es))
+            if (!affectedTargets.ContainsKey(damageable))
             {
-                targetsToUnaffect.Add(es);
+                targetsToUnaffect.Add(damageable);
             }
         }
     }

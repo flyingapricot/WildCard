@@ -178,6 +178,11 @@ public class PlayFabManager : MonoBehaviour
         Debug.Log("Succsessful leaderboard sent");
     }
 
+    public void ReturnMenu()
+    {
+        SceneController.instance.LoadMainMenu();
+    }
+
     // Update is called once per frame
     void Update()
     {

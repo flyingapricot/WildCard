@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b31c365975676414693636bfb9a36e40, type: 3}
-  m_Name: Susie
+  m_Name: Sans
   m_EditorClassIdentifier: 
-  name: {fileID: 21300000, guid: 930c9c0be411af44eaff40bc88545c37, type: 3}
-  sprite: {fileID: 21300000, guid: d1e765e798604a5449ae44e23d34aa95, type: 3}
-  animation: {fileID: 9100000, guid: ee7b86a093c444b42ba3aa7135b902bd, type: 2}
-  startingWeapon: {fileID: 11400000, guid: f500b721334a25c46a2e1236e5dc06a0, type: 2}
+  name: {fileID: 21300000, guid: 38031fec266934741b771004fa6cc60c, type: 3}
+  sprite: {fileID: 21300000, guid: d8866cad80b36c04d8136240ca388618, type: 3}
+  animation: {fileID: 9100000, guid: 741bd22448698d14caf66e5708a63e19, type: 2}
+  startingWeapon: {fileID: 11400000, guid: c70534bd36c7bbf49894d659621d1067, type: 2}
   stats:
     maxhealth: 60
-    might: 1.2
-    armour: 0
-    recovery: 0
+    might: 0.8
+    armour: 1
+    recovery: 1
     moveSpeed: 5
     magnet: 1

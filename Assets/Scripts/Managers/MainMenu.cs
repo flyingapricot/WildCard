@@ -15,6 +15,7 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
+        SoulsManager.instance.LoadSouls();
         MenuSelect();
     }
 
@@ -45,6 +46,7 @@ public class MainMenu : MonoBehaviour
 
     public void ShopSelect()
     {
+        titleScreen.SetActive(false);
         shopScreen.SetActive(true);
     }
 

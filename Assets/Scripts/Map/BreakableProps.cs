@@ -1,7 +1,8 @@
 using System.Collections;
+using System.Numerics;
 using UnityEngine;
 
-public class BreakableProps : MonoBehaviour
+public class BreakableProps : MonoBehaviour, IDamageable
 {
     public float durability;
     public Sprite brokenSprite; // Reference to the broken sprite
@@ -11,8 +12,7 @@ public class BreakableProps : MonoBehaviour
 
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        if (spriteRenderer == null)
+        if (!TryGetComponent<SpriteRenderer>(out spriteRenderer))
         {
             Debug.LogError("SpriteRenderer not found on the GameObject");
         }
@@ -57,6 +57,11 @@ public class BreakableProps : MonoBehaviour
 
         // Destroy the game object
         Destroy(gameObject);
+    }
+
+    public void TakeDamage(float damage, UnityEngine.Vector2 source, float knockback, float duration)
+    {
+        // This method is left empty, for IDamageable
     }
 }
 

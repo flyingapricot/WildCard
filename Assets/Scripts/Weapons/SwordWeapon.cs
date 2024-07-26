@@ -50,7 +50,7 @@ public class SwordWeapon : ProjectileWeapon
         if (spawnDir < 0)
         {
             prefab.transform.localScale = new Vector3(-Mathf.Abs(prefab.transform.localScale.x), prefab.transform.localScale.y, prefab.transform.localScale.z);
-            Debug.Log(spawnDir + " | " + prefab.transform.localScale);
+            //Debug.Log(spawnDir + " | " + prefab.transform.localScale);
         }
 
         // Assign the stats
