@@ -11,13 +11,12 @@ public class KamikazeBehaviour : MonoBehaviour
     public LayerMask LayerToHit;
     public float fieldofImpact;
     public float force;
-    public GameObject ExplosionEffect;
 
     private void Awake()
     {
         stats = GetComponent<EnemyStats>();
         sprite = GetComponentInChildren<SpriteRenderer>(); // Get the SpriteRenderer from the child GameObject
-        ExplosionEffect.SetActive(false);
+        //ExplosionEffect.SetActive(false);
     }
 
     public void Knockback(Vector2 velocity, float duration)
@@ -46,8 +45,8 @@ public class KamikazeBehaviour : MonoBehaviour
 
         }
         Destroy(gameObject);
-        GameObject ExplosionEffectIns = Instantiate(ExplosionEffect, transform.position, Quaternion.identity);
-        Destroy(ExplosionEffectIns, 10);
+        //GameObject ExplosionEffectIns = Instantiate(ExplosionEffect, transform.position, Quaternion.identity);
+        //Destroy(ExplosionEffectIns, 10);
         //Destroy(gameObject);
     }
 

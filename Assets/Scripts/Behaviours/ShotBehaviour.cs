@@ -6,6 +6,7 @@ public class ShotBehaviour : MonoBehaviour
 {
     public float speed = 20f;
     public Rigidbody2D rb;
+    public int damage = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -15,11 +16,13 @@ public class ShotBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
-
-        if(hitInfo.CompareTag("Player"))
+        if (hitInfo.CompareTag("Player"))
         {
+            hitInfo.GetComponent<PlayerStats>().CurrentHealth -= damage;
             Debug.Log("PLAYER!");
+            Destroy(gameObject);
         }
+
 
     }
 

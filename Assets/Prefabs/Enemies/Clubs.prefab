@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8415253034408921534}
   - component: {fileID: 7873878884039451452}
   - component: {fileID: 7129045593705527319}
+  - component: {fileID: -7830763573169221260}
   m_Layer: 7
   m_Name: Clubs
   m_TagString: Enemy
@@ -177,6 +178,19 @@ PolygonCollider2D:
       - {x: 0.24255252, y: -0.25826037}
       - {x: 0.43494654, y: 0.109727204}
   m_UseDelaunayMesh: 0
+--- !u!114 &-7830763573169221260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3996832791091268854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48656eeab2f59854da3d5805c61cf4b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 7873878884039451452}
 --- !u!1 &7106682883323633634
 GameObject:
   m_ObjectHideFlags: 0

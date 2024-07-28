@@ -116,10 +116,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4801505653317531056}
   - component: {fileID: 5672961783117540736}
-  - component: {fileID: 630070124606761961}
   - component: {fileID: 8415253034408921534}
   - component: {fileID: 7873878884039451452}
   - component: {fileID: 6194128249770924480}
+  - component: {fileID: 3397973300042371140}
   m_Layer: 7
   m_Name: TopChef
   m_TagString: Enemy
@@ -160,18 +160,6 @@ MonoBehaviour:
   currentDamage: 0
   currentSpeed: 2
   damageColor: {r: 1, g: 0, b: 0, a: 1}
---- !u!114 &630070124606761961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3996832791091268854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa1caead01658654f9d6e0aac8fda269, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8415253034408921534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,3 +258,15 @@ PolygonCollider2D:
       - {x: 0.58778536, y: -0.80901694}
       - {x: 0.6926508, y: -0.0055636764}
   m_UseDelaunayMesh: 0
+--- !u!114 &3397973300042371140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3996832791091268854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec8482b8bdf547b4caf380965f33743f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

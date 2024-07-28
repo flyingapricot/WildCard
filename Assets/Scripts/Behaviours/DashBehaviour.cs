@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JumpBehaviour : MonoBehaviour
+// To be placed on Enemy Prefabs
+
+public class DashBehaviour : MonoBehaviour
 {
     EnemyStats stats;
     SpriteRenderer sprite;
     Vector2 knockbackVelocity;
-    public Rigidbody2D rb;
     float knockbackDuration;
 
     private void Awake()
@@ -20,7 +21,7 @@ public class JumpBehaviour : MonoBehaviour
     {
         // Ignore the knockback if the duration is >0
         if (knockbackDuration > 0) return;
-
+        
         // Begin the knockback
         knockbackVelocity = velocity;
         knockbackDuration = duration;
@@ -37,10 +38,8 @@ public class JumpBehaviour : MonoBehaviour
             }
             else // Otherwise, Move the enemy towards player
             {
-                rb.AddForce(new Vector2(PlayerStats.instance.transform.position.x - transform.position.x, 7),ForceMode2D.Force);
-
                 Vector3 targetPosition = PlayerStats.instance.transform.position; // Player is target destination
-                transform.position = Vector2.MoveTowards(transform.position, targetPosition, stats.currentSpeed * Time.fixedDeltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, targetPosition, stats.currentSpeed * 2 * Time.fixedDeltaTime);
 
                 Vector2 moveDirection = (targetPosition - transform.position).normalized;
                 if (moveDirection.x != 0) // Flip the sprite based on the horizontal direction
