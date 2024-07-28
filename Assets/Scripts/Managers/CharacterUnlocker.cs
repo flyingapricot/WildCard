@@ -5,9 +5,9 @@ using TMPro;
 
 public class CharacterUnlocker : MonoBehaviour
 {
-    public GameObject characterToUnlock;
-    public GameObject warningMessage;
-    public GameObject unlockedImage;
+    public GameObject characterToUnlock; // Sans
+    public GameObject warningMessage; // Shows up when not enough Souls
+    public GameObject unlockedImage; // Shows when character is unlocked
     public Button unlockButton;
     public TMP_Text costText;
     public int unlockCost;

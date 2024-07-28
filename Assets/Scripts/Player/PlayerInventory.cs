@@ -62,6 +62,7 @@ public class PlayerInventory : MonoBehaviour
     void Start()
     {
         player = GetComponent<PlayerStats>();
+        availableWeapons.Add(player.characterData.StartingWeapon);
     }
 
     // Checks if the inventory has an item of a certain type

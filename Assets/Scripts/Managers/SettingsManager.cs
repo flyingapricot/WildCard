@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class SettingsMenu : MonoBehaviour
+public class SettingsManager : MonoBehaviour
 {
     // References to TMP_Text components for displaying volume percentages
     public TMP_Text masterVolumeText;

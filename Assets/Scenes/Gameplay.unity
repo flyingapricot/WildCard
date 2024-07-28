@@ -12898,6 +12898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17b7dbd5ca524aa4fb916018d90da734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterData: {fileID: 0}
   baseStats:
     maxhealth: 0
     might: 0
@@ -13184,13 +13185,9 @@ MonoBehaviour:
   - item: {fileID: 0}
     image: {fileID: 25355033}
   availableWeapons:
-  - {fileID: 11400000, guid: f500b721334a25c46a2e1236e5dc06a0, type: 2}
   - {fileID: 11400000, guid: b4d39224dfc09aa4dae823e15245119e, type: 2}
-  - {fileID: 11400000, guid: 59ef75900426e324c9564ea2d98d7564, type: 2}
-  - {fileID: 11400000, guid: c70534bd36c7bbf49894d659621d1067, type: 2}
   - {fileID: 11400000, guid: da3134956b5883a4aab2d597ac1db733, type: 2}
   - {fileID: 11400000, guid: 04dd2502190fc1345a7c3c0048a85b1f, type: 2}
-  - {fileID: 11400000, guid: ff78ae705765ce8409b48696856c843a, type: 2}
   availablePassives:
   - {fileID: 11400000, guid: ef3ae94e54739bf46b1bf26819ce280c, type: 2}
   - {fileID: 11400000, guid: f1b143b1c63b35441b663b6ad4dd5362, type: 2}
