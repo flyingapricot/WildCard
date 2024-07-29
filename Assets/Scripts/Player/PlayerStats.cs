@@ -444,6 +444,8 @@ public class PlayerStats : MonoBehaviour
         Destroy(gameObject);
     }
 
+
+
     private IEnumerator DestroyAfterAnimation(GameObject statusEffect)
     {
         Animator statusAnimator = statusEffect.GetComponent<Animator>();
