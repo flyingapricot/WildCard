@@ -91,4 +91,21 @@ public class PlayerMovement : MonoBehaviour
         // Apply the movement to the Rigidbody2D's velocity
         player.velocity = movement;
     }
+
+    public void MoveRight()
+    {
+        movementVector.x = 1;
+    }
+    public void MoveLeft()
+    {
+        movementVector.x = -1;
+    }
+    public void MoveUp()
+    {
+        movementVector.y = 1;
+    }
+    public void MoveDown()
+    {
+        movementVector.x = -1;
+    }
 }
