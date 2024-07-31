@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // To be placed in Melee Weapon Prefabs
-
+[System.Obsolete("This will be replaced by the AuraWeapon class.")]
 public class HeartAOEBehaviour : MeleeBehaviour // Inheritence
 {
     List<GameObject> markedEnemies; // List of enemies that is already damaged
@@ -27,7 +27,7 @@ public class HeartAOEBehaviour : MeleeBehaviour // Inheritence
         {
             if (col.gameObject.TryGetComponent(out BreakableProps breakable))
             {
-                breakable.TakeDamage(GetCurrentDamage());
+                breakable.TakeDamage();
                 markedEnemies.Add(col.gameObject);
             }
         }

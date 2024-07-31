@@ -114,7 +114,7 @@ public class Projectile : WeaponEffect // Inheritance
         else if (p) // Prop
         {
             // Deals the damage
-            p.TakeDamage(GetDamage());
+            p.TakeDamage();
             Weapon.Stats stats = weapon.GetStats();
             pierce--;
 

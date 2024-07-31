@@ -28,7 +28,6 @@ public class SoulsManager : MonoBehaviour
     {
         // Find the CharacterUnlocker instance
         characterUnlocker = FindObjectOfType<CharacterUnlocker>();
-
         LoadSouls();
     }
 

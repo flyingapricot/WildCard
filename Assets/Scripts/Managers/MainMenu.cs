@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject titleScreen;
     public GameObject characterScreen;
+    public GameObject tutorialScreen;
     public GameObject settingsScreen;
     public GameObject creditsScreen;
     public GameObject shopScreen;
@@ -32,6 +33,12 @@ public class MainMenu : MonoBehaviour
     {
         titleScreen.SetActive(false);
         characterScreen.SetActive(true);
+    }
+
+    public void TutorialSelect()
+    {
+        titleScreen.SetActive(false);
+        tutorialScreen.SetActive(true);
     }
 
     public void SettingsSelect()

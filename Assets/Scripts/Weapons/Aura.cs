@@ -49,7 +49,7 @@ public class Aura : WeaponEffect
                     }
                     else if (pair.Key is BreakableProps)
                     {
-                        pair.Key.TakeDamage(GetDamage());
+                        pair.Key.TakeDamage();
                     }
                 }
             }

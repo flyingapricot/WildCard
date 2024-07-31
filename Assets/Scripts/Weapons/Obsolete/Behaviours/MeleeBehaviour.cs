@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Obsolete("This will be replaced by the Aura class.")]
 // Base script of all Melee Weapon behaviours
 // Not Placed anywhere
 
@@ -47,7 +48,7 @@ public class MeleeBehaviour : MonoBehaviour
         {
             if (col.gameObject.TryGetComponent(out BreakableProps breakable))
             {
-                breakable.TakeDamage(GetCurrentDamage());
+                breakable.TakeDamage();
             }
         }
     }

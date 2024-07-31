@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BreakableProps : MonoBehaviour, IDamageable
 {
-    public float durability;
+    public float durability; // Number of hits it can take
     public Sprite brokenSprite; // Reference to the broken sprite
     public float fadeDuration = 1f; // Duration of the fade-out
 
@@ -18,9 +18,9 @@ public class BreakableProps : MonoBehaviour, IDamageable
         }
     }
 
-    public void TakeDamage(float dmg)
+    public void TakeDamage()
     {
-        durability -= dmg;
+        durability -= 1;
 
         if (durability <= 0)
         {
