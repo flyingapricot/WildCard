@@ -11,19 +11,19 @@ public class DropRateManager : MonoBehaviour
         public GameObject itemPrefab; // To be destroyed when picked up by player
         public float dropRate; // Chance in % for item to drop (MAX 100)
     }
+    public bool active = false;
     public List<Drops> dropsList;
 
     void OnDestroy() // When GameObject is destroyed
     {
-        // Stops the enemy prefabs from dropping items when destroyed when exiting play mode
-        if (!gameObject.scene.isLoaded) 
-        {
-            return;
-        }
+        // Stops the enemies from dropping items when despawned
+        if (!active) return;
+        // Stops the enemies from dropping items when destroyed while exiting play mode
+        if (!gameObject.scene.isLoaded) return;
 
         // New list for unique GameObjects to track multiple drops
         List<Drops> possibleDrops = new List<Drops>();
-        float rng = UnityEngine.Random.Range(0f, 100f);
+        float rng = Random.Range(0f, 100f);
 
         foreach (Drops drop in dropsList)
         {
@@ -34,7 +34,7 @@ public class DropRateManager : MonoBehaviour
         }
         if (possibleDrops.Count > 0) 
         {
-            Drops chosenDrop = possibleDrops[UnityEngine.Random.Range(0, possibleDrops.Count)]; // Choose only 1 of the possible drops
+            Drops chosenDrop = possibleDrops[Random.Range(0, possibleDrops.Count)]; // Choose only 1 of the possible drops
             Instantiate(chosenDrop.itemPrefab, transform.position, Quaternion.identity); // Spawn chosen drop
         }
     }

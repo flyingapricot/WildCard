@@ -793,7 +793,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 618761915}
-  - component: {fileID: 618761914}
+  - component: {fileID: 618761916}
   m_Layer: 7
   m_Name: ---ENEMIES---
   m_TagString: Untagged
@@ -801,52 +801,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &618761914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 618761913}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c60cb26c206e614aa921ed55495f500, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnArea: {x: 15, y: 8}
-  enemiesAlive: 0
-  maxEnemiesAllowed: 50
-  maxEnemiesReached: 0
-  currentWave: 0
-  waveInterval: 10
-  waves:
-  - waveName: Tutorial
-    enemyGroups:
-    - enemyName: Diamonds
-      enemyPrefab: {fileID: 3996832791091268854, guid: 87827efc02035e94d8cf5efaf401bf07, type: 3}
-      enemyCount: 10
-      spawnCount: 0
-    waveQuota: 0
-    spawnInterval: 2
-    spawnCount: 0
-  - waveName: Scaling
-    enemyGroups:
-    - enemyName: Diamonds
-      enemyPrefab: {fileID: 3996832791091268854, guid: 0ea0ab84732725f458611692855dd461, type: 3}
-      enemyCount: 10
-      spawnCount: 0
-    waveQuota: 0
-    spawnInterval: 2
-    spawnCount: 0
-  - waveName: Kill
-    enemyGroups:
-    - enemyName: Diamonds
-      enemyPrefab: {fileID: 3996832791091268854, guid: 09c6b47211f975c4086a6af56e4ba311, type: 3}
-      enemyCount: 1
-      spawnCount: 0
-    waveQuota: 0
-    spawnInterval: 1
-    spawnCount: 0
 --- !u!4 &618761915
 Transform:
   m_ObjectHideFlags: 0
@@ -862,6 +816,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &618761916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 618761913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f70ccca537f6ac64189b494bb14b2ebd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+  - {fileID: 11400000, guid: a3611d8e1ee292f4f8c0b305d2d393af, type: 2}
+  - {fileID: 11400000, guid: e427b1c716e49414d9d2f5b1c025a180, type: 2}
+  - {fileID: 11400000, guid: 819e8b8dd2a9e6e4e87d54b97cd8f864, type: 2}
+  maximumEnemyCount: 300
 --- !u!1 &699189167
 GameObject:
   m_ObjectHideFlags: 0

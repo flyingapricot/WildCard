@@ -50,7 +50,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57382f6bc75c9bf499be22ee71c6df98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: cf7f29c5fb49878418f849d9f6619852, type: 2}
   currentHealth: 0
   currentDamage: 0
   currentSpeed: 2
@@ -67,6 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa1caead01658654f9d6e0aac8fda269, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outOfFrameAction: 1
 --- !u!114 &8415253034408921534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,8 +79,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c7f2c1280b1cce41a4450ac4887bc8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
   dropsList:
-  - itemPrefab: {fileID: 5969430364891984471, guid: 85ae39b0ebe8f9b44a35b9a58a61910f, type: 3}
+  - itemPrefab: {fileID: 5969430364891984471, guid: d1cd84aaea9e6ba4b983f91aa7e92de1, type: 3}
     dropRate: 100
   - itemPrefab: {fileID: 8427234246184733187, guid: 49291040109599b409e1b3d9db61f02b, type: 3}
     dropRate: 1

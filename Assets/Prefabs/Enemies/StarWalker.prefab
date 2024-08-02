@@ -74,9 +74,9 @@ GameObject:
   - component: {fileID: 5672961783117540736}
   - component: {fileID: 630070124606761961}
   - component: {fileID: 8415253034408921534}
+  - component: {fileID: -8798488598029441206}
   - component: {fileID: 7873878884039451452}
   - component: {fileID: 6194128249770924480}
-  - component: {fileID: -8798488598029441206}
   m_Layer: 7
   m_Name: StarWalker
   m_TagString: Enemy
@@ -112,7 +112,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57382f6bc75c9bf499be22ee71c6df98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: 031a1ed1134c5f9448e99fa3385f4763, type: 2}
   currentHealth: 0
   currentDamage: 0
   currentSpeed: 2
@@ -129,6 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa1caead01658654f9d6e0aac8fda269, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outOfFrameAction: 1
 --- !u!114 &8415253034408921534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,8 +141,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c7f2c1280b1cce41a4450ac4887bc8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
   dropsList:
-  - itemPrefab: {fileID: 5969430364891984471, guid: 85ae39b0ebe8f9b44a35b9a58a61910f, type: 3}
+  - itemPrefab: {fileID: 5969430364891984471, guid: d1cd84aaea9e6ba4b983f91aa7e92de1, type: 3}
     dropRate: 100
   - itemPrefab: {fileID: 8427234246184733187, guid: 49291040109599b409e1b3d9db61f02b, type: 3}
     dropRate: 1
@@ -150,6 +151,21 @@ MonoBehaviour:
     dropRate: 5
   - itemPrefab: {fileID: 8427234246184733187, guid: 7df25bef23d7e724d8181fe8bd41bda9, type: 3}
     dropRate: 20
+--- !u!114 &-8798488598029441206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3996832791091268854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 287b6b32f7f61d349b3b53496718ec34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FirePoint1: {fileID: 2205829967236635367}
+  FirePoint2: {fileID: 5221191278174381306}
+  bulletPrefab: {fileID: 1901397443294861216, guid: acde5a08d27fa844284661e4ee931508, type: 3}
 --- !u!50 &7873878884039451452
 Rigidbody2D:
   serializedVersion: 4
@@ -230,21 +246,6 @@ PolygonCollider2D:
       - {x: 2.420755, y: 0.25256717}
       - {x: 2.0985744, y: 1.637722}
   m_UseDelaunayMesh: 0
---- !u!114 &-8798488598029441206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3996832791091268854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 287b6b32f7f61d349b3b53496718ec34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FirePoint1: {fileID: 2205829967236635367}
-  FirePoint2: {fileID: 5221191278174381306}
-  bulletPrefab: {fileID: 1901397443294861216, guid: acde5a08d27fa844284661e4ee931508, type: 3}
 --- !u!1 &4749841678402291558
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22122555c7ce46248b787e41cd3b5335, type: 3}
+  m_Name: Wave Initial 4
+  m_EditorClassIdentifier: 
+  possibleSpawnPrefabs:
+  - {fileID: 3996832791091268854, guid: 3aafd9a1999bec440b7dc8e38b903f3f, type: 3}
+  - {fileID: 3996832791091268854, guid: 3b990247c7d79ef4da2432fe8e1580a9, type: 3}
+  - {fileID: 3996832791091268854, guid: 3b990247c7d79ef4da2432fe8e1580a9, type: 3}
+  spawnInterval: {x: 2, y: 3}
+  spawnsPerTick: {x: 1, y: 1}
+  duration: 60
+  startingCount: 0
+  totalSpawns: 4294967295
+  exitConditions: 1
+  mustKillAll: 0
+  spawnCount: 0

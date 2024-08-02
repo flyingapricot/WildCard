@@ -183,9 +183,9 @@ GameObject:
   - component: {fileID: 4801505653317531056}
   - component: {fileID: 5672961783117540736}
   - component: {fileID: 8415253034408921534}
+  - component: {fileID: -2880099512580208012}
   - component: {fileID: 7873878884039451452}
   - component: {fileID: 6194128249770924480}
-  - component: {fileID: -2034993603351384061}
   m_Layer: 7
   m_Name: DiamondKnight
   m_TagString: Enemy
@@ -221,7 +221,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57382f6bc75c9bf499be22ee71c6df98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: fbec747ba11ad8744ba73d6790dad8d3, type: 2}
   currentHealth: 0
   currentDamage: 0
   currentSpeed: 2
@@ -238,8 +237,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c7f2c1280b1cce41a4450ac4887bc8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
   dropsList:
-  - itemPrefab: {fileID: 5969430364891984471, guid: 1c1688c6891254d4ab5070b93d100e65, type: 3}
+  - itemPrefab: {fileID: 5969430364891984471, guid: 472b40d07c026bf4fa03bc0d53265fd5, type: 3}
     dropRate: 100
   - itemPrefab: {fileID: 8427234246184733187, guid: 49291040109599b409e1b3d9db61f02b, type: 3}
     dropRate: 1
@@ -247,6 +247,19 @@ MonoBehaviour:
     dropRate: 5
   - itemPrefab: {fileID: 8427234246184733187, guid: 7df25bef23d7e724d8181fe8bd41bda9, type: 3}
     dropRate: 20
+--- !u!114 &-2880099512580208012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3996832791091268854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa1caead01658654f9d6e0aac8fda269, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outOfFrameAction: 1
 --- !u!50 &7873878884039451452
 Rigidbody2D:
   serializedVersion: 4
@@ -334,23 +347,6 @@ PolygonCollider2D:
       - {x: 0.2153678, y: -0.6409978}
       - {x: 0.52674603, y: -0.5633232}
   m_UseDelaunayMesh: 0
---- !u!114 &-2034993603351384061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3996832791091268854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627a70fb2fcee224db843b385550be8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FirePoint1: {fileID: 5667700192960390616}
-  FirePoint2: {fileID: 6227567367146458644}
-  FirePoint3: {fileID: 1527602261827149477}
-  FirePoint4: {fileID: 4232285319870810654}
-  bulletPrefab: {fileID: 1901397443294861216, guid: cb16a88879717cd459331241c51da8f8, type: 3}
 --- !u!1 &5941094671264607085
 GameObject:
   m_ObjectHideFlags: 0

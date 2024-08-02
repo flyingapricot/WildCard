@@ -20,17 +20,19 @@ public class BreakableProps : MonoBehaviour, IDamageable
 
     public void TakeDamage()
     {
-        durability -= 1;
-
-        if (durability <= 0)
+        if (this != null)
         {
-            if (brokenSprite == null)
+            durability -= 1;
+            if (durability <= 0)
             {
-                Destroy(gameObject);
-            }
-            else
-            {
-                StartCoroutine(BreakAndFade());
+                if (brokenSprite == null)
+                {
+                    Break();
+                }
+                else
+                {
+                    StartCoroutine(BreakAndFade());
+                }
             }
         }
     }
@@ -55,6 +57,15 @@ public class BreakableProps : MonoBehaviour, IDamageable
         // Ensure the sprite is fully transparent at the end
         spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0f);
 
+        Break();
+    }
+
+    public void Break()
+    {
+        // Enable drops if the prop is destroyed,
+        // since drops are disabled by default.
+        DropRateManager drops = GetComponent<DropRateManager>();
+        if(drops) drops.active = true;
         // Destroy the game object
         Destroy(gameObject);
     }

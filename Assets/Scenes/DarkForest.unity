@@ -132,7 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 257623553}
-  - component: {fileID: 257623552}
+  - component: {fileID: 257623554}
   m_Layer: 7
   m_Name: ---ENEMIES---
   m_TagString: Untagged
@@ -140,75 +140,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &257623552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 257623551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c60cb26c206e614aa921ed55495f500, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnArea: {x: 15, y: 8}
-  enemiesAlive: 0
-  maxEnemiesAllowed: 50
-  maxEnemiesReached: 0
-  currentWave: 0
-  waveInterval: 30
-  waves:
-  - waveName: Wave 1
-    enemyGroups:
-    - enemyName: Diamonds
-      enemyPrefab: {fileID: 3996832791091268854, guid: 87827efc02035e94d8cf5efaf401bf07, type: 3}
-      enemyCount: 100
-      spawnCount: 0
-    waveQuota: 0
-    spawnInterval: 1
-    spawnCount: 0
-  - waveName: Wave 2
-    enemyGroups:
-    - enemyName: Hearts
-      enemyPrefab: {fileID: 3996832791091268854, guid: c04a79939b9f00e43a9e4348d6bd8800, type: 3}
-      enemyCount: 5
-      spawnCount: 0
-    - enemyName: 
-      enemyPrefab: {fileID: 3996832791091268854, guid: 3b990247c7d79ef4da2432fe8e1580a9, type: 3}
-      enemyCount: 5
-      spawnCount: 0
-    - enemyName: 
-      enemyPrefab: {fileID: 3996832791091268854, guid: 31450095757fe0e459e418e658e0cb14, type: 3}
-      enemyCount: 5
-      spawnCount: 0
-    - enemyName: 
-      enemyPrefab: {fileID: 3996832791091268854, guid: f6b9751f77386604ca5c086b07da30e5, type: 3}
-      enemyCount: 2
-      spawnCount: 0
-    - enemyName: 
-      enemyPrefab: {fileID: 3996832791091268854, guid: 3aafd9a1999bec440b7dc8e38b903f3f, type: 3}
-      enemyCount: 2
-      spawnCount: 0
-    - enemyName: 
-      enemyPrefab: {fileID: 3996832791091268854, guid: 0ea0ab84732725f458611692855dd461, type: 3}
-      enemyCount: 2
-      spawnCount: 0
-    - enemyName: 
-      enemyPrefab: {fileID: 3996832791091268854, guid: 78e1eb3bade098647b3a775b62ebc2e5, type: 3}
-      enemyCount: 1
-      spawnCount: 0
-    - enemyName: 
-      enemyPrefab: {fileID: 3996832791091268854, guid: 874be290923538947be2228e450f7478, type: 3}
-      enemyCount: 1
-      spawnCount: 0
-    - enemyName: 
-      enemyPrefab: {fileID: 3996832791091268854, guid: 09c6b47211f975c4086a6af56e4ba311, type: 3}
-      enemyCount: 1
-      spawnCount: 0
-    waveQuota: 0
-    spawnInterval: 3
-    spawnCount: 0
 --- !u!4 &257623553
 Transform:
   m_ObjectHideFlags: 0
@@ -224,6 +155,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &257623554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257623551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f70ccca537f6ac64189b494bb14b2ebd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+  - {fileID: 11400000, guid: c463676c86b3e874e976a12c6d96ebfc, type: 2}
+  - {fileID: 11400000, guid: 9432fd9a0e1d47b4cbc9002a5f1cee1b, type: 2}
+  - {fileID: 11400000, guid: 742dc009693881d4ba74e86a12848a50, type: 2}
+  - {fileID: 11400000, guid: 5fa08583871aaa64da8f906081275640, type: 2}
+  - {fileID: 11400000, guid: b35ddc3cccfd75542a892944f3901563, type: 2}
+  - {fileID: 11400000, guid: b412a9d3bcb23fe49a760a9020207258, type: 2}
+  - {fileID: 11400000, guid: 06907dcca5643174db4239450b74ad86, type: 2}
+  - {fileID: 11400000, guid: 836f2b90340bbcc45ab73884ba4b2d57, type: 2}
+  - {fileID: 11400000, guid: 647beb336fd9e6e449574a0c4902b630, type: 2}
+  - {fileID: 11400000, guid: 836f2b90340bbcc45ab73884ba4b2d57, type: 2}
+  - {fileID: 11400000, guid: 3a07c375d75fb3d40b80b1cb4a1a70ee, type: 2}
+  - {fileID: 11400000, guid: 836f2b90340bbcc45ab73884ba4b2d57, type: 2}
+  - {fileID: 11400000, guid: 0ab0d2222a2d90046992cc93108f3448, type: 2}
+  - {fileID: 11400000, guid: 874b3332045f3fd4fb93311108acf561, type: 2}
+  maximumEnemyCount: 300
 --- !u!1 &777651196
 GameObject:
   m_ObjectHideFlags: 0

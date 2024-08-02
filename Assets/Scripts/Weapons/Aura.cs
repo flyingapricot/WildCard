@@ -15,21 +15,14 @@ public class Aura : WeaponEffect
     void Update()
     {
         Weapon.Stats stats = weapon.GetStats();
-        Dictionary<IDamageable, float> affectedTargsCopy = new(affectedTargets);
+        // Make a list to hold destroyed targets
 
+        Dictionary<IDamageable, float> affectedTargsCopy = new(affectedTargets);
         // Loop through every target affected by the aura
         // Reduce the cooldown of the aura for the target
         // Once cooldown reaches 0, deal dmg to target
         foreach (KeyValuePair<IDamageable, float> pair in affectedTargsCopy)
         {
-            // if (pair.Key == null)
-            // {
-            //     // Remove null targets
-            //     affectedTargets.Remove(pair.Key);
-            //     targetsToUnaffect.Remove(pair.Key);
-            //     continue;
-            // }
-
             affectedTargets[pair.Key] -= Time.deltaTime;
             if (pair.Value <= 0)
             {
@@ -43,7 +36,7 @@ public class Aura : WeaponEffect
                 {
                     // Reset the cooldown and deal damage
                     affectedTargets[pair.Key] = stats.cooldown;
-                    if (pair.Key is EnemyStats)
+                    if (pair.Key is EnemyStats && pair.Key != null)
                     {
                         pair.Key.TakeDamage(GetDamage(), transform.position, stats.knockback);
                     }

@@ -63,12 +63,10 @@ public class BulletHell : MonoBehaviour
                 Vector3 targetPosition = PlayerStats.instance.transform.position; // Player is target destination
                 transform.position = Vector2.MoveTowards(transform.position, targetPosition, stats.currentSpeed * Time.fixedDeltaTime);
 
-                Vector2 moveDirection = (targetPosition - transform.position).normalized;
+                Vector2 moveDirection = (PlayerStats.instance.transform.position - transform.position).normalized;
                 if (moveDirection.x != 0) // Flip the sprite based on the horizontal direction
                 {
-                    transform.Rotate(0f, 180f, 0f);
-                    //sprite.flipX = moveDirection.x > 0; // Flip when moving right
-                    //FirePoint.r
+                    sprite.flipX = moveDirection.x > 0; // Flip when moving right since default is left
                 }
             }
         }
