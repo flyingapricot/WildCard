@@ -11,9 +11,9 @@ public class EnemyStats : MonoBehaviour, IDamageable
     public static int count; // Track the number of enemies on the screen.
 
     // Current Enemy Stats
-    [HideInInspector] public float currentHealth;
-    [HideInInspector] public float currentDamage;
-    [HideInInspector] public float currentSpeed; // Accessed by movement
+    public float currentHealth;
+    public float currentDamage;
+    public float currentSpeed; // Accessed by movement
 
     [Header("Damage Feedback")]
     public Color damageColor = new(1,0,0,1); // Color of damage flash

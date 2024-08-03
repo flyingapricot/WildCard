@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Wave Initial 5
   m_EditorClassIdentifier: 
   possibleSpawnPrefabs:
-  - {fileID: 3996832791091268854, guid: 3aafd9a1999bec440b7dc8e38b903f3f, type: 3}
   - {fileID: 3996832791091268854, guid: f6b9751f77386604ca5c086b07da30e5, type: 3}
-  spawnInterval: {x: 2, y: 3}
+  spawnInterval: {x: 1, y: 1}
   spawnsPerTick: {x: 1, y: 1}
   duration: 60
   startingCount: 0

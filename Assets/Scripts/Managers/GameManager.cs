@@ -19,9 +19,8 @@ public class GameManager : MonoBehaviour
         LevelUp
     }
 
-    // Stores the current state of the game
-    public GameState currentState;
-    public GameState previousState;
+    public GameState currentState; // Stores the current state of the game
+    public GameState previousState; // Stores the state of the game before it was paused
     public GameObject playerObject; 
     public bool isGameOver = false;
     public bool choosingUpgrade = false;
@@ -56,12 +55,14 @@ public class GameManager : MonoBehaviour
     public float timeLimit; // Time when reapers spawn
     float stopwatchTime; // Time elapsed (in seconds)
     public TMP_Text stopwatchDisplay;
+    public float GetElapsedTime() { return stopwatchTime; } // Gives us the time since the level has started.
 
     [Header("Damage Text")]
     public Canvas damageTextCanvas;
     public Camera referenceCamera;
     public Vector3 initialOffset = new(0, 2f, 0); // You can adjust the initial vertical offset here
     private Transform damageTextParent; // Place to keep the texts
+
 
     void Awake()
     {

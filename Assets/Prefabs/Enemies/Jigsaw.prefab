@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4801505653317531056}
   - component: {fileID: 5672961783117540736}
-  - component: {fileID: 630070124606761961}
+  - component: {fileID: 5841460527192078015}
   - component: {fileID: 8415253034408921534}
   - component: {fileID: 7873878884039451452}
   - component: {fileID: 6194128249770924480}
@@ -49,11 +49,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57382f6bc75c9bf499be22ee71c6df98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 0
-  currentDamage: 0
-  currentSpeed: 2
+  currentHealth: 20
+  currentDamage: 2
+  currentSpeed: 5
   damageColor: {r: 1, g: 0, b: 0, a: 1}
---- !u!114 &630070124606761961
+--- !u!114 &5841460527192078015
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -62,10 +62,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3996832791091268854}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa1caead01658654f9d6e0aac8fda269, type: 3}
+  m_Script: {fileID: 11500000, guid: ec8482b8bdf547b4caf380965f33743f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outOfFrameAction: 1
+  outOfFrameAction: 2
 --- !u!114 &8415253034408921534
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 4801505653317531056}
   - component: {fileID: 5672961783117540736}
   - component: {fileID: 630070124606761961}
+  - component: {fileID: -7830763573169221260}
   - component: {fileID: 8415253034408921534}
   - component: {fileID: 7873878884039451452}
   - component: {fileID: 7129045593705527319}
-  - component: {fileID: -7830763573169221260}
   m_Layer: 7
   m_Name: Clubs
   m_TagString: Enemy
@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2732920466813775785}
@@ -50,9 +50,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57382f6bc75c9bf499be22ee71c6df98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 0
-  currentDamage: 0
-  currentSpeed: 2
+  currentHealth: 800
+  currentDamage: 15
+  currentSpeed: 1
   damageColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &630070124606761961
 MonoBehaviour:
@@ -67,6 +67,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outOfFrameAction: 1
+--- !u!114 &-7830763573169221260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3996832791091268854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48656eeab2f59854da3d5805c61cf4b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 7873878884039451452}
 --- !u!114 &8415253034408921534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,19 +192,6 @@ PolygonCollider2D:
       - {x: 0.24255252, y: -0.25826037}
       - {x: 0.43494654, y: 0.109727204}
   m_UseDelaunayMesh: 0
---- !u!114 &-7830763573169221260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3996832791091268854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48656eeab2f59854da3d5805c61cf4b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 7873878884039451452}
 --- !u!1 &7106682883323633634
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,7 +220,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4801505653317531056}

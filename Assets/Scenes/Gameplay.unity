@@ -5735,7 +5735,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -5879,7 +5879,7 @@ MonoBehaviour:
   - {fileID: 755020681}
   - {fileID: 1270110449}
   - {fileID: 352571993}
-  timeLimit: 300
+  timeLimit: 2000
   stopwatchDisplay: {fileID: 321645614}
   damageTextCanvas: {fileID: 664395575}
   referenceCamera: {fileID: 1722619646}

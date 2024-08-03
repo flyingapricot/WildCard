@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ab9e0250b75a7344b8ce7ac6c98535f, type: 3}
   m_Name: Diamond Data
   m_EditorClassIdentifier: 
-  damage: 1
-  speed: 2
-  maxHealth: 1
+  damage: 2
+  speed: 0.35
+  maxHealth: 8

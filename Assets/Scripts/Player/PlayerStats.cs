@@ -82,10 +82,10 @@ public class PlayerStats : MonoBehaviour
             // Check if value has changed
             if (actualStats.might != value)
             {
-                actualStats.recovery = value;
+                actualStats.might = value;
                 if (GameManager.instance != null)
                 {
-                    GameManager.instance.Recovery.text = actualStats.might.ToString();
+                    GameManager.instance.Attack.text = actualStats.might.ToString();
                 }
             }
         }
@@ -294,6 +294,13 @@ public class PlayerStats : MonoBehaviour
             if (p)
             {
                 actualStats += p.GetBoosts();
+                // Set the current stats display
+                GameManager.instance.Health.text = string.Format("{0} / {1}", Mathf.RoundToInt(CurrentHealth), MaxHealth);
+                GameManager.instance.Attack.text = CurrentMight.ToString();
+                GameManager.instance.Defence.text = CurrentArmour.ToString();
+                GameManager.instance.Recovery.text = CurrentRecovery.ToString();
+                GameManager.instance.Speed.text = CurrentMoveSpeed.ToString();
+                GameManager.instance.Magnet.text = CurrentMagnet.ToString();
             }
         }
     }
