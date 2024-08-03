@@ -17,6 +17,21 @@ jobs:
       - uses: actions/checkout@v4
         with:
           lfs: true
+
+      # Clean up Docker to free space
+      - name: Clean up Docker to free space
+        run: |
+          docker system prune -a -f
+          docker volume prune -f
+          docker builder prune -a -f
+
+      # Remove some system files to free up space
+      - name: Remove unnecessary files
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /usr/local/lib/android
+
       - uses: actions/cache@v3
         with:
           customParameters: '-nographics'  
@@ -56,13 +71,28 @@ jobs:
       fail-fast: false
       matrix:
         targetPlatform:
-          - StandaloneWindows	# Windows
+          - StandaloneWindows # Windows
           - WebGL #WebGL Build
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           lfs: true
+
+      # Clean up Docker to free space
+      - name: Clean up Docker to free space
+        run: |
+          docker system prune -a -f
+          docker volume prune -f
+          docker builder prune -a -f
+
+      # Remove some system files to free up space
+      - name: Remove unnecessary files
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /usr/local/lib/android
+
       - uses: actions/cache@v3
         with:
           path: Library
@@ -114,7 +144,6 @@ jobs:
           git add Build/*
           git commit -m "Update build folder"
           git push origin gh-pages
-
       - name: Unzip
         run: |
           cd gh-pages
@@ -127,4 +156,3 @@ jobs:
           git reset HEAD index.html
           git commit -m "Unzipped files"
           git push origin gh-pages
-  
