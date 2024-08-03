@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5672961783117540736}
   - component: {fileID: 630070124606761961}
   - component: {fileID: 8415253034408921534}
-  - component: {fileID: -6447542030003674086}
   - component: {fileID: 7873878884039451452}
   - component: {fileID: 6194128249770924480}
   m_Layer: 7
@@ -50,7 +49,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57382f6bc75c9bf499be22ee71c6df98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: ec9f74a927918254b90625ffec6a5763, type: 2}
   currentHealth: 0
   currentDamage: 0
   currentSpeed: 2
@@ -67,6 +65,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa1caead01658654f9d6e0aac8fda269, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outOfFrameAction: 1
 --- !u!114 &8415253034408921534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,6 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c7f2c1280b1cce41a4450ac4887bc8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
   dropsList:
   - itemPrefab: {fileID: 5969430364891984471, guid: 472b40d07c026bf4fa03bc0d53265fd5, type: 3}
     dropRate: 100
@@ -88,20 +88,6 @@ MonoBehaviour:
     dropRate: 5
   - itemPrefab: {fileID: 8427234246184733187, guid: 7df25bef23d7e724d8181fe8bd41bda9, type: 3}
     dropRate: 20
---- !u!114 &-6447542030003674086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3996832791091268854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a09ee028e0e58d42bfae0bb02ef5ba3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SwarmSize: 5
-  enemyPrefab: {fileID: 3996832791091268854}
 --- !u!50 &7873878884039451452
 Rigidbody2D:
   serializedVersion: 4

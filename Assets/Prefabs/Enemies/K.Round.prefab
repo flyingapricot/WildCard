@@ -118,7 +118,6 @@ GameObject:
   - component: {fileID: 5672961783117540736}
   - component: {fileID: 8415253034408921534}
   - component: {fileID: 8212327790544757435}
-  - component: {fileID: 3105679742335771768}
   - component: {fileID: 7873878884039451452}
   - component: {fileID: 6194128249770924480}
   m_Layer: 7
@@ -156,7 +155,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57382f6bc75c9bf499be22ee71c6df98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: 46abdb9e99e03a34ab86e935cf8bc0ad, type: 2}
   currentHealth: 0
   currentDamage: 0
   currentSpeed: 2
@@ -173,6 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c7f2c1280b1cce41a4450ac4887bc8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
   dropsList:
   - itemPrefab: {fileID: 5969430364891984471, guid: 85ae39b0ebe8f9b44a35b9a58a61910f, type: 3}
     dropRate: 100
@@ -199,20 +198,6 @@ MonoBehaviour:
     m_Bits: 1
   fieldofImpact: 40
   force: 200
---- !u!114 &3105679742335771768
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3996832791091268854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a09ee028e0e58d42bfae0bb02ef5ba3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SwarmSize: 3
-  enemyPrefab: {fileID: 3996832791091268854, guid: 31450095757fe0e459e418e658e0cb14, type: 3}
 --- !u!50 &7873878884039451452
 Rigidbody2D:
   serializedVersion: 4
