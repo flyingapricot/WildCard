@@ -14,6 +14,11 @@ jobs:
           - editmode
           - standalone
     steps:
+      ###########################
+      #    Free disk space   #
+      ###########################
+      - name: Free disk space
+        run: .github/workflows/scripts/free_disk_space.sh
       - uses: actions/checkout@v4
         with:
           lfs: true
