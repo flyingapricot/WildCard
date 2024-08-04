@@ -115,9 +115,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8752374064979545172}
-  - component: {fileID: -8724646917770641596}
+  - component: {fileID: -2008923691109778300}
   - component: {fileID: 7209908530886556171}
-  - component: {fileID: -4138818742667068899}
   m_Layer: 0
   m_Name: Soul
   m_TagString: Untagged
@@ -141,7 +140,7 @@ Transform:
   - {fileID: 3108190244285491330}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-8724646917770641596
+--- !u!114 &-2008923691109778300
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,10 +149,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 8427234246184733187}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ecb74ee59170184b8a084c394280b61, type: 3}
+  m_Script: {fileID: 11500000, guid: e9d975da69da117428f70a3391e97c57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soulsValue: 1
+  lifespan: 0.5
+  bobbingAnimation:
+    frequency: 2
+    direction: {x: 0, y: 0.3}
+  instantLevel: 0
+  minExperience: 0
+  maxExperience: 0
+  heal: 0
+  souls: 1
 --- !u!58 &7209908530886556171
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -189,18 +196,3 @@ CircleCollider2D:
   m_Offset: {x: 0.0015660822, y: -0.004999995}
   serializedVersion: 2
   m_Radius: 0.10349621
---- !u!114 &-4138818742667068899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8427234246184733187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c9ef34f0469bb6458cbc90200539d2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  frequency: 5
-  magnitude: 0.2
-  direction: {x: 0, y: 1, z: 0}

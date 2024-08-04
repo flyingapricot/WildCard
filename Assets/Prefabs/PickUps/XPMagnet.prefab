@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 24622333966446335}
+  - component: {fileID: 3651946584822168637}
   - component: {fileID: 7707054862129143510}
   - component: {fileID: 145364723931614555}
   m_Layer: 0
@@ -33,6 +34,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 639411006851844768}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3651946584822168637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3306565182871017086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f71bd3b04d892643b4622cba7b84d00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorChangeSpeed: 3
 --- !u!212 &7707054862129143510
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -75,7 +89,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b4951cbec8de9af469b59c430b464098, type: 3}
-  m_Color: {r: 1, g: 0.25943398, b: 0.9158447, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -115,10 +129,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 639411006851844768}
-  - component: {fileID: 5547871593295918581}
+  - component: {fileID: -5195093666554404168}
   - component: {fileID: 3160289199715943812}
   m_Layer: 0
-  m_Name: MythicXP
+  m_Name: XPMagnet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -140,7 +154,7 @@ Transform:
   - {fileID: 24622333966446335}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5547871593295918581
+--- !u!114 &-5195093666554404168
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,7 +163,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5969430364891984471}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9d975da69da117428f70a3391e97c57, type: 3}
+  m_Script: {fileID: 11500000, guid: 55dbf436f705aba439cc3670413b9e5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lifespan: 0.5
@@ -157,10 +171,12 @@ MonoBehaviour:
     frequency: 2
     direction: {x: 0, y: 0.3}
   instantLevel: 0
-  minExperience: 50
-  maxExperience: 99
+  minExperience: 0
+  maxExperience: 0
   heal: 0
   souls: 0
+  effectDuration: 2
+  magnetRange: 90
 --- !u!58 &3160289199715943812
 CircleCollider2D:
   m_ObjectHideFlags: 0

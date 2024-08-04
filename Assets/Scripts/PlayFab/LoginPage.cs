@@ -44,15 +44,15 @@ public class LoginPage : MonoBehaviour
         SceneController.instance.LoadMainMenu();
     }
 
-/*    public async void updateUsername()
-    {
-        var filter = Builders<BsonDocument>.Filter.Eq("email", email);
-        //var update = Builders<BsonDocument>.Update.Set("username", usernameText.text);
+    /*    public async void updateUsername()
+        {
+            var filter = Builders<BsonDocument>.Filter.Eq("email", email);
+            //var update = Builders<BsonDocument>.Update.Set("username", usernameText.text);
 
-        var result = await collection.UpdateOneAsync(filter, update);
+            var result = await collection.UpdateOneAsync(filter, update);
 
-    }*/
-    public async void createUser(string email, string password)
+        }*/
+    public void createUser(string email, string password)
     {
         var userDetails = new BsonDocument { { "email", email }, { "password", password }, { "username", "Player" } };
         collection.InsertOne(userDetails);

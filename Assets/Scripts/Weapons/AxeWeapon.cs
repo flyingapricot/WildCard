@@ -9,7 +9,7 @@ public class AxeWeapon : ProjectileWeapon
     {
         // int offset = currentAttackCount > 0 ? currentStats.amount - currentAttackCount : 0;
         // return 90f - Mathf.Sign(movement.lastMovementVector.x) * (5 * offset);
-        return Mathf.Atan2(movement.lastMovementVector.y, movement.lastMovementVector.x) * Mathf.Rad2Deg;
+        return Mathf.Atan2(movement.lastVerticalVector, movement.lastHorizontalVector) * Mathf.Rad2Deg;
     }
 
     // Generates a random point in a rect to spawn the projectile 

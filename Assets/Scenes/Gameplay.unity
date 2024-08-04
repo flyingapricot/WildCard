@@ -12803,7 +12803,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pullSpeed: 10
-  collectionDistance: 0.5
 --- !u!1 &1205702260539920617
 GameObject:
   m_ObjectHideFlags: 0
@@ -12834,10 +12833,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28fe20a5fe667e64886da8ab219ae90b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementVector: {x: 0, y: 0, z: 0}
+  moveDir: {x: 0, y: 0}
   lastHorizontalVector: 0
   lastVerticalVector: 0
-  lastMovementVector: {x: 0, y: 0, z: 0}
+  lastMovedVector: {x: 0, y: 0}
 --- !u!1 &3143382981298713342
 GameObject:
   m_ObjectHideFlags: 0
@@ -12900,25 +12899,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterData: {fileID: 0}
   baseStats:
-    maxhealth: 0
-    might: 0
-    armour: 0
+    maxHealth: 0
     recovery: 0
+    armour: 0
     moveSpeed: 0
+    might: 0
+    area: 0
+    projSpeed: 0
+    duration: 0
+    amount: 0
+    cooldown: 0
+    luck: 0
+    growth: 0
+    greed: 0
+    curse: 0
     magnet: 0
+    revival: 0
   actualStats:
-    maxhealth: 0
-    might: 0
-    armour: 0
+    maxHealth: 0
     recovery: 0
+    armour: 0
     moveSpeed: 0
+    might: 0
+    area: 0
+    projSpeed: 0
+    duration: 0
+    amount: 0
+    cooldown: 0
+    luck: 0
+    growth: 0
+    greed: 0
+    curse: 0
     magnet: 0
-  playerSprite: {fileID: 5372007683700839743}
-  playerAnimator: {fileID: 8943857123949385038}
-  healthBar: {fileID: 763645420}
-  expBar: {fileID: 835074088}
-  healingEffect: {fileID: 3089034428271069611, guid: 62688e19b3b54e14584f5280f624a0ed, type: 3}
-  hitEffect: {fileID: 7615206535168829390, guid: 440453039e6e03247a2d6c6fe5078176, type: 3}
+    revival: 0
   currentLuck: 0
   currentGrowth: 0
   currentGreed: 0
@@ -12927,6 +12940,12 @@ MonoBehaviour:
   currentReroll: 0
   currentSkip: 0
   currentBanish: 0
+  playerSprite: {fileID: 5372007683700839743}
+  playerAnimator: {fileID: 8943857123949385038}
+  healthBar: {fileID: 763645420}
+  expBar: {fileID: 835074088}
+  healingEffect: {fileID: 3089034428271069611, guid: 62688e19b3b54e14584f5280f624a0ed, type: 3}
+  hitEffect: {fileID: 7615206535168829390, guid: 440453039e6e03247a2d6c6fe5078176, type: 3}
   invincibilityDuration: 0.5
   experience: 0
   level: 1

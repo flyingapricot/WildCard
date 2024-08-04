@@ -8,12 +8,11 @@ public class BobbingAnimation : MonoBehaviour
     public float magnitude; // Range of movement
     public Vector3 direction; // Direction of movement
     Vector3 initialPosition;
-    ICollectible collectible; // Pick up object script
+    Pickup pickup;
 
     void Start()
     {
-        // Get the ICollectible component from the same GameObject
-        collectible = GetComponent<ICollectible>();
+        pickup = GetComponent<Pickup>();
 
         // Saves the starting position of the game object
         initialPosition = transform.position;
@@ -21,7 +20,7 @@ public class BobbingAnimation : MonoBehaviour
 
     void Update()
     {
-        if (collectible != null && !collectible.Collected)
+        if (pickup)
         {
             // Sine function for smooth bobbing effect
             transform.position = initialPosition + magnitude * Mathf.Sin(Time.time * frequency) * direction;

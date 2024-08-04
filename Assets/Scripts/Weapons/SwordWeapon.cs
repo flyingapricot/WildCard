@@ -37,7 +37,7 @@ public class SwordWeapon : ProjectileWeapon
         // Otherwise calculate the angle and offset of our spawned projectile
         // If <currentSpawnCount> has an even value
         // We will flip the direction of the spawn
-        float spawnDir = Mathf.Sign(movement.lastMovementVector.x) * (currentSpawnCount % 2 != 0 ? -1 : 1);
+        float spawnDir = Mathf.Sign(movement.lastHorizontalVector) * (currentSpawnCount % 2 != 0 ? -1 : 1);
         Vector2 spawnOffset = new(spawnDir * Random.Range(currentStats.spawnVariance.xMin, currentStats.spawnVariance.xMax), currentSpawnYOffset);
 
         // Spawn a copy of the projectile

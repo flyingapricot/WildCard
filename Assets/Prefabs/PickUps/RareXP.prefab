@@ -115,9 +115,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 639411006851844768}
-  - component: {fileID: 7115289392273096980}
+  - component: {fileID: 2086263144285613403}
   - component: {fileID: 3160289199715943812}
-  - component: {fileID: 20765460457453932}
   m_Layer: 0
   m_Name: RareXP
   m_TagString: Untagged
@@ -141,7 +140,7 @@ Transform:
   - {fileID: 24622333966446335}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7115289392273096980
+--- !u!114 &2086263144285613403
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,11 +149,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 5969430364891984471}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88bdec3fcf63e884f885be9181ffbaf0, type: 3}
+  m_Script: {fileID: 11500000, guid: e9d975da69da117428f70a3391e97c57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minExperienceValue: 11
-  maxExperienceValue: 19
+  lifespan: 0.5
+  bobbingAnimation:
+    frequency: 2
+    direction: {x: 0, y: 0.3}
+  instantLevel: 0
+  minExperience: 11
+  maxExperience: 19
+  heal: 0
+  souls: 0
 --- !u!58 &3160289199715943812
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -190,18 +196,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
---- !u!114 &20765460457453932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5969430364891984471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c9ef34f0469bb6458cbc90200539d2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  frequency: 5
-  magnitude: 0.2
-  direction: {x: 0, y: 1, z: 0}

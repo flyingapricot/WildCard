@@ -140,7 +140,7 @@ public abstract class Weapon : Item
     // As well as the character's Might stat.
     public virtual float GetDamage()
     {
-        return currentStats.GetDamage() * player.CurrentMight;
+        return currentStats.GetDamage() * player.Stats.might;
     }
 
     // For retrieving the weapon's stats

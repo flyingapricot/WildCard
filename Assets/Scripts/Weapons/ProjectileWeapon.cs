@@ -70,7 +70,7 @@ public class ProjectileWeapon : Weapon // Inheritance
     // Gets which direction projectile should face when spawned
     protected virtual float GetSpawnAngle()
     {
-        return Mathf.Atan2(movement.lastMovementVector.y, movement.lastMovementVector.x) * Mathf.Rad2Deg;
+        return Mathf.Atan2(movement.lastVerticalVector, movement.lastHorizontalVector) * Mathf.Rad2Deg;
     }
 
     // Generates a random point in a rect to spawn the projectile 
