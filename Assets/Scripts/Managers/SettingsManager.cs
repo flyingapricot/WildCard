@@ -1,29 +1,30 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.Audio;
 
 public class SettingsManager : MonoBehaviour
 {
+    public AudioMixer audioMixer;
+    private readonly int[] volumeLevels = { 0, 20, 40, 60, 80, 100 };
+
     // References to TMP_Text components for displaying volume percentages
+    private TMP_Text[] options;
     public TMP_Text masterVolumeText;
     public TMP_Text bgmVolumeText;
     public TMP_Text sfxVolumeText;
-    public TMP_Text controlsText;
     public TMP_Text fullscreenText;
 
+    private int selectedOptionIndex = 0;
     private int masterVolumeIndex = 5; // Default to 100%
     private int bgmVolumeIndex = 5; // Default to 100%
     private int sfxVolumeIndex = 5; // Default to 100%
-    private bool isFullscreen = true;
     public GameObject controlsPanel;
-    private readonly int[] volumeLevels = { 0, 20, 40, 60, 80, 100 };
-
-    private int selectedOptionIndex = 0;
-    private TMP_Text[] options;
+    private bool isFullscreen = true;
 
     void Start()
     {
         // Initialize UI Text components with default values
-        options = new TMP_Text[] { masterVolumeText, bgmVolumeText, sfxVolumeText, controlsText, fullscreenText };
+        options = new TMP_Text[] { masterVolumeText, bgmVolumeText, sfxVolumeText };
         UpdateVolumeText();
         UpdateFullscreenText();
         HighlightSelectedOption();
@@ -55,14 +56,6 @@ public class SettingsManager : MonoBehaviour
                 AdjustVolume(selectedOptionIndex, 1);
             }
         }
-        else if (selectedOptionIndex == 3 && Input.GetKeyDown(KeyCode.Return))
-        {
-            ToggleControls();
-        }
-        else if (selectedOptionIndex == 4 && Input.GetKeyDown(KeyCode.Return))
-        {
-            ToggleFullscreen();
-        }
     }
 
     void AdjustVolume(int optionIndex, int change)
@@ -88,7 +81,7 @@ public class SettingsManager : MonoBehaviour
         controlsPanel.SetActive(!controlsPanel.activeSelf);
     }
 
-    void ToggleFullscreen()
+    public void ToggleFullscreen()
     {
         isFullscreen = !isFullscreen;
         Screen.fullScreen = isFullscreen;
@@ -102,10 +95,7 @@ public class SettingsManager : MonoBehaviour
         sfxVolumeText.text = volumeLevels[sfxVolumeIndex] + "%";
     }
 
-    void UpdateFullscreenText()
-    {
-        fullscreenText.text = isFullscreen ? "On" : "Off";
-    }
+    void UpdateFullscreenText() { fullscreenText.text = isFullscreen ? "On" : "Off"; }
 
     void HighlightSelectedOption()
     {
@@ -124,9 +114,8 @@ public class SettingsManager : MonoBehaviour
         // Apply master volume
         AudioListener.volume = volumeLevels[masterVolumeIndex] / 100f;
 
-        // Apply BGM and SFX volume separately if you have different AudioMixers for them
-        // Assuming you have set up AudioMixers for BGM and SFX in your project:
-        // bgmMixer.SetFloat("BGMVolume", Mathf.Log10(volumeLevels[bgmVolumeIndex] / 100f) * 20);
-        // sfxMixer.SetFloat("SFXVolume", Mathf.Log10(volumeLevels[sfxVolumeIndex] / 100f) * 20);
+        // Apply BGM and SFX volume
+        audioMixer.SetFloat("BGMVolume", Mathf.Log10(volumeLevels[bgmVolumeIndex] / 100f) * 20);
+        audioMixer.SetFloat("SFXVolume", Mathf.Log10(volumeLevels[sfxVolumeIndex] / 100f) * 20);
     }
 }

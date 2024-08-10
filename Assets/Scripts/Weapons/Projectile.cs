@@ -13,6 +13,7 @@ public class Projectile : WeaponEffect // Inheritance
     public DamageSource damageSource = DamageSource.projectile;
     public bool hasAutoAim = false;
     public float arcSpeed; // Speed at which the projectile travels in an arc
+    [SerializeField] private AudioClip soundEffect; // Assign respective sound effects
     protected Rigidbody2D rb;
     protected int pierce;
 
@@ -26,11 +27,12 @@ public class Projectile : WeaponEffect // Inheritance
         if (rb.bodyType == RigidbodyType2D.Dynamic)
         {
             rb.angularVelocity = arcSpeed;
-            rb.velocity = transform.right * stats.speed;
+            rb.velocity = stats.speed * weapon.Player.Stats.projSpeed * transform.right;
         }
 
         // Prevent the area from being 0, as it hides the projectile
-        float area = stats.area == 0 ? 1 : stats.area;
+        float area = weapon.GetArea();
+        if(area <= 0) area = 1;        
         transform.localScale = new Vector3(
             area * Mathf.Sign(transform.localScale.x),
             area * Mathf.Sign(transform.localScale.y), 1
@@ -44,6 +46,8 @@ public class Projectile : WeaponEffect // Inheritance
 
         // If the projectile is auto-aiming, automatically find a suitable enemy
         if (hasAutoAim) AcquireAutoAimFacing();
+
+        player.PlayAudio(soundEffect); // Let player cue the sound
     }
         
     //If the projectile is homing, it will automatically find a suitable target to move towards
@@ -82,7 +86,7 @@ public class Projectile : WeaponEffect // Inheritance
         // Only drive movement ourselves if this is a kinematic
         if (rb.bodyType == RigidbodyType2D.Kinematic)
         {
-            transform.position += stats.speed * Time.fixedDeltaTime * transform.right;
+            transform.position += stats.speed * Time.fixedDeltaTime * weapon.Player.Stats.projSpeed * transform.right;
             rb.MovePosition(transform.position);
             // Move the projectile around an arc
             transform.Rotate(0, 0, arcSpeed * Time.fixedDeltaTime);

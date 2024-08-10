@@ -11,10 +11,8 @@ using UnityEngine;
 public abstract class Weapon : Item
 {
     [System.Serializable]
-    public struct Stats
+    public class Stats : LevelData
     {
-        public string name, description; // Name / Description of the Weapon or its upgrade
-
         [Header("Visuals")]
         public Projectile projectilePrefab; // If attached, a projectile will spawn every time the weapon cools down.
         public Aura auraPrefab; // If attached, an aura will spawn when weapon is equipped
@@ -74,22 +72,7 @@ public abstract class Weapon : Item
         this.data = data;
         currentStats = data.baseStats;
         movement = GetComponentInParent<PlayerMovement>();
-        currentCooldown = currentStats.cooldown;
-    }
-
-    protected virtual void Awake()
-    {
-        // Assign the stats early, as it will be used by other scripts later
-        if (data) currentStats = data.baseStats;
-    }
-
-    protected virtual void Start()
-    {
-        // Don't initialize the weapon if the weapon data is not assigned.
-        if (data)
-        {
-            Initialize(data);
-        }
+        ActivateCooldown();
     }
 
     protected virtual void Update()
@@ -97,7 +80,7 @@ public abstract class Weapon : Item
         currentCooldown -= Time.deltaTime;
         if (currentCooldown <= 0f) // Once the cooldown becomes 0, attack
         {
-            Attack(currentStats.amount);
+            Attack(currentStats.amount + player.Stats.amount);
         }
     }
 
@@ -114,7 +97,7 @@ public abstract class Weapon : Item
         }
 
         // Otherwise, add stats of the next level to our weapon
-        currentStats += data.GetLevelData(++currentLevel); // Level++
+        currentStats += (Stats)data.GetLevelData(++currentLevel); // Level++
         return true;
     }
 
@@ -130,7 +113,7 @@ public abstract class Weapon : Item
     {
         if (CanAttack())
         {
-            currentCooldown += currentStats.cooldown;
+            ActivateCooldown();
             return true;
         }
         return false;
@@ -140,9 +123,34 @@ public abstract class Weapon : Item
     // As well as the character's Might stat.
     public virtual float GetDamage()
     {
-        return currentStats.GetDamage() * player.CurrentMight;
+        return currentStats.GetDamage() * player.Stats.might;
+    }
+
+    // Get the area, including modifications from the player's stats.
+    public virtual float GetArea()
+    {
+        return currentStats.area * player.Stats.area;
     }
 
     // For retrieving the weapon's stats
     public virtual Stats GetStats() { return currentStats; }
+
+    // Refreshes the cooldown of the weapon.
+    // If <strict> is true, refreshes only when currentCooldown < 0.
+    public virtual bool ActivateCooldown(bool strict = false)
+    {
+        // When <strict> is enabled and the cooldown is not yet finished,
+        // do not refresh the cooldown.
+        if(strict && currentCooldown > 0) return false;
+
+        // Calculate what the cooldown is going to be, factoring in the cooldown
+        // reduction stat in the player character.
+        float actualCooldown = currentStats.cooldown * Player.Stats.cooldown;
+
+        // Limit the maximum cooldown to the actual cooldown, so we cannot increase
+        // the cooldown above the cooldown stat if we accidentally call this function
+        // multiple times.
+        currentCooldown = Mathf.Min(actualCooldown, currentCooldown + actualCooldown);
+        return true;
+    }
 }

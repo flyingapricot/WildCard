@@ -19,7 +19,7 @@ public class SwordWeapon : ProjectileWeapon
         if (!currentStats.projectilePrefab)
         {
             Debug.LogWarning(string.Format("Projectile prefab has not been set for {0}", name));
-            currentCooldown = data.baseStats.cooldown;
+            ActivateCooldown(true);
             return false; // To check if attack is successful or not
         }
 
@@ -37,7 +37,7 @@ public class SwordWeapon : ProjectileWeapon
         // Otherwise calculate the angle and offset of our spawned projectile
         // If <currentSpawnCount> has an even value
         // We will flip the direction of the spawn
-        float spawnDir = Mathf.Sign(movement.lastMovementVector.x) * (currentSpawnCount % 2 != 0 ? -1 : 1);
+        float spawnDir = Mathf.Sign(movement.lastHorizontalVector) * (currentSpawnCount % 2 != 0 ? -1 : 1);
         Vector2 spawnOffset = new(spawnDir * Random.Range(currentStats.spawnVariance.xMin, currentStats.spawnVariance.xMax), currentSpawnYOffset);
 
         // Spawn a copy of the projectile
@@ -55,7 +55,7 @@ public class SwordWeapon : ProjectileWeapon
 
         // Assign the stats
         prefab.weapon = this;
-        currentCooldown = data.baseStats.cooldown;
+        ActivateCooldown(true);
         attackCount--;
 
         // Determine where the next projectile should spawn

@@ -2,64 +2,61 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CircleCollider2D))]
+
 public class PlayerCollector : MonoBehaviour
 {
-    PlayerStats stats;
-    CircleCollider2D playerCollector;
+    PlayerStats player;
+    CircleCollider2D detector;
     public float pullSpeed; // Speed of item moving towards the player
-    public float collectionDistance; // Distance threshold to consider the item collected
+    //public float collectionDistance; // Distance threshold to consider the item collected
 
     void Start()
     {
-        stats = FindObjectOfType<PlayerStats>();
-        playerCollector = GetComponent<CircleCollider2D>();
+        player = GetComponentInParent<PlayerStats>();
     }
 
-    void Update()
+    public void SetRadius(float r)
     {
-        playerCollector.radius = stats.CurrentMagnet; // Update collection radius
+        if(!detector) detector = GetComponent<CircleCollider2D>();
+        detector.radius = r;
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        // Checks if the Drops GameObjects have the ICollectible Interface
-        if (col.gameObject.TryGetComponent(out ICollectible collectible))
+        //Check if the other GameObject is a Pickup.
+        if (col.TryGetComponent(out Pickup p))
         {
-            // Stop bobbing animation if it exists
-            if (col.gameObject.TryGetComponent(out BobbingAnimation bobbingAnimation))
-            {
-                bobbingAnimation.StopBobbing();
-            }
-
-            // Start the coroutine to pull and collect the item
-            StartCoroutine(PullAndCollect(col.gameObject, collectible));
+            p.Collect(player, pullSpeed);
         }
     }
 
-    IEnumerator PullAndCollect(GameObject item, ICollectible collectible)
-    {
-        while (Vector2.Distance(transform.position, item.transform.position) > collectionDistance)
-        {
-            // Move the item towards the player
-            item.transform.position = Vector2.MoveTowards(item.transform.position, transform.position, pullSpeed * Time.deltaTime);
-            yield return null; // Wait for the next frame
-        }
+    // void OnTriggerEnter2D(Collider2D col)
+    // {
+    //     // Checks if the Drops GameObjects have the ICollectible Interface
+    //     if (col.gameObject.TryGetComponent(out ICollectible collectible))
+    //     {
+    //         // Stop bobbing animation if it exists
+    //         if (col.gameObject.TryGetComponent(out BobbingAnimation bobbingAnimation))
+    //         {
+    //             bobbingAnimation.StopBobbing();
+    //         }
 
-        // Once the item is close enough to the player, collect it
-        collectible.Collect();
-    }
+    //         // Start the coroutine to pull and collect the item
+    //         StartCoroutine(PullAndCollect(col.gameObject, collectible));
+    //     }
+    // }
 
-    /* void OnTriggerEnter2D(Collider2D col)
-    {
-        // Checks if the Drops GameObjects have the ICollectible Interface
-        if (col.gameObject.TryGetComponent(out ICollectible collectible))
-        {
-            // Pulls the drops towards the player (Animation)
-            Rigidbody2D rb = col.gameObject.GetComponent<Rigidbody2D>();
-            Vector2 forceDirection = (transform.position - col.transform.position).normalized;
-            rb.AddForce(forceDirection * pullSpeed);
+    // IEnumerator PullAndCollect(GameObject item, ICollectible collectible)
+    // {
+    //     while (Vector2.Distance(transform.position, item.transform.position) > collectionDistance)
+    //     {
+    //         // Move the item towards the player
+    //         item.transform.position = Vector2.MoveTowards(item.transform.position, transform.position, pullSpeed * Time.deltaTime);
+    //         yield return null; // Wait for the next frame
+    //     }
 
-            collectible.Collect(); // If yes, collect it
-        }
-    } */
+    //     // Once the item is close enough to the player, collect it
+    //     collectible.Collect();
+    // }
 }

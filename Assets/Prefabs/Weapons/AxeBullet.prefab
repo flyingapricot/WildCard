@@ -53,6 +53,7 @@ MonoBehaviour:
   damageSource: 1
   hasAutoAim: 0
   arcSpeed: -180
+  soundEffect: {fileID: 8300000, guid: ea92cab689500f5499d894520bd9f648, type: 3}
 --- !u!212 &4002768466004318317
 SpriteRenderer:
   m_ObjectHideFlags: 0

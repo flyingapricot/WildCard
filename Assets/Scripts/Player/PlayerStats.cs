@@ -8,10 +8,42 @@ using TMPro;
 public class PlayerStats : MonoBehaviour
 {
     public static PlayerStats instance;
+    PlayerCollector collector;
+    PlayerInventory inventory;
+
+    #region Current Player Stats
     public CharacterData characterData;
     public CharacterData.Stats baseStats;
     [SerializeField] CharacterData.Stats actualStats;
 
+    public CharacterData.Stats Stats
+    {
+        get { return actualStats;  }
+        set { 
+            actualStats = value;
+        }
+    }
+
+    float health;
+    public float CurrentHealth
+    {
+        get { return health; }
+        // If we try and set the current health, the UI interface
+        // on the pause screen will also be updated.
+        set
+        {
+            // Check if the value has changed
+            if (health != value)
+            {
+                health = value;
+                // Update the Health Bar whenever the player’s health is changed
+                healthBar.SetHealth(CurrentHealth, Stats.maxHealth);
+            }
+        }
+    }
+    #endregion
+
+    #region UI
     [Header("UI")]
     [SerializeField] SpriteRenderer playerSprite;
     [SerializeField] Animator playerAnimator;
@@ -19,176 +51,17 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] EXPBar expBar;
 
     [Header("Visual Feedback")]
-    public GameObject healingEffect; // Healing animation
-    public GameObject hitEffect; // Getting Damaged animation
+    public GameObject healAnimation; // Healing animation
+    public GameObject healEffect; // Healing Effect
+    public GameObject hitAnimation; // Getting Hit animation
+    public GameObject hitEffect; // Getting Hit Effect
+    //public ParticleSystem blockedEffect; // If armor completely blocks damage.
 
-    #region Current Player Stats
-    float health;
-    public float CurrentHealth
-    {
-        get { return health; }
-
-        // If we try and set the current health
-        // Pause screen stats and health bar will be updated
-        set
-        {
-            // Clamp the value to ensure it's within valid range
-            // value = Mathf.Clamp(value, 0, CurrentMaxHealth);
-
-            // Check if value has changed
-            if (health != value)
-            {
-                health = value;
-                if (GameManager.instance != null)
-                {
-                    GameManager.instance.Health.text = string.Format("{0} / {1}", Mathf.RoundToInt(health), actualStats.maxhealth);
-                }
-                healthBar.SetHealth(health, MaxHealth); 
-            }
-        }
-    }
-
-    public float MaxHealth
-    {
-        get { return actualStats.maxhealth; }
-
-        // If we try and set the current health
-        // Pause screen stats and health bar will be updated
-        set
-        {
-            // Check if value has changed
-            if (actualStats.maxhealth != value)
-            {
-                actualStats.maxhealth = value;
-                if (GameManager.instance != null)
-                {
-                    GameManager.instance.Health.text = string.Format("{0} / {1}", Mathf.RoundToInt(health), actualStats.maxhealth);
-                }
-                healthBar.SetHealth(health, MaxHealth); 
-            }
-        }
-    }
-
-    public float CurrentMight
-    {
-        get { return Might; }
-        set { Might = value; }
-    }
-    public float Might
-    {
-        get { return actualStats.might; }
-        set
-        {
-            // Check if value has changed
-            if (actualStats.might != value)
-            {
-                actualStats.might = value;
-                if (GameManager.instance != null)
-                {
-                    GameManager.instance.Attack.text = actualStats.might.ToString();
-                }
-            }
-        }
-    }
-
-    public float CurrentRecovery
-    {
-        get { return Recovery; }
-        set { Recovery = value; }
-    }
-    public float Recovery
-    {
-        get { return actualStats.recovery; }
-        set
-        {
-            // Check if value has changed
-            if (actualStats.recovery != value)
-            {
-                actualStats.recovery = value;
-                if (GameManager.instance != null)
-                {
-                    GameManager.instance.Recovery.text = actualStats.recovery.ToString();
-                }
-            }
-        }
-    }
-
-    public float CurrentArmour
-    {
-        get { return Armour; }
-        set { Armour = value; }
-    }
-    public float Armour
-    {
-        get { return actualStats.armour; }
-        set
-        {
-            // Check if value has changed
-            if (actualStats.armour != value)
-            {
-                actualStats.armour = value;
-                if (GameManager.instance != null)
-                {
-                    GameManager.instance.Defence.text = actualStats.armour.ToString();
-                }
-            }
-        }
-    }
-
-    public float CurrentMoveSpeed
-    {
-        get { return MoveSpeed; }
-        set { MoveSpeed = value; }
-    }
-    public float MoveSpeed
-    {
-        get { return actualStats.moveSpeed; }
-        set
-        {
-            // Check if value has changed
-            if (actualStats.moveSpeed != value)
-            {
-                actualStats.moveSpeed = value;
-                if (GameManager.instance != null)
-                {
-                    GameManager.instance.Speed.text = actualStats.moveSpeed.ToString();
-                }
-            }
-        }
-    }
-
-    public float CurrentMagnet
-    {
-        get { return Magnet; }
-        set { Magnet = value; }
-    }
-    public float Magnet
-    {
-        get { return actualStats.magnet; }
-        set
-        {
-            // Check if value has changed
-            if (actualStats.magnet != value)
-            {
-                actualStats.magnet = value;
-                if (GameManager.instance != null)
-                {
-                    GameManager.instance.Magnet.text = actualStats.magnet.ToString();
-                }
-            }
-        }
-    }
-    #endregion
-
-    #region Current Passive Stats
-    [HideInInspector] public float currentLuck;
-    [HideInInspector] public float currentGrowth;
-    [HideInInspector] public float currentGreed;
-    [HideInInspector] public float currentCurse;
-    [HideInInspector] public float currentRevival; 
-    [HideInInspector] public float currentReroll;
-    [HideInInspector] public float currentSkip;
-    [HideInInspector] public float currentBanish;
+    [Header("Audio Feedback")]
+    [SerializeField] private AudioClip hitAudio; // Sound effect when damaged
+    [SerializeField] private AudioClip healAudio; // Sound effect when healed
+    [SerializeField] private AudioClip levelAudio; // Sound effect when leveling up
+    private AudioSource audioSource; // The audio source that will play all the SFX
     #endregion
 
     #region Invincibility Frames
@@ -200,40 +73,24 @@ public class PlayerStats : MonoBehaviour
 
     #region Experience / Levels
     [Header("Experience / Level")]
-    public int experience; // Player current experience points
-    public int level; // Player current level
+    public int experience = 0; // Player current experience points
+    public int level = 1; // Player current level
     public int experienceCap; // Experience needed to level up
-
-    // Class for defining level ranges and the corresponding increase in experience cap
-    // [System.Serializable]
-    // public class LevelRange
-    // {
-    //     public int startLevel;
-    //     public int endLevel;
-    //     public int experienceCapIncrease;
-    // }
-    // public List<LevelRange> levelRanges;
-    #endregion
-
-    #region Inventory
-    PlayerInventory inventory;
-    public int weaponIndex;
-    public int passiveItemIndex;
     #endregion
 
     void Awake()
     {
-        if (instance == null) // Singleton Pattern
-        {
+        if (instance == null) { // Singleton Pattern
             instance = this;
             DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-            Debug.LogWarning("EXTRA " + this + " DELETED");
-        }
+        } else {
+            DestroySingleton(); }
 
+        inventory = GetComponent<PlayerInventory>();
+        collector = GetComponentInChildren<PlayerCollector>();
+        audioSource = GetComponent<AudioSource>();
+
+        // Get chosen character data
         characterData = CharacterSelector.GetData();
         if (CharacterSelector.instance)
             CharacterSelector.instance.DestroySingleton();
@@ -241,12 +98,10 @@ public class PlayerStats : MonoBehaviour
         playerSprite.sprite = characterData.Sprite;
         playerAnimator.runtimeAnimatorController = characterData.Animation;
 
-        inventory = GetComponent<PlayerInventory>();
-
+        // Assign the initial stats
         baseStats = actualStats = characterData.stats;
-        health = actualStats.maxhealth;
-
-        healthBar.InitializeHealthBar(health); // Initialize the health bar
+        collector.SetRadius(actualStats.magnet);
+        health = actualStats.maxHealth;
     }
 
     void Start()
@@ -254,19 +109,11 @@ public class PlayerStats : MonoBehaviour
         // Spawn the starting weapon
         inventory.Add(characterData.StartingWeapon);
 
-        // Initialize experience cap to prevent player from immediately leveling up
-        experienceCap = ExperienceCapIncrease(1);
-        experience = 0;
-        level = 1;
-        //experienceCap = levelRanges[0].experienceCapIncrease;
+        // Initialize the health bar
+        healthBar.InitializeHealthBar(health); 
 
-        // Set the current stats display
-        GameManager.instance.Health.text = string.Format("{0} / {1}", Mathf.RoundToInt(CurrentHealth), MaxHealth);
-        GameManager.instance.Attack.text = CurrentMight.ToString();
-        GameManager.instance.Defence.text = CurrentArmour.ToString();
-        GameManager.instance.Recovery.text = CurrentRecovery.ToString();
-        GameManager.instance.Speed.text = CurrentMoveSpeed.ToString();
-        GameManager.instance.Magnet.text = CurrentMagnet.ToString();
+        // Initialize experience cap to prevent player from immediately leveling up
+        experienceCap = SetExperienceCap(1);
 
         GameManager.instance.AssignCharacterUI(characterData);
     }
@@ -294,15 +141,10 @@ public class PlayerStats : MonoBehaviour
             if (p)
             {
                 actualStats += p.GetBoosts();
-                // Set the current stats display
-                GameManager.instance.Health.text = string.Format("{0} / {1}", Mathf.RoundToInt(CurrentHealth), MaxHealth);
-                GameManager.instance.Attack.text = CurrentMight.ToString();
-                GameManager.instance.Defence.text = CurrentArmour.ToString();
-                GameManager.instance.Recovery.text = CurrentRecovery.ToString();
-                GameManager.instance.Speed.text = CurrentMoveSpeed.ToString();
-                GameManager.instance.Magnet.text = CurrentMagnet.ToString();
             }
         }
+        // Update the PlayerCollector's radius.
+        collector.SetRadius(actualStats.magnet);
     }
 
     public void GainExperience(int amount)
@@ -311,9 +153,8 @@ public class PlayerStats : MonoBehaviour
         LevelUp(); // Call LevelUp first to handle leveling logic
         expBar.SetExp(experience, experienceCap, level); // Then update the EXP bar with the final values
     }
-
-    // Method to calculate the experience required for the next level
-    public int ExperienceCapIncrease(int currentLevel)
+    
+    public int SetExperienceCap(int currentLevel) // Method to calculate the experience required for the next level
     {
         float nextLevelExp = Mathf.Pow(4 * (currentLevel + 1), 2f);
         float currentLevelExp = Mathf.Pow(4 * currentLevel, 2f);
@@ -325,21 +166,14 @@ public class PlayerStats : MonoBehaviour
     {
         while (experience >= experienceCap) // Using a loop in case the player gains multiple levels at once
         {
+            // Play level up sound
+            audioSource.clip = levelAudio;
+            audioSource.Play();
+
+            // Level up the player and reduce their experience by the experience cap
             level++;
             experience -= experienceCap;
-            experienceCap = ExperienceCapIncrease(level);
-
-            // int experienceCapIncrease = 0;
-            // foreach (LevelRange range in levelRanges) // Updates experienceCapIncrease to the relevant level range
-            // {
-            //     if (level >= range.startLevel && level <= range.endLevel)
-            //     {
-            //         experienceCapIncrease = range.experienceCapIncrease;
-            //         break;
-            //     }
-            // }
-            // experienceCap += experienceCapIncrease;
-
+            experienceCap = SetExperienceCap(level);
             GameManager.instance.StartLevelUp();
         }
     }
@@ -349,30 +183,26 @@ public class PlayerStats : MonoBehaviour
         if (!isInvincible) // If player is not invincible, take dmg and start i-frame
         {
             // Calculate incoming damage ensuring it doesn't drop below 1
-            float incomingDmg = Mathf.Max(dmg - CurrentArmour, 1);
+            float incomingDmg = Mathf.Max(dmg - Stats.armour, 1);
             CurrentHealth -= incomingDmg;
 
-            // Instantiate the damage effect
-            if (hitEffect != null)
-            {
-                GameObject damageAnimation = Instantiate(hitEffect, transform.position, Quaternion.identity, transform);
-                StartCoroutine(DestroyAfterAnimation(damageAnimation)); // Remove effect after the animation
-            }
-
-            invincibilityTimer = invincibilityDuration;
-            isInvincible = true;
+            PlayAudio(hitAudio);
+            PlayEffect(hitAnimation, hitEffect);
 
             // Check if the player's health has dropped to or below 0
             if (CurrentHealth <= 0)
             {
                 Kill();
             }
+            
+            invincibilityTimer = invincibilityDuration;
+            isInvincible = true;
         }
     }
 
     public void Kill()
     {
-        if (!GameManager.instance.isGameOver)
+        if (!GameManager.instance.IsGameOver)
         {
             // GameManager.instance.AssignCharacterUI(characterData);
             GameManager.instance.AssignLevelReached(level);
@@ -384,71 +214,62 @@ public class PlayerStats : MonoBehaviour
     public void Heal(float heal) // Active healing
     {
         // Only heal if player health is not max
-        if (CurrentHealth < MaxHealth)
+        if (CurrentHealth < Stats.maxHealth)
         {
-            // if (CurrentHealth <= 0)
-            // {
-            //     return; // Does not heal if player is dead
-            // }
-
             CurrentHealth += heal;
 
-            // Optionally, ensure the health doesn't exceed the maximum health
-            CurrentHealth = Mathf.Min(CurrentHealth, MaxHealth);
+            // Ensure the health doesn't exceed the maximum health
+            CurrentHealth = Mathf.Min(CurrentHealth, Stats.maxHealth);
         }
 
-        // Instantiate the healing effect
-        if (healingEffect != null)
-        {
-            GameObject healingAnimation = Instantiate(healingEffect, transform.position, Quaternion.identity, transform);
-            StartCoroutine(DestroyAfterAnimation(healingAnimation)); // Remove effect after the animation
-        }
+        PlayAudio(healAudio);
+        PlayEffect(healAnimation, healEffect);
     }
 
     void Recover() // Passive recovery
     {
-        if (CurrentHealth < MaxHealth)
+        if (CurrentHealth < Stats.maxHealth)
         {
-            CurrentHealth += CurrentRecovery * Time.deltaTime;
+            CurrentHealth += Stats.recovery * Time.deltaTime;
+            CurrentHealth = Mathf.Min(CurrentHealth, Stats.maxHealth);
         }
-    }
-
-    [System.Obsolete("Old function that is kept to maintain compatibility with InventoryManager. Removing Soon")]
-    public void SpawnWeapon(GameObject weapon)
-    {
-        if (weaponIndex >= inventory.weaponSlots.Count - 1)
-        {
-            Debug.LogError("Inventory Full.");
-            return;
-        }
-        
-        // Spawn the starting weapon
-        GameObject spawnedWeapon = Instantiate(weapon, transform.position, Quaternion.identity);
-        spawnedWeapon.transform.SetParent(transform); // Place weapon inside player gameobject
-        // inventory.AddWeapon(weaponIndex, spawnedWeapon.GetComponent<WeaponController>()); // Adds weapon to its inventory slot
-        weaponIndex++;
-    }
-
-    [System.Obsolete("Old function that is kept to maintain compatibility with InventoryManager. Removing Soon")]
-    public void SpawnPassiveItem(GameObject passiveItem)
-    {
-        if (passiveItemIndex >= inventory.passiveSlots.Count - 1)
-        {
-            Debug.LogError("Inventory Full.");
-            return;
-        }
-
-        // Spawn the starting passive item
-        GameObject spawnedPassiveItem = Instantiate(passiveItem, transform.position, Quaternion.identity);
-        spawnedPassiveItem.transform.SetParent(transform); // Place passive item inside player gameobject
-        // inventory.AddPassiveItem(passiveItemIndex, spawnedPassiveItem.GetComponent<PassiveItem>()); // Adds passive item to its inventory slot
-        passiveItemIndex++;
     }
 
     public void DestroySingleton()
     {
         instance = null;
         Destroy(gameObject);
+    }
+
+    private void PlayEffect(GameObject animation, GameObject effect)
+    {
+        // Instantiate the animation
+        if (animation != null)
+        {
+            GameObject Animation = Instantiate(animation, transform.position, Quaternion.identity, transform);
+            StartCoroutine(DestroyAfterAnimation(Animation)); // Remove effect after the animation
+        }
+        // Instantiate the effect at the calculated position
+        if (effect != null)
+        {
+            Camera mainCamera = FindObjectOfType<Camera>();
+            // Calculate the position in the middle of the screen
+            Vector3 screenCenter = new(Screen.width / 2, Screen.height / 2, mainCamera.nearClipPlane);
+            Vector3 worldPosition = mainCamera.ScreenToWorldPoint(screenCenter);
+
+            GameObject Effect = Instantiate(effect, worldPosition, Quaternion.identity);
+            Effect.transform.SetParent(mainCamera.transform); // Make the effect a child of the camera
+
+            StartCoroutine(DestroyAfterAnimation(Effect)); // Remove effect after the animation
+        }
+    }
+
+    public void PlayAudio(AudioClip audio)
+    {
+        if (audio != null)
+        {
+            audioSource.PlayOneShot(audio);
+        }
     }
 
     private IEnumerator DestroyAfterAnimation(GameObject statusEffect)

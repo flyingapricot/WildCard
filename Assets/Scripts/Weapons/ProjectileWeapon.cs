@@ -31,7 +31,7 @@ public class ProjectileWeapon : Weapon // Inheritance
         if (!currentStats.projectilePrefab)
         {
             Debug.LogWarning(string.Format("Projectile prefab has not been set for {0}", name));
-            currentCooldown = data.baseStats.cooldown;
+            ActivateCooldown(true);
             return false; // To check if attack is successful or not
         }
 
@@ -51,9 +51,7 @@ public class ProjectileWeapon : Weapon // Inheritance
         prefab.weapon = this;
         prefab.player = player;
 
-        // Reset the cooldown only if this attack was triggered by cooldown
-        if (currentCooldown <= 0)
-            currentCooldown += currentStats.cooldown;
+        ActivateCooldown(true);
 
         attackCount--;
 
@@ -70,7 +68,7 @@ public class ProjectileWeapon : Weapon // Inheritance
     // Gets which direction projectile should face when spawned
     protected virtual float GetSpawnAngle()
     {
-        return Mathf.Atan2(movement.lastMovementVector.y, movement.lastMovementVector.x) * Mathf.Rad2Deg;
+        return Mathf.Atan2(movement.lastVerticalVector, movement.lastHorizontalVector) * Mathf.Rad2Deg;
     }
 
     // Generates a random point in a rect to spawn the projectile 
