@@ -10,38 +10,69 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b1bd3c84287f864e91c60e1b93c73a4, type: 3}
-  m_Name: Speed
+  m_Name: Ballet Shoes
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: fa75a99aefbe86643bfae857a0f444c1, type: 3}
   maxLevel: 3
+  evolutionData: []
   baseStats:
-    name: Worn Sandals
+    name: '>> Level 1'
     description: A pair of old shoes lost in some seagrass. Increases your move speed.
     boosts:
-      maxhealth: 0
-      might: 0
-      armour: 0
+      maxHealth: 0
       recovery: 0
+      armour: 0
       moveSpeed: 1
+      might: 0
+      area: 0
+      projSpeed: 0
+      duration: 0
+      amount: 0
+      cooldown: 0
+      luck: 0
+      growth: 0
+      greed: 0
+      curse: 0
       magnet: 0
+      revive: 0
   growth:
-  - name: New Vans
+  - name: '>> Level 2'
     description: Damn, Daniel! back at it again with the white vans! Move speed is
       increased further.
     boosts:
-      maxhealth: 0
-      might: 0
-      armour: 0
+      maxHealth: 0
       recovery: 0
-      moveSpeed: 2
+      armour: 0
+      moveSpeed: 1
+      might: 0
+      area: 0
+      projSpeed: 0
+      duration: 0
+      amount: 0
+      cooldown: 0
+      luck: 0
+      growth: 0
+      greed: 0
+      curse: 0
       magnet: 0
-  - name: Ballet Shoes
+      revive: 0
+  - name: '>> Level MAX'
     description: These used shoes make you feel incredibly agile. Speed increased
       tremendously.
     boosts:
-      maxhealth: 0
-      might: 0
-      armour: 0
+      maxHealth: 0
       recovery: 0
-      moveSpeed: 2
+      armour: 0
+      moveSpeed: 1
+      might: 0
+      area: 0
+      projSpeed: 0
+      duration: 0
+      amount: 0
+      cooldown: 0
+      luck: 0
+      growth: 0
+      greed: 0
+      curse: 0
       magnet: 0
+      revive: 0

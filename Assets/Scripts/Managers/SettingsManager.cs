@@ -7,7 +7,6 @@ public class SettingsManager : MonoBehaviour
     public TMP_Text masterVolumeText;
     public TMP_Text bgmVolumeText;
     public TMP_Text sfxVolumeText;
-    public TMP_Text controlsText;
     public TMP_Text fullscreenText;
 
     private int masterVolumeIndex = 5; // Default to 100%
@@ -23,7 +22,7 @@ public class SettingsManager : MonoBehaviour
     void Start()
     {
         // Initialize UI Text components with default values
-        options = new TMP_Text[] { masterVolumeText, bgmVolumeText, sfxVolumeText, controlsText, fullscreenText };
+        options = new TMP_Text[] { masterVolumeText, bgmVolumeText, sfxVolumeText };
         UpdateVolumeText();
         UpdateFullscreenText();
         HighlightSelectedOption();
@@ -55,14 +54,14 @@ public class SettingsManager : MonoBehaviour
                 AdjustVolume(selectedOptionIndex, 1);
             }
         }
-        else if (selectedOptionIndex == 3 && Input.GetKeyDown(KeyCode.Return))
-        {
-            ToggleControls();
-        }
-        else if (selectedOptionIndex == 4 && Input.GetKeyDown(KeyCode.Return))
-        {
-            ToggleFullscreen();
-        }
+        // else if (selectedOptionIndex == 3 && Input.GetKeyDown(KeyCode.Return))
+        // {
+        //     ToggleControls();
+        // }
+        // else if (selectedOptionIndex == 4 && Input.GetKeyDown(KeyCode.Return))
+        // {
+        //     ToggleFullscreen();
+        // }
     }
 
     void AdjustVolume(int optionIndex, int change)
@@ -88,7 +87,7 @@ public class SettingsManager : MonoBehaviour
         controlsPanel.SetActive(!controlsPanel.activeSelf);
     }
 
-    void ToggleFullscreen()
+    public void ToggleFullscreen()
     {
         isFullscreen = !isFullscreen;
         Screen.fullScreen = isFullscreen;
@@ -102,10 +101,7 @@ public class SettingsManager : MonoBehaviour
         sfxVolumeText.text = volumeLevels[sfxVolumeIndex] + "%";
     }
 
-    void UpdateFullscreenText()
-    {
-        fullscreenText.text = isFullscreen ? "On" : "Off";
-    }
+    void UpdateFullscreenText() { fullscreenText.text = isFullscreen ? "On" : "Off"; }
 
     void HighlightSelectedOption()
     {

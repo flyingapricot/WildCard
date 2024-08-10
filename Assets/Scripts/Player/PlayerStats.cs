@@ -63,7 +63,8 @@ public class PlayerStats : MonoBehaviour
     [Header("Visual Feedback")]
     public GameObject healingEffect; // Healing animation
     public GameObject hitEffect; // Getting Damaged animation
-    //public ParticleSystem damageEffect;
+    public ParticleSystem blockedEffect; // If armor completely blocks damage.
+
     #endregion
 
     #region Invincibility Frames
@@ -123,14 +124,6 @@ public class PlayerStats : MonoBehaviour
         experienceCap = SetExperienceCap(1);
 
         GameManager.instance.AssignCharacterUI(characterData);
-
-        // Set the current stats display
-        // GameManager.instance.Health.text = string.Format("{0} / {1}", Mathf.RoundToInt(CurrentHealth), MaxHealth);
-        // GameManager.instance.Attack.text = CurrentMight.ToString();
-        // GameManager.instance.Defence.text = CurrentArmour.ToString();
-        // GameManager.instance.Recovery.text = CurrentRecovery.ToString();
-        // GameManager.instance.Speed.text = CurrentMoveSpeed.ToString();
-        // GameManager.instance.Magnet.text = CurrentMagnet.ToString();
     }
 
     void Update()
@@ -204,20 +197,20 @@ public class PlayerStats : MonoBehaviour
                 StartCoroutine(DestroyAfterAnimation(damageAnimation)); // Remove effect after the animation
             }
 
-            invincibilityTimer = invincibilityDuration;
-            isInvincible = true;
-
             // Check if the player's health has dropped to or below 0
             if (CurrentHealth <= 0)
             {
                 Kill();
             }
+            
+            invincibilityTimer = invincibilityDuration;
+            isInvincible = true;
         }
     }
 
     public void Kill()
     {
-        if (!GameManager.instance.isGameOver)
+        if (!GameManager.instance.IsGameOver)
         {
             // GameManager.instance.AssignCharacterUI(characterData);
             GameManager.instance.AssignLevelReached(level);

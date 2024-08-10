@@ -24,6 +24,7 @@ public class MainMenu : MonoBehaviour
     {
         titleScreen.SetActive(true);
         characterScreen.SetActive(false);
+        tutorialScreen.SetActive(false);
         settingsScreen.SetActive(false);
         creditsScreen.SetActive(false);
         shopScreen.SetActive(false);
@@ -41,20 +42,20 @@ public class MainMenu : MonoBehaviour
         tutorialScreen.SetActive(true);
     }
 
-    public void SettingsSelect()
-    {
-        settingsScreen.SetActive(true);
-    }
-
-    public void CreditsSelect()
-    {
-        creditsScreen.SetActive(true);
-    }
-
     public void ShopSelect()
     {
         titleScreen.SetActive(false);
         shopScreen.SetActive(true);
+    }
+
+    public void ToggleSettings()
+    {
+        settingsScreen.SetActive(!settingsScreen.activeSelf);
+    }
+
+    public void ToggleCredits()
+    {
+        creditsScreen.SetActive(!creditsScreen.activeSelf);
     }
 
     public void LevelSelect(string levelName)

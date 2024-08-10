@@ -1,14 +1,13 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance; // Singleton instance
+    public GameObject playerObject;
 
     // Defines the different states of the game
     public enum GameState
@@ -21,10 +20,12 @@ public class GameManager : MonoBehaviour
 
     public GameState currentState; // Stores the current state of the game
     public GameState previousState; // Stores the state of the game before it was paused
-    public GameObject playerObject; 
-    public bool isGameOver = false;
-    public bool choosingUpgrade = false;
 
+    // Getters for parity with older scripts.
+    public bool IsGameOver { get { return currentState == GameState.Paused; } }
+    public bool ChoosingUpgrade { get { return currentState == GameState.LevelUp; } }
+
+    #region Headers
     [Header("BGM")]
     [SerializeField] private AudioSource audioSource; // The audio source that will play the BGM
     [SerializeField] private AudioClip gameplayBGM; // The BGM for the gameplay
@@ -34,14 +35,7 @@ public class GameManager : MonoBehaviour
     public GameObject pauseScreen;
     public GameObject resultsScreen;
     public GameObject levelUpScreen;
-
-    [Header("Current Stat Displays")]
-    public TMP_Text Health;
-    public TMP_Text Attack;
-    public TMP_Text Defence;
-    public TMP_Text Recovery;
-    public TMP_Text Speed;
-    public TMP_Text Magnet;
+    public GameObject settingsScreen;
 
     [Header("Results Screen Stats")]
     public Image chosenCharacterSprite;
@@ -62,7 +56,9 @@ public class GameManager : MonoBehaviour
     public Camera referenceCamera;
     public Vector3 initialOffset = new(0, 2f, 0); // You can adjust the initial vertical offset here
     private Transform damageTextParent; // Place to keep the texts
-
+    // public float textFontSize = 20;
+    // public TMP_FontAsset textFont;
+    #endregion
 
     void Awake()
     {
@@ -99,24 +95,8 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.GameOver:
-                if (!isGameOver)
-                {
-                    Time.timeScale = 0f; // Stop the game
-                    isGameOver = true;
-                    SwitchBGM(gameOverBGM);
-                    Debug.Log("GAME OVER.");
-                    DisplayResults();
-                }
-                break;
 
             case GameState.LevelUp:
-                if (!choosingUpgrade)
-                {
-                    Time.timeScale = 0f; // Stop the game
-                    choosingUpgrade = true;
-                    Debug.Log("Leveled Up!");
-                    levelUpScreen.SetActive(true);
-                }
                 break;
 
             default:
@@ -130,10 +110,13 @@ public class GameManager : MonoBehaviour
         pauseScreen.SetActive(false);
         resultsScreen.SetActive(false);
         levelUpScreen.SetActive(false);
+        settingsScreen.SetActive(false);
     }
 
+    // Define the method to change the state of the game
     public void ChangeState(GameState newState)
     {
+        previousState = currentState;
         currentState = newState;
     }
 
@@ -158,11 +141,9 @@ public class GameManager : MonoBehaviour
     {
         if (currentState != GameState.Paused)
         {
-            previousState = currentState;
             ChangeState(GameState.Paused);
             Time.timeScale = 0f; // Pauses the game
             pauseScreen.SetActive(true);
-            Debug.Log("Game is Paused.");
         }
     }
 
@@ -173,11 +154,10 @@ public class GameManager : MonoBehaviour
             ChangeState(previousState);
             Time.timeScale = 1f; // Resumes the game
             pauseScreen.SetActive(false);
-            Debug.Log("Game is Resumed.");
         }
     }
 
-    // Ensure can only pause and resume in certain states
+    // Define the method to check for pause and resume input
     void CheckForPauseAndResume()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -192,6 +172,11 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    public void ToggleSettings()
+    {
+        settingsScreen.SetActive(!settingsScreen.activeSelf);
+    }
     #endregion
 
     #region Game Over
@@ -202,12 +187,15 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        timeSurvived.text = stopwatchDisplay.text;
         ChangeState(GameState.GameOver);
+        Time.timeScale = 0f; // Stop the game
+        SwitchBGM(gameOverBGM);
+        DisplayResults();
     }
 
     void DisplayResults()
     {
-        timeSurvived.text = stopwatchDisplay.text;
         resultsScreen.SetActive(true);
     }
 
@@ -273,12 +261,13 @@ public class GameManager : MonoBehaviour
     public void StartLevelUp()
     {
         ChangeState(GameState.LevelUp);
+        levelUpScreen.SetActive(true);
+        Time.timeScale = 0f; // Pause game
         playerObject.SendMessage("RemoveAndApplyUpgrades"); // Execute function in InventoryManager
     }
 
     public void EndLevelUp()
     {
-        choosingUpgrade = false;
         Time.timeScale = 1f; // Resume Game
         levelUpScreen.SetActive(false);
         ChangeState(GameState.Gameplay);
@@ -298,6 +287,7 @@ public class GameManager : MonoBehaviour
 
     void UpdateStopwatchDisplay()
     {
+        // Calculate the number of minutes and seconds that have elapsed
         int minutes = Mathf.FloorToInt(stopwatchTime / 60);
         int seconds = Mathf.FloorToInt(stopwatchTime % 60);
         // Display the elapsed time in minutes:seconds

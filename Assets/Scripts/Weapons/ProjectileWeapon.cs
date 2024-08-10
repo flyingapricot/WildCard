@@ -31,7 +31,7 @@ public class ProjectileWeapon : Weapon // Inheritance
         if (!currentStats.projectilePrefab)
         {
             Debug.LogWarning(string.Format("Projectile prefab has not been set for {0}", name));
-            currentCooldown = data.baseStats.cooldown;
+            ActivateCooldown(true);
             return false; // To check if attack is successful or not
         }
 
@@ -51,9 +51,7 @@ public class ProjectileWeapon : Weapon // Inheritance
         prefab.weapon = this;
         prefab.player = player;
 
-        // Reset the cooldown only if this attack was triggered by cooldown
-        if (currentCooldown <= 0)
-            currentCooldown += currentStats.cooldown;
+        ActivateCooldown(true);
 
         attackCount--;
 

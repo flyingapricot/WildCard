@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
+    public const float DEFAULT_MOVESPEED = 5f;
+
     // Movement
     [HideInInspector] public Vector2 moveDir; // (0,0)
     [HideInInspector] public float lastHorizontalVector;
@@ -35,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
 
     void InputManagement()
     {
-        if (GameManager.instance.isGameOver)
+        if (GameManager.instance.IsGameOver)
         {
             return; // Prevents inputs if game over
         }
@@ -70,10 +72,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
-        if (GameManager.instance.isGameOver)
+        if (GameManager.instance.IsGameOver)
         {
             return; // Prevents movement if game over
         }
-        rb.velocity = new Vector2(moveDir.x * player.Stats.moveSpeed, moveDir.y * player.Stats.moveSpeed);
+        rb.velocity = DEFAULT_MOVESPEED * player.Stats.moveSpeed * moveDir;    
     }
 }

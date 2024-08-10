@@ -10,37 +10,68 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b1bd3c84287f864e91c60e1b93c73a4, type: 3}
-  m_Name: Might
+  m_Name: Real Knife
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 8440c781e0439c448bb3c96bfa4c1274, type: 3}
   maxLevel: 3
+  evolutionData: []
   baseStats:
-    name: Worn Dagger
+    name: '>> Level 1'
     description: Perfect for cutting plants and vines. Increases Attack slightly.
     boosts:
-      maxhealth: 0
-      might: 0.2
-      armour: 0
+      maxHealth: 0
       recovery: 0
+      armour: 0
       moveSpeed: 0
+      might: 0.2
+      area: 0
+      projSpeed: 0
+      duration: 0
+      amount: 0
+      cooldown: 0
+      luck: 0
+      growth: 0
+      greed: 0
+      curse: 0
       magnet: 0
+      revive: 0
   growth:
-  - name: Toy Knife
+  - name: '>> Level 2'
     description: Made of plastic. A rarity nowadays. Increases Attack further
     boosts:
-      maxhealth: 0
-      might: 0.3
-      armour: 0
+      maxHealth: 0
       recovery: 0
+      armour: 0
       moveSpeed: 0
+      might: 0.3
+      area: 0
+      projSpeed: 0
+      duration: 0
+      amount: 0
+      cooldown: 0
+      luck: 0
+      growth: 0
+      greed: 0
+      curse: 0
       magnet: 0
-  - name: Real Knife
+      revive: 0
+  - name: '>> Level MAX'
     description: Careful not to cut yourself with it. Does not give +99 AT unfortunately,
       but boosts Attack tremendously.
     boosts:
-      maxhealth: 0
-      might: 0.5
-      armour: 0
+      maxHealth: 0
       recovery: 0
+      armour: 0
       moveSpeed: 0
+      might: 0.5
+      area: 0
+      projSpeed: 0
+      duration: 0
+      amount: 0
+      cooldown: 0
+      luck: 0
+      growth: 0
+      greed: 0
+      curse: 0
       magnet: 0
+      revive: 0

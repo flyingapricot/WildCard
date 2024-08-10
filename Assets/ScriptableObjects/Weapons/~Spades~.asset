@@ -10,50 +10,51 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e1e2fa82f88d334c8597504cefebab2, type: 3}
-  m_Name: Axe
+  m_Name: ~Spades~
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 033335c4fdcff544895f2741c18901ef, type: 3}
+  icon: {fileID: 21300000, guid: c5c17af612d5bff4d9e4de5cf4845895, type: 3}
   maxLevel: 8
-  behaviour: AxeWeapon
+  evolutionData: []
+  behaviour: SwordWeapon
   baseStats:
-    name: Axe
-    description: Throws axes in an arc.
-    projectilePrefab: {fileID: -961063878184222650, guid: f7df05be5ba42c84ab2d867ccb51603c, type: 3}
+    name: '>> Level 1'
+    description: Swing recklessly in an area around you.
+    projectilePrefab: {fileID: 241943984323791842, guid: 07455ee9d4d3d3740a7d474f5ec7e21a, type: 3}
     auraPrefab: {fileID: 0}
     hitEffect: {fileID: 0}
     spawnVariance:
       serializedVersion: 2
-      x: 0
+      x: 2
       y: 0
-      width: 0
+      width: -2
       height: 0
-    lifespan: 3
-    damage: 12
+    lifespan: 0.3
+    damage: 9
     damageVariance: 2
-    area: 2.5
-    speed: 10
-    cooldown: 4
-    projectileInterval: 0
+    area: 3
+    speed: 0
+    cooldown: 1
+    projectileInterval: 0.07
     knockback: 0
-    amount: 1
-    pierce: 10
-    maxInstances: 0
+    amount: 2
+    pierce: 99
+    maxInstances: 99
   linearGrowth:
-  - name: Level 2
-    description: 'Increase size of axe by 20%. Increase damage of axe by 20%. '
+  - name: '>> Level 2'
+    description: Increase attack area by 25%.
     projectilePrefab: {fileID: 0}
     auraPrefab: {fileID: 0}
     hitEffect: {fileID: 0}
     spawnVariance:
       serializedVersion: 2
-      x: 0
+      x: 2
       y: 0
-      width: 0
+      width: -2
       height: 0
     lifespan: 0
-    damage: 4
+    damage: 0
     damageVariance: 0
-    area: 0.5
+    area: 1
     speed: 0
     cooldown: 0
     projectileInterval: 0
@@ -61,136 +62,137 @@ MonoBehaviour:
     amount: 0
     pierce: 0
     maxInstances: 0
-  - name: Level 3
-    description: 'Reduce delay between attacks by 20%. '
+  - name: '>> Level 3'
+    description: Increase damage by 30%.
     projectilePrefab: {fileID: 0}
     auraPrefab: {fileID: 0}
     hitEffect: {fileID: 0}
     spawnVariance:
       serializedVersion: 2
-      x: 0
+      x: 2
       y: 0
-      width: 0
+      width: -2
+      height: 0
+    lifespan: 0
+    damage: 2
+    damageVariance: 0
+    area: 0
+    speed: 0
+    cooldown: 0
+    projectileInterval: 0
+    knockback: 0
+    amount: 0
+    pierce: 0
+    maxInstances: 0
+  - name: '>> Level 4'
+    description: Slashes 2 more times. Attacks slightly faster.
+    projectilePrefab: {fileID: 0}
+    auraPrefab: {fileID: 0}
+    hitEffect: {fileID: 0}
+    spawnVariance:
+      serializedVersion: 2
+      x: 3
+      y: 0
+      width: -3
       height: 0
     lifespan: 0
     damage: 0
     damageVariance: 0
     area: 0
     speed: 0
-    cooldown: -0.8
+    cooldown: -0.2
     projectileInterval: 0
     knockback: 0
-    amount: 0
+    amount: 2
     pierce: 0
     maxInstances: 0
-  - name: Level 4
-    description: 'Increase damage by 33%, and size by 20%. '
+  - name: '>> Level 5'
+    description: Increase attack area by 25%.
     projectilePrefab: {fileID: 0}
     auraPrefab: {fileID: 0}
     hitEffect: {fileID: 0}
     spawnVariance:
       serializedVersion: 2
-      x: 0
+      x: 3
       y: 0
-      width: 0
+      width: -3
+      height: 0
+    lifespan: 0
+    damage: 0
+    damageVariance: 0
+    area: 1
+    speed: 0
+    cooldown: 0
+    projectileInterval: 0
+    knockback: 0
+    amount: 0
+    pierce: 0
+    maxInstances: 0
+  - name: '>> Level 6'
+    description: Slashes 2 more times, also reduces the time between attacks by 20%
+    projectilePrefab: {fileID: 0}
+    auraPrefab: {fileID: 0}
+    hitEffect: {fileID: 0}
+    spawnVariance:
+      serializedVersion: 2
+      x: 4
+      y: 0
+      width: -4
+      height: 0
+    lifespan: 0
+    damage: 0
+    damageVariance: 0
+    area: 0
+    speed: 0
+    cooldown: -0.2
+    projectileInterval: 0
+    knockback: 0
+    amount: 2
+    pierce: 0
+    maxInstances: 0
+  - name: '>> Level 7'
+    description: Reduces the delay between slashes by 25%, also increases the damage
+      of slashes by 25%.
+    projectilePrefab: {fileID: 0}
+    auraPrefab: {fileID: 0}
+    hitEffect: {fileID: 0}
+    spawnVariance:
+      serializedVersion: 2
+      x: 4
+      y: 0
+      width: -4
       height: 0
     lifespan: 0
     damage: 5
     damageVariance: 0
-    area: 0.5
+    area: 0
     speed: 0
     cooldown: 0
-    projectileInterval: 0
+    projectileInterval: -0.04
     knockback: 0
     amount: 0
     pierce: 0
     maxInstances: 0
-  - name: Level 5
-    description: 'Remove hit limit, and lasts 1 second longer. '
-    projectilePrefab: {fileID: 0}
+  - name: Oppenheimer
+    description: I have become death. Destroyer of worlds.
+    projectilePrefab: {fileID: 241943984323791842, guid: 0d82b914a3e255d409b8d149fa47eaaf, type: 3}
     auraPrefab: {fileID: 0}
     hitEffect: {fileID: 0}
     spawnVariance:
       serializedVersion: 2
-      x: 0
+      x: 5
       y: 0
-      width: 0
+      width: -5
       height: 0
-    lifespan: 1
-    damage: 0
+    lifespan: 0.7
+    damage: 8
     damageVariance: 0
-    area: 0
+    area: 2
     speed: 0
     cooldown: 0
     projectileInterval: 0
     knockback: 0
     amount: 0
-    pierce: 99
-    maxInstances: 0
-  - name: Level 6
-    description: 'Increase attack size by 50%. '
-    projectilePrefab: {fileID: 0}
-    auraPrefab: {fileID: 0}
-    hitEffect: {fileID: 0}
-    spawnVariance:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 0
-      height: 0
-    lifespan: 0
-    damage: 0
-    damageVariance: 0
-    area: 1.5
-    speed: 0
-    cooldown: 0
-    projectileInterval: 0
-    knockback: 0
-    amount: 0
-    pierce: 0
-    maxInstances: 0
-  - name: Level 7
-    description: 'Increase damage by 50%. '
-    projectilePrefab: {fileID: 0}
-    auraPrefab: {fileID: 0}
-    hitEffect: {fileID: 0}
-    spawnVariance:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 0
-      height: 0
-    lifespan: 0
-    damage: 9
-    damageVariance: 1
-    area: 0
-    speed: 0
-    cooldown: 0
-    projectileInterval: 0
-    knockback: 0
-    amount: 0
-    pierce: 0
-    maxInstances: 0
-  - name: Devilsknife
-    description: 'A Skull-emblazoned scythe-ax. '
-    projectilePrefab: {fileID: -961063878184222650, guid: 8ffccaa381abe6547879ab89d6ea6dab, type: 3}
-    auraPrefab: {fileID: 0}
-    hitEffect: {fileID: 0}
-    spawnVariance:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 0
-      height: 0
-    lifespan: 0
-    damage: 0
-    damageVariance: 0
-    area: 0
-    speed: 0
-    cooldown: -1.5
-    projectileInterval: 0
-    knockback: 0
-    amount: 1
     pierce: 0
     maxInstances: 0
   randomGrowth: []

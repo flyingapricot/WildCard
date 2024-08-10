@@ -27,7 +27,7 @@ public class CharacterData : ScriptableObject
         [Range(-1, 1)] public float cooldown;
         [Min(-1)] public float luck, growth, greed, curse;
         public float magnet;
-        public int revival; // Determines the amount of Extra Lives (0)
+        public int revive; 
         // Reroll, Skip, Banish
 
         public static Stats operator +(Stats s1, Stats s2)
@@ -35,26 +35,40 @@ public class CharacterData : ScriptableObject
             s1.maxHealth += s2.maxHealth; // Determines the maximum amount of HP (1000 HP)
             s1.might += s2.might; // Modifies the damage of all attacks (100% ~ 1000%)
             s1.armour += s2.armour; // Determines the amount of reduced incoming damage (0 ~ 50)
-            s1.recovery += s2.recovery; // Determines how much HP is generated per second (0 HP/sec)
             s1.moveSpeed += s2.moveSpeed; // Modifies the movement speed of the character (100%)
+            s1.recovery += s2.recovery; // Determines how much HP is generated per second (0 HP/sec)
             s1.magnet += s2.magnet; // Determines the radius inside which Pickups are collected (30)
             s1.area += s2.area; // Modifies the area of all attacks (100% ~ 1000%)
-            s1.projSpeed += s2.projSpeed; // Modifies the movement speed of all projectiles (100% ~ 500%)
-            s1.duration += s2.duration; // Modifies the duration of weapon effects (100% ~ 500%)
             s1.amount += s2.amount; // Determines the amount of extra projectiles weapons have (0 ~ 10)
+            s1.duration += s2.duration; // Modifies the duration of weapon effects (100% ~ 500%)
             s1.cooldown += s2.cooldown; // Modifies the duration of the cooldown between attacks (100% ~ 10%)
+            s1.projSpeed += s2.projSpeed; // Modifies the movement speed of all projectiles (100% ~ 500%)
             s1.luck += s2.luck; // Modifies the chances of Pickups and Events (100%)
-            s1.growth += s2.growth; // Modifies the amount of experience gained (100%)
             s1.greed += s2.greed; // Modifies the amount of Souls gained (100%)
             s1.curse += s2.curse; // Modifies the enemies speed, health, quantity and frequency (100%)
+            s1.growth += s2.growth; // Modifies the amount of experience gained (100%)
+            s1.revive += s2.revive; // Determines the amount of Extra Lives (0)
             return s1;
         }
     }
 
     public Stats stats = new()
     {
-        maxHealth = 100, moveSpeed = 1, might = 1, amount = 0,
-        area = 1, projSpeed = 1, duration = 1, cooldown = 1,
-        luck = 1, greed = 1, growth = 1, curse = 1
+        maxHealth = 100, 
+        might = 1,
+        armour = 0, 
+        moveSpeed = 1,
+        recovery = 0,
+        magnet = 1, 
+        area = 1, 
+        amount = 0,
+        duration = 1, 
+        cooldown = 1,
+        projSpeed = 1, 
+        luck = 1, 
+        greed = 1, 
+        curse = 1,
+        growth = 1, 
+        revive = 0, 
     };
 }

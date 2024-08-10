@@ -10,38 +10,69 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b1bd3c84287f864e91c60e1b93c73a4, type: 3}
-  m_Name: Recovery
+  m_Name: Butterscotch Pie
   m_EditorClassIdentifier: 
   icon: {fileID: 1987579842, guid: 2b2cdb5db111e044493be00289c5c0d4, type: 3}
   maxLevel: 3
+  evolutionData: []
   baseStats:
-    name: Abandoned Quiche
+    name: '>> Level 1'
     description: A psychologically damaged spinach egg pie. Boosts your recovery
       speed.
     boosts:
-      maxhealth: 0
-      might: 0
+      maxHealth: 0
+      recovery: 1
       armour: 0
-      recovery: 50
       moveSpeed: 0
+      might: 0
+      area: 0
+      projSpeed: 0
+      duration: 0
+      amount: 0
+      cooldown: 0
+      luck: 0
+      growth: 0
+      greed: 0
+      curse: 0
       magnet: 0
+      revive: 0
   growth:
-  - name: Snail Pie
+  - name: '>> Level 2'
     description: An acquired taste. Your recovery is improved further.
     boosts:
-      maxhealth: 0
-      might: 0
+      maxHealth: 0
+      recovery: 2
       armour: 0
-      recovery: 50
       moveSpeed: 0
+      might: 0
+      area: 0
+      projSpeed: 0
+      duration: 0
+      amount: 0
+      cooldown: 0
+      luck: 0
+      growth: 0
+      greed: 0
+      curse: 0
       magnet: 0
-  - name: Butterscotch Pie
+      revive: 0
+  - name: '>> Level MAX'
     description: Butterscotch-cinnamon pie, one slice. Smells like home. Your recovery
       is akin to Wolverine.
     boosts:
-      maxhealth: 0
-      might: 0
+      maxHealth: 0
+      recovery: 2
       armour: 0
-      recovery: 100
       moveSpeed: 0
+      might: 0
+      area: 0
+      projSpeed: 0
+      duration: 0
+      amount: 0
+      cooldown: 0
+      luck: 0
+      growth: 0
+      greed: 0
+      curse: 0
       magnet: 0
+      revive: 0

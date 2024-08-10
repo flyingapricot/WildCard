@@ -10,17 +10,41 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e1e2fa82f88d334c8597504cefebab2, type: 3}
-  m_Name: Lightning
+  m_Name: Sea of Stars
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 4756f88ab92d1a34baca7abf1ac18a1d, type: 3}
+  icon: {fileID: 21300000, guid: dce6d733be5372b47a9abe4b502f9e59, type: 3}
   maxLevel: 7
-  behaviour: LightningWeapon
+  evolutionData: []
+  behaviour: ProjectileWeapon
   baseStats:
-    name: Lightning
-    description: Strikes down on random enemies.
+    name: '>> Level 1'
+    description: Fires rapid stars at random targets.
+    projectilePrefab: {fileID: 241943984323791842, guid: 56cfa4b91ffd4b64a9ffb5b914e5793e, type: 3}
+    auraPrefab: {fileID: 0}
+    hitEffect: {fileID: 0}
+    spawnVariance:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    lifespan: 1.5
+    damage: 10
+    damageVariance: 2
+    area: 2
+    speed: 4
+    cooldown: 0.5
+    projectileInterval: 0.5
+    knockback: 0
+    amount: 1
+    pierce: 1
+    maxInstances: 30
+  linearGrowth:
+  - name: '>> Level 2'
+    description: Increases damage by 20%.
     projectilePrefab: {fileID: 0}
     auraPrefab: {fileID: 0}
-    hitEffect: {fileID: 3530576675584005262, guid: aea72895cc4a34d4c9bc68b4e7b21347, type: 3}
+    hitEffect: {fileID: 0}
     spawnVariance:
       serializedVersion: 2
       x: 0
@@ -28,147 +52,124 @@ MonoBehaviour:
       width: 0
       height: 0
     lifespan: 0
-    damage: 16
-    damageVariance: 2
-    area: 1
+    damage: 2
+    damageVariance: 0
+    area: 0
     speed: 0
-    cooldown: 1.5
-    projectileInterval: 0.13
+    cooldown: 0
+    projectileInterval: 0
+    knockback: 0
+    amount: 0
+    pierce: 0
+    maxInstances: 0
+  - name: '>> Level 3'
+    description: Shoots 2 stars.
+    projectilePrefab: {fileID: 0}
+    auraPrefab: {fileID: 0}
+    hitEffect: {fileID: 0}
+    spawnVariance:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    lifespan: 0
+    damage: 0
+    damageVariance: 0
+    area: 0
+    speed: 0
+    cooldown: -0.15
+    projectileInterval: 0
+    knockback: 0
+    amount: 1
+    pierce: 0
+    maxInstances: 0
+  - name: '>> Level 4'
+    description: Reduce the time between attacks by 20%.
+    projectilePrefab: {fileID: 0}
+    auraPrefab: {fileID: 0}
+    hitEffect: {fileID: 0}
+    spawnVariance:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    lifespan: 0
+    damage: 0
+    damageVariance: 0
+    area: 0
+    speed: 0
+    cooldown: -0.1
+    projectileInterval: 0
+    knockback: 0
+    amount: 0
+    pierce: 0
+    maxInstances: 0
+  - name: '>> Level 5'
+    description: Stars are 25% faster and increase damage by 20%.
+    projectilePrefab: {fileID: 0}
+    auraPrefab: {fileID: 0}
+    hitEffect: {fileID: 0}
+    spawnVariance:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    lifespan: 0
+    damage: 2
+    damageVariance: 0
+    area: 0
+    speed: 1
+    cooldown: 0
+    projectileInterval: 0
+    knockback: 0
+    amount: 0
+    pierce: 0
+    maxInstances: 0
+  - name: '>> Level 6'
+    description: Reduce the time between attacks by 50%.
+    projectilePrefab: {fileID: 0}
+    auraPrefab: {fileID: 0}
+    hitEffect: {fileID: 0}
+    spawnVariance:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    lifespan: 0
+    damage: 0
+    damageVariance: 0
+    area: 0
+    speed: 0
+    cooldown: -0.15
+    projectileInterval: 0
+    knockback: 0
+    amount: 0
+    pierce: 0
+    maxInstances: 0
+  - name: '>> Level MAX'
+    description: Shoots 4 stars.
+    projectilePrefab: {fileID: 0}
+    auraPrefab: {fileID: 0}
+    hitEffect: {fileID: 0}
+    spawnVariance:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    lifespan: 0
+    damage: 0
+    damageVariance: 0
+    area: 0
+    speed: 0
+    cooldown: 0
+    projectileInterval: 0
     knockback: 0
     amount: 2
-    pierce: 0
-    maxInstances: 50
-  linearGrowth:
-  - name: Level 2
-    description: 'Increase damage by 20%. '
-    projectilePrefab: {fileID: 0}
-    auraPrefab: {fileID: 0}
-    hitEffect: {fileID: 0}
-    spawnVariance:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 0
-      height: 0
-    lifespan: 0
-    damage: 3
-    damageVariance: 0
-    area: 0
-    speed: 0
-    cooldown: 0
-    projectileInterval: 0
-    knockback: 0
-    amount: 0
-    pierce: 0
-    maxInstances: 0
-  - name: Level 3
-    description: 'Increase size of the lightning by 20%. '
-    projectilePrefab: {fileID: 0}
-    auraPrefab: {fileID: 0}
-    hitEffect: {fileID: 0}
-    spawnVariance:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 0
-      height: 0
-    lifespan: 0
-    damage: 0
-    damageVariance: 0
-    area: 0.5
-    speed: 0
-    cooldown: 0
-    projectileInterval: 0
-    knockback: 0
-    amount: 0
-    pierce: 0
-    maxInstances: 0
-  - name: Level 4
-    description: Strikes 3 times.
-    projectilePrefab: {fileID: 0}
-    auraPrefab: {fileID: 0}
-    hitEffect: {fileID: 0}
-    spawnVariance:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 0
-      height: 0
-    lifespan: 0
-    damage: 0
-    damageVariance: 0
-    area: 0
-    speed: 0
-    cooldown: 0
-    projectileInterval: 0
-    knockback: 0
-    amount: 1
-    pierce: 0
-    maxInstances: 0
-  - name: Level 5
-    description: 'Reduce time between attacks by 15%. '
-    projectilePrefab: {fileID: 0}
-    auraPrefab: {fileID: 0}
-    hitEffect: {fileID: 0}
-    spawnVariance:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 0
-      height: 0
-    lifespan: 0
-    damage: 0
-    damageVariance: 0
-    area: 0
-    speed: 0
-    cooldown: -0.25
-    projectileInterval: 0
-    knockback: 0
-    amount: 0
-    pierce: 0
-    maxInstances: 0
-  - name: Level 6
-    description: Strikes 4 times.
-    projectilePrefab: {fileID: 0}
-    auraPrefab: {fileID: 0}
-    hitEffect: {fileID: 0}
-    spawnVariance:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 0
-      height: 0
-    lifespan: 0
-    damage: 0
-    damageVariance: 0
-    area: 0
-    speed: 0
-    cooldown: 0
-    projectileInterval: 0
-    knockback: 0
-    amount: 1
-    pierce: 0
-    maxInstances: 0
-  - name: Level 7
-    description: Increase damage and size of lightning by 30%.
-    projectilePrefab: {fileID: 0}
-    auraPrefab: {fileID: 0}
-    hitEffect: {fileID: 0}
-    spawnVariance:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 0
-      height: 0
-    lifespan: 0
-    damage: 5
-    damageVariance: 0
-    area: 0.5
-    speed: 0
-    cooldown: 0
-    projectileInterval: 0
-    knockback: 0
-    amount: 0
     pierce: 0
     maxInstances: 0
   randomGrowth: []

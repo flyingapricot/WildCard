@@ -10,38 +10,69 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b1bd3c84287f864e91c60e1b93c73a4, type: 3}
-  m_Name: Health
+  m_Name: Burnt Pan
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 323198b6574037f4299a6076f473eba9, type: 3}
   maxLevel: 3
+  evolutionData: []
   baseStats:
-    name: Rusty Pan
+    name: '>> Level 1'
     description: Hungry? Just cook during battle! Increases your max health slightly.
     boosts:
-      maxhealth: 200
-      might: 0
-      armour: 0
+      maxHealth: 10
       recovery: 0
+      armour: 0
       moveSpeed: 0
+      might: 0
+      area: 0
+      projSpeed: 0
+      duration: 0
+      amount: 0
+      cooldown: 0
+      luck: 0
+      growth: 0
+      greed: 0
+      curse: 0
       magnet: 0
+      revive: 0
   growth:
-  - name: New Pan
+  - name: '>> Level 2'
     description: Your pan is finally non-stick! Look at the eggs glide across the
       pan... Your maximum health is raised further.
     boosts:
-      maxhealth: 300
-      might: 0
-      armour: 0
+      maxHealth: 10
       recovery: 0
+      armour: 0
       moveSpeed: 0
+      might: 0
+      area: 0
+      projSpeed: 0
+      duration: 0
+      amount: 0
+      cooldown: 0
+      luck: 0
+      growth: 0
+      greed: 0
+      curse: 0
       magnet: 0
-  - name: Burnt Pan
+      revive: 0
+  - name: '>> Level MAX'
     description: Haiyaaaaa... why you burn your fried rice... Maximum health boosted
       greatly.
     boosts:
-      maxhealth: 500
-      might: 0
-      armour: 0
+      maxHealth: 20
       recovery: 0
+      armour: 0
       moveSpeed: 0
+      might: 0
+      area: 0
+      projSpeed: 0
+      duration: 0
+      amount: 0
+      cooldown: 0
+      luck: 0
+      growth: 0
+      greed: 0
+      curse: 0
       magnet: 0
+      revive: 0

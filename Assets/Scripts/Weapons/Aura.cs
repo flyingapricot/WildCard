@@ -35,7 +35,7 @@ public class Aura : WeaponEffect
                 else
                 {
                     // Reset the cooldown and deal damage
-                    affectedTargets[pair.Key] = stats.cooldown;
+                    affectedTargets[pair.Key] = stats.cooldown * player.Stats.cooldown;
                     if (pair.Key is EnemyStats && pair.Key != null)
                     {
                         pair.Key.TakeDamage(GetDamage(), transform.position, stats.knockback);

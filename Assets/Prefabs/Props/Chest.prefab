@@ -62,10 +62,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c7f2c1280b1cce41a4450ac4887bc8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
   dropsList:
   - itemPrefab: {fileID: 5969430364891984471, guid: baad5129f723c2846878cab5199fdadd, type: 3}
     dropRate: 100
-  - itemPrefab: {fileID: 8427234246184733187, guid: 7df25bef23d7e724d8181fe8bd41bda9, type: 3}
+  - itemPrefab: {fileID: 5969430364891984471, guid: 918a0b4395424874f8897a3ea9e45ad7, type: 3}
     dropRate: 100
 --- !u!212 &185729404067091554
 SpriteRenderer:
