@@ -13,6 +13,7 @@ public class Projectile : WeaponEffect // Inheritance
     public DamageSource damageSource = DamageSource.projectile;
     public bool hasAutoAim = false;
     public float arcSpeed; // Speed at which the projectile travels in an arc
+    [SerializeField] private AudioClip soundEffect; // Assign respective sound effects
     protected Rigidbody2D rb;
     protected int pierce;
 
@@ -45,6 +46,8 @@ public class Projectile : WeaponEffect // Inheritance
 
         // If the projectile is auto-aiming, automatically find a suitable enemy
         if (hasAutoAim) AcquireAutoAimFacing();
+
+        player.PlayAudio(soundEffect); // Let player cue the sound
     }
         
     //If the projectile is homing, it will automatically find a suitable target to move towards

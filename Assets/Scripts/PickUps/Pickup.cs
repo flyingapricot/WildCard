@@ -4,9 +4,17 @@ public class Pickup : MonoBehaviour
 {
     protected SoulsManager currency;
     protected PlayerStats target; // The object (i.e. the player) that the pickup will move towards.
+    [SerializeField] private AudioClip soundEffect; // Assign respective sound effects
     public float lifespan = 0.5f; // How long the pickup will try to move towards the player before being automatically collected.
     protected float speed; // How much distance the pickup will cover in 1 second.
-    
+
+    [Header("Bonuses")]
+    public bool instantLevel = false;
+    public int minExperience = 0; // Minimum experience value
+    public int maxExperience = 0; // Maximum experience value
+    public int heal = 0;
+    public int souls = 0;
+
     #region Bobbing Animation
     protected Vector2 initialPosition;
     protected float initialOffset;
@@ -23,13 +31,6 @@ public class Pickup : MonoBehaviour
         frequency = 2f, direction = new Vector2(0,0.3f)
     };
     #endregion
-
-    [Header("Bonuses")]
-    public bool instantLevel = false;
-    public int minExperience = 0; // Minimum experience value
-    public int maxExperience = 0; // Maximum experience value
-    public int heal = 0;
-    public int souls = 0;
 
     protected virtual void Start()
     {
@@ -73,15 +74,26 @@ public class Pickup : MonoBehaviour
     protected virtual void OnDestroy()
     {
         if (!target) return;
+        target.PlayAudio(soundEffect); // Let player cue the sound
 
         if (instantLevel) // Instantly levels up
+        {
             target.GainExperience(target.experienceCap);
+        }
         else if (minExperience != 0 && maxExperience != 0) 
+        {
             target.GainExperience(Random.Range(minExperience, maxExperience + 1));
+        }
 
         // No need instant healing since its already capped at max health
-        if (heal != 0) target.Heal(heal); 
+        if (heal != 0) 
+        {
+            target.Heal(heal); 
+        }
 
-        if (souls != 0) currency.AddSouls(souls);
+        if (souls != 0) 
+        {
+            currency.AddSouls(souls);
+        }
     }
 }

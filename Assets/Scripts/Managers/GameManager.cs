@@ -27,9 +27,9 @@ public class GameManager : MonoBehaviour
 
     #region Headers
     [Header("BGM")]
-    [SerializeField] private AudioSource audioSource; // The audio source that will play the BGM
     [SerializeField] private AudioClip gameplayBGM; // The BGM for the gameplay
     [SerializeField] private AudioClip gameOverBGM; // The BGM for the game over screen
+    private AudioSource audioSource; // The audio source that will play the BGM
 
     [Header("Screens")]
     public GameObject pauseScreen;
@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
 
         // Find the "DamageTexts" GameObject
         damageTextParent = damageTextCanvas.transform.Find("DamageTexts");
-
+        audioSource = GetComponent<AudioSource>();
         DisableScreens();
     }
 

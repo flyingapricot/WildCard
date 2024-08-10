@@ -52,7 +52,8 @@ MonoBehaviour:
   weapon: {fileID: 0}
   damageSource: 1
   hasAutoAim: 0
-  rotationSpeed: {x: 0, y: 0, z: 0}
+  arcSpeed: 0
+  soundEffect: {fileID: 8300000, guid: ef98b97a15fbec94495a29cf8134abe3, type: 3}
 --- !u!212 &8616907360068959225
 SpriteRenderer:
   m_ObjectHideFlags: 0

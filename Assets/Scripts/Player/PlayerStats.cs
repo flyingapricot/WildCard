@@ -9,6 +9,7 @@ public class PlayerStats : MonoBehaviour
 {
     public static PlayerStats instance;
     PlayerCollector collector;
+    PlayerInventory inventory;
 
     #region Current Player Stats
     public CharacterData characterData;
@@ -42,17 +43,6 @@ public class PlayerStats : MonoBehaviour
     }
     #endregion
 
-    #region Current Passive Stats
-    [HideInInspector] public float currentLuck;
-    [HideInInspector] public float currentGrowth;
-    [HideInInspector] public float currentGreed;
-    [HideInInspector] public float currentCurse;
-    [HideInInspector] public float currentRevival; 
-    [HideInInspector] public float currentReroll;
-    [HideInInspector] public float currentSkip;
-    [HideInInspector] public float currentBanish;
-    #endregion
-
     #region UI
     [Header("UI")]
     [SerializeField] SpriteRenderer playerSprite;
@@ -61,10 +51,17 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] EXPBar expBar;
 
     [Header("Visual Feedback")]
-    public GameObject healingEffect; // Healing animation
-    public GameObject hitEffect; // Getting Damaged animation
-    public ParticleSystem blockedEffect; // If armor completely blocks damage.
+    public GameObject healAnimation; // Healing animation
+    public GameObject healEffect; // Healing Effect
+    public GameObject hitAnimation; // Getting Hit animation
+    public GameObject hitEffect; // Getting Hit Effect
+    //public ParticleSystem blockedEffect; // If armor completely blocks damage.
 
+    [Header("Audio Feedback")]
+    [SerializeField] private AudioClip hitAudio; // Sound effect when damaged
+    [SerializeField] private AudioClip healAudio; // Sound effect when healed
+    [SerializeField] private AudioClip levelAudio; // Sound effect when leveling up
+    private AudioSource audioSource; // The audio source that will play all the SFX
     #endregion
 
     #region Invincibility Frames
@@ -81,12 +78,6 @@ public class PlayerStats : MonoBehaviour
     public int experienceCap; // Experience needed to level up
     #endregion
 
-    #region Inventory
-    PlayerInventory inventory;
-    public int weaponIndex;
-    public int passiveItemIndex;
-    #endregion
-
     void Awake()
     {
         if (instance == null) { // Singleton Pattern
@@ -97,6 +88,7 @@ public class PlayerStats : MonoBehaviour
 
         inventory = GetComponent<PlayerInventory>();
         collector = GetComponentInChildren<PlayerCollector>();
+        audioSource = GetComponent<AudioSource>();
 
         // Get chosen character data
         characterData = CharacterSelector.GetData();
@@ -174,6 +166,10 @@ public class PlayerStats : MonoBehaviour
     {
         while (experience >= experienceCap) // Using a loop in case the player gains multiple levels at once
         {
+            // Play level up sound
+            audioSource.clip = levelAudio;
+            audioSource.Play();
+
             // Level up the player and reduce their experience by the experience cap
             level++;
             experience -= experienceCap;
@@ -190,12 +186,8 @@ public class PlayerStats : MonoBehaviour
             float incomingDmg = Mathf.Max(dmg - Stats.armour, 1);
             CurrentHealth -= incomingDmg;
 
-            // Instantiate the damage effect
-            if (hitEffect != null)
-            {
-                GameObject damageAnimation = Instantiate(hitEffect, transform.position, Quaternion.identity, transform);
-                StartCoroutine(DestroyAfterAnimation(damageAnimation)); // Remove effect after the animation
-            }
+            PlayAudio(hitAudio);
+            PlayEffect(hitAnimation, hitEffect);
 
             // Check if the player's health has dropped to or below 0
             if (CurrentHealth <= 0)
@@ -230,12 +222,8 @@ public class PlayerStats : MonoBehaviour
             CurrentHealth = Mathf.Min(CurrentHealth, Stats.maxHealth);
         }
 
-        // Instantiate the healing effect
-        if (healingEffect != null)
-        {
-            GameObject healingAnimation = Instantiate(healingEffect, transform.position, Quaternion.identity, transform);
-            StartCoroutine(DestroyAfterAnimation(healingAnimation)); // Remove effect after the animation
-        }
+        PlayAudio(healAudio);
+        PlayEffect(healAnimation, healEffect);
     }
 
     void Recover() // Passive recovery
@@ -251,6 +239,37 @@ public class PlayerStats : MonoBehaviour
     {
         instance = null;
         Destroy(gameObject);
+    }
+
+    private void PlayEffect(GameObject animation, GameObject effect)
+    {
+        // Instantiate the animation
+        if (animation != null)
+        {
+            GameObject Animation = Instantiate(animation, transform.position, Quaternion.identity, transform);
+            StartCoroutine(DestroyAfterAnimation(Animation)); // Remove effect after the animation
+        }
+        // Instantiate the effect at the calculated position
+        if (effect != null)
+        {
+            Camera mainCamera = FindObjectOfType<Camera>();
+            // Calculate the position in the middle of the screen
+            Vector3 screenCenter = new(Screen.width / 2, Screen.height / 2, mainCamera.nearClipPlane);
+            Vector3 worldPosition = mainCamera.ScreenToWorldPoint(screenCenter);
+
+            GameObject Effect = Instantiate(effect, worldPosition, Quaternion.identity);
+            Effect.transform.SetParent(mainCamera.transform); // Make the effect a child of the camera
+
+            StartCoroutine(DestroyAfterAnimation(Effect)); // Remove effect after the animation
+        }
+    }
+
+    public void PlayAudio(AudioClip audio)
+    {
+        if (audio != null)
+        {
+            audioSource.PlayOneShot(audio);
+        }
     }
 
     private IEnumerator DestroyAfterAnimation(GameObject statusEffect)
