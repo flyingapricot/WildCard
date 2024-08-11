@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7873878884039451452}
   - component: {fileID: 6194128249770924480}
   m_Layer: 7
-  m_Name: DiamondEnemy
+  m_Name: HammerGuy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,9 +49,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57382f6bc75c9bf499be22ee71c6df98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 8
-  currentDamage: 2
-  currentSpeed: 1
+  currentHealth: 999
+  currentDamage: 1
+  currentSpeed: 5
   damageColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &5090271362087673901
 MonoBehaviour:
@@ -82,12 +82,8 @@ MonoBehaviour:
   dropsList:
   - itemPrefab: {fileID: 5969430364891984471, guid: baad5129f723c2846878cab5199fdadd, type: 3}
     dropRate: 100
-  - itemPrefab: {fileID: 8427234246184733187, guid: 49291040109599b409e1b3d9db61f02b, type: 3}
-    dropRate: 1
   - itemPrefab: {fileID: 8427234246184733187, guid: adc55efe544255040a1103e2be80c09a, type: 3}
     dropRate: 5
-  - itemPrefab: {fileID: 8427234246184733187, guid: 7df25bef23d7e724d8181fe8bd41bda9, type: 3}
-    dropRate: 20
 --- !u!50 &7873878884039451452
 Rigidbody2D:
   serializedVersion: 4
@@ -159,21 +155,21 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.53037024, y: -0.28660178}
-      - {x: 0.44962692, y: -0.2196095}
-      - {x: 0.44531465, y: -0.09744543}
-      - {x: 0.6019795, y: 0.16474164}
-      - {x: 0.41913772, y: 0.6590942}
-      - {x: 0.008026838, y: 0.5037251}
-      - {x: -0.23162651, y: 0.17431188}
-      - {x: -0.4192927, y: 0.46490908}
-      - {x: -0.57759076, y: 0.25315383}
-      - {x: -0.5186505, y: -0.29174292}
-      - {x: -0.30408144, y: -0.4010123}
-      - {x: -0.30946732, y: -0.51671106}
-      - {x: -0.183447, y: -0.62727153}
-      - {x: 0.2153678, y: -0.6409978}
-      - {x: 0.52674603, y: -0.5633232}
+    - - {x: 0.49272525, y: -0.39084962}
+      - {x: 0.35985798, y: -0.095091276}
+      - {x: 0.58141595, y: 0.047343187}
+      - {x: 0.6425202, y: 0.51802593}
+      - {x: 0.5639264, y: 0.71121806}
+      - {x: 0.30049986, y: 0.7672404}
+      - {x: -0.020235058, y: 0.7997988}
+      - {x: -0.26002514, y: 0.8124017}
+      - {x: -0.50519645, y: 0.55431426}
+      - {x: -0.5389208, y: 0.24397504}
+      - {x: -0.39964193, y: 0.010187328}
+      - {x: -0.517963, y: -0.1547395}
+      - {x: -0.47302428, y: -0.84155864}
+      - {x: -0.05393906, y: -0.7423498}
+      - {x: 0.46593478, y: -0.81235963}
   m_UseDelaunayMesh: 0
 --- !u!1 &5455972692051220082
 GameObject:
@@ -187,7 +183,7 @@ GameObject:
   - component: {fileID: 1361000127611414543}
   - component: {fileID: 5832527241380483670}
   m_Layer: 7
-  m_Name: DiamondSprite
+  m_Name: HammerGuySprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -249,7 +245,7 @@ SpriteRenderer:
   m_SortingLayerID: 1463299113
   m_SortingLayer: 3
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 2d6a9f2f442982343a0f76f0a870c35f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4ed9703e731d3394f82929f7d3465ac9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -270,7 +266,7 @@ Animator:
   m_GameObject: {fileID: 5455972692051220082}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 51771d3a9ec4f4f4c864bd348b45a903, type: 2}
+  m_Controller: {fileID: 9100000, guid: 97d8e8e8b0e50e14f8603fe2ada84f4f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -42,8 +42,6 @@ public class GameManager : MonoBehaviour
     public Image chosenCharacterName;
     public TMP_Text levelReached;
     public TMP_Text timeSurvived;
-    public List<Image> weaponsUI = new List<Image>(6);
-    public List<Image> passiveItemsUI = new List<Image>(6);
 
     [Header("Stopwatch")]
     public float timeLimit; // Time when reapers spawn
@@ -208,52 +206,6 @@ public class GameManager : MonoBehaviour
     public void AssignLevelReached(int levelData)
     {
         levelReached.text = levelData.ToString();
-    }
-
-    public void AssignInventory(List<PlayerInventory.Slot> weaponsData, List<PlayerInventory.Slot> passiveItemsData)
-    {
-        // Check that both lists have the same length
-        if (weaponsData.Count != weaponsUI.Count || passiveItemsData.Count != passiveItemsUI.Count)
-        {
-            Debug.Log("Inventory data list have different lengths.");
-            return;
-        }
-
-        // Assigns weapons data to weapons UI
-        for (int i = 0; i < weaponsUI.Count; i++)
-        {
-            // Check the sprite of the corresponding element in weapons data is not null
-            if (weaponsData[i].image.sprite)
-            {
-                // Enables the corresponding element in weapons UI and set its sprite
-                weaponsUI[i].enabled = true;
-                weaponsUI[i].sprite = weaponsData[i].image.sprite;
-                Debug.Log("Weapon equipped.");
-            }
-            else
-            {
-                // If sprite null, disable the corresponding element in weapons UI
-                weaponsUI[i].enabled = false;
-            }
-        }
-
-        // Assigns passive items data to weapons UI
-        for (int i = 0; i < passiveItemsUI.Count; i++)
-        {
-            // Check the sprite of the corresponding element in passive items data is not null
-            if (passiveItemsData[i].image.sprite)
-            {
-                // Enables the corresponding element in passive items UI and set its sprite
-                passiveItemsUI[i].enabled = true;
-                passiveItemsUI[i].sprite = passiveItemsData[i].image.sprite;
-                Debug.Log("Item equipped.");
-            }
-            else
-            {
-                // If sprite null, disable the corresponding element in passive items UI
-                passiveItemsUI[i].enabled = false;
-            }
-        }
     }
     #endregion
 

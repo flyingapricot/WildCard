@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wave Final
   m_EditorClassIdentifier: 
   possibleSpawnPrefabs:
-  - {fileID: 3996832791091268854, guid: 09c6b47211f975c4086a6af56e4ba311, type: 3}
+  - {fileID: 3996832791091268854, guid: 13d25734e239bf34e95992f0700a3668, type: 3}
   spawnInterval: {x: 1, y: 1}
   spawnsPerTick: {x: 1, y: 1}
   duration: 999999

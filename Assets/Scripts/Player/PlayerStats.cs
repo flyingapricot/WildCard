@@ -206,7 +206,6 @@ public class PlayerStats : MonoBehaviour
         {
             // GameManager.instance.AssignCharacterUI(characterData);
             GameManager.instance.AssignLevelReached(level);
-            GameManager.instance.AssignInventory(inventory.weaponSlots, inventory.passiveSlots);
             GameManager.instance.GameOver();
         }
     }

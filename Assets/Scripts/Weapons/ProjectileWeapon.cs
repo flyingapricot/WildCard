@@ -59,7 +59,7 @@ public class ProjectileWeapon : Weapon // Inheritance
         if (attackCount > 0)
         {
             currentAttackCount = attackCount;
-            currentAttackInterval = data.baseStats.projectileInterval;
+            currentAttackInterval = currentStats.projectileInterval;
         }
 
         return true;
