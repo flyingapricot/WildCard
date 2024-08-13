@@ -6,14 +6,58 @@ using UnityEngine;
 public class EnemyStats : MonoBehaviour, IDamageable
 {
     EnemyMovement movement;
-    //float despawnDistance = 50f; // Distance from player for the enemy to despawn
-    float enemyDistance; // Distance of enemy from player
     public static int count; // Track the number of enemies on the screen.
 
-    // Current Enemy Stats
-    public float currentHealth;
-    public float currentDamage;
-    public float currentSpeed; // Accessed by movement
+    #region Stats
+    [System.Serializable]
+    public struct Resistances
+    {
+        [Range(0f, 1f)] public float freeze, kill, debuff;
+        // To allow us to multiply the resistances.
+        public static Resistances operator *(Resistances r, float factor)
+        {
+            r.freeze = Mathf.Min(1, r.freeze * factor);
+            r.kill = Mathf.Min(1, r.kill * factor);
+            r.debuff = Mathf.Min(1, r.debuff * factor);
+            return r;
+        }
+    }
+
+    [System.Serializable]
+    public struct Stats
+    {
+        [Min(0)] public float maxHealth, damage, moveSpeed, knockbackMultiplier;
+        public Resistances resistances;
+        
+        [System.Flags]
+        public enum Boostable { health = 1, moveSpeed = 2, damage = 4, knockbackMultiplier = 8, resistances = 16 }
+        public Boostable curseBoosts, levelBoosts;
+
+        private static Stats Boost(Stats s1, float factor, Boostable boostable)
+        {
+            if ((boostable & Boostable.health) != 0) s1.maxHealth *= factor;
+            if ((boostable & Boostable.moveSpeed) != 0) s1.moveSpeed *= factor;
+            if ((boostable & Boostable.damage) != 0) s1.damage *= factor;
+            if ((boostable & Boostable.knockbackMultiplier) != 0) s1.knockbackMultiplier /= factor;
+            if ((boostable & Boostable.resistances) != 0) s1.resistances *= factor;
+            return s1;
+        }
+
+        // Use the multiply operator for curse.
+        public static Stats operator *(Stats s1, float factor) { return Boost(s1, factor, s1.curseBoosts); }
+
+        // Use the XOR operator for level boosted stats.
+        public static Stats operator ^(Stats s1, float factor) { return Boost(s1, factor, s1.levelBoosts); }
+    }
+
+    public Stats baseStats = new() { maxHealth = 10,  damage = 3, moveSpeed = 1, knockbackMultiplier = 1 };
+    Stats actualStats;
+    public Stats Actual
+    {
+        get { return actualStats; }
+    }
+    float currentHealth;
+    #endregion
 
     [Header("Damage Feedback")]
     public Color damageColor = new(1,0,0,1); // Color of damage flash
@@ -29,9 +73,20 @@ public class EnemyStats : MonoBehaviour, IDamageable
 
     void Start()
     {
+        movement = GetComponent<EnemyMovement>();
         sprite = GetComponentInChildren<SpriteRenderer>(); // Get the SpriteRenderer from the child GameObject
         originalColor = sprite.color;
-        movement = GetComponent<EnemyMovement>();
+        RecalculateStats();
+        currentHealth = actualStats.maxHealth;
+    }
+
+    // Calculates the actual stats of the enemy based on a variety of factors.
+    public void RecalculateStats()
+    {
+        // Calculate curse boosts.
+        float curse = GameManager.GetCumulativeCurse(),
+        level = GameManager.GetCumulativeLevels();
+        actualStats = (baseStats * curse) ^ level;
     }
 
     // This function always needs at least 2 values, the amount of damage dealt <dmg>, as well as where the damage is coming from, which is passed as <sourcePosition>
@@ -41,6 +96,19 @@ public class EnemyStats : MonoBehaviour, IDamageable
     {
         if (this != null)
         {
+            // If damage is exactly equal to maximum health, we assume it is an insta-kill and 
+            // check for the kill resistance to see if we can dodge this damage.
+            if(Mathf.Approximately(dmg, actualStats.maxHealth))
+            {
+                // Roll a die to check if we can dodge the damage.
+                // Gets a random value between 0 to 1, and if the number is 
+                // below the kill resistance, then we avoid getting killed.
+                if(Random.value < actualStats.resistances.kill)
+                {
+                    return; // Don't take damage.
+                }
+            }
+
             currentHealth -= dmg;
             StartCoroutine(DamageFlash());
 
@@ -101,13 +169,12 @@ public class EnemyStats : MonoBehaviour, IDamageable
         Destroy(gameObject);
     }
 
-    void OnCollisionStay2D(Collision2D collision)
+    void OnCollisionStay2D(Collision2D col)
     {
-        // Reference the script from the collided collider and deal damage using TakeDamage()
-        if (collision.gameObject.CompareTag("Player"))
+        // Check for whether there is a PlayerStats object we can damage.
+        if(col.collider.TryGetComponent(out PlayerStats p))
         {
-            PlayerStats player = collision.gameObject.GetComponent<PlayerStats>();
-            player.TakeDamage(currentDamage); // Make sure to use currentDamage instead of weaponData.Damage in case any damage multipliers in the future
+            p.TakeDamage(Actual.damage);
         }
     }
 

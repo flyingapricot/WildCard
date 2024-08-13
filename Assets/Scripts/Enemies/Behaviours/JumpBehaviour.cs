@@ -40,7 +40,7 @@ public class JumpBehaviour : MonoBehaviour
                 rb.AddForce(new Vector2(PlayerStats.instance.transform.position.x - transform.position.x, 7),ForceMode2D.Force);
 
                 Vector3 targetPosition = PlayerStats.instance.transform.position; // Player is target destination
-                transform.position = Vector2.MoveTowards(transform.position, targetPosition, stats.currentSpeed * Time.fixedDeltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, targetPosition, stats.Actual.moveSpeed * Time.fixedDeltaTime);
 
                 Vector2 moveDirection = (targetPosition - transform.position).normalized;
                 if (moveDirection.x != 0) // Flip the sprite based on the horizontal direction

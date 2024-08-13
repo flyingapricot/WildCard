@@ -33,9 +33,9 @@ MonoBehaviour:
     damageVariance: 2
     area: 3
     speed: 20
-    cooldown: 2.5
+    cooldown: 1.5
     projectileInterval: 0.08
-    knockback: 0
+    knockback: 3
     amount: 1
     pierce: 99
     maxInstances: 30

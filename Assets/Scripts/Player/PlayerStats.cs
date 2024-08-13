@@ -19,9 +19,11 @@ public class PlayerStats : MonoBehaviour
     public CharacterData.Stats Stats
     {
         get { return actualStats;  }
-        set { 
-            actualStats = value;
-        }
+        set { actualStats = value; }
+    }
+    public CharacterData.Stats Actual
+    {
+        get { return actualStats; }
     }
 
     float health;
@@ -51,16 +53,19 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] EXPBar expBar;
 
     [Header("Visual Feedback")]
-    public GameObject healAnimation; // Healing animation
-    public GameObject healEffect; // Healing Effect
-    public GameObject hitAnimation; // Getting Hit animation
-    public GameObject hitEffect; // Getting Hit Effect
+    public GameObject healAnimation;
+    public GameObject healEffect; 
+    public GameObject hitAnimation; 
+    public GameObject hitEffect; 
+    public GameObject reviveAnimation; 
+    public GameObject reviveEffect; 
     //public ParticleSystem blockedEffect; // If armor completely blocks damage.
 
     [Header("Audio Feedback")]
     [SerializeField] private AudioClip hitAudio; // Sound effect when damaged
     [SerializeField] private AudioClip healAudio; // Sound effect when healed
     [SerializeField] private AudioClip levelAudio; // Sound effect when leveling up
+    [SerializeField] private AudioClip reviveAudio; // Sound effect when player revived
     private AudioSource audioSource; // The audio source that will play all the SFX
     #endregion
 
@@ -192,7 +197,18 @@ public class PlayerStats : MonoBehaviour
             // Check if the player's health has dropped to or below 0
             if (CurrentHealth <= 0)
             {
-                Kill();
+                // If have revives, revive player with 30% health
+                if (Stats.revive > 0)
+                {
+                    PlayAudio(reviveAudio);
+                    PlayEffect(reviveAnimation, reviveEffect);
+                    CurrentHealth = Stats.maxHealth / 3;
+                    actualStats.revive--;
+                }
+                else
+                {
+                    Kill();
+                }
             }
             
             invincibilityTimer = invincibilityDuration;

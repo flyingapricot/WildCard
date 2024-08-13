@@ -112,9 +112,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57382f6bc75c9bf499be22ee71c6df98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 600
-  currentDamage: 1
-  currentSpeed: 2
+  baseStats:
+    maxHealth: 8000
+    damage: 15
+    moveSpeed: 1
+    knockbackMultiplier: 0.5
+    resistances:
+      freeze: 0.5
+      kill: 0.5
+      debuff: 0.5
+    curseBoosts: 0
+    levelBoosts: 0
   damageColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &630070124606761961
 MonoBehaviour:
@@ -128,7 +136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa1caead01658654f9d6e0aac8fda269, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outOfFrameAction: 1
+  knockbackVariance: 2
+  outOfFrameAction: 0
 --- !u!114 &-8798488598029441206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,10 +167,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   dropsList:
-  - itemPrefab: {fileID: 5969430364891984471, guid: d1cd84aaea9e6ba4b983f91aa7e92de1, type: 3}
+  - itemPrefab: {fileID: 5969430364891984471, guid: baad5129f723c2846878cab5199fdadd, type: 3}
     dropRate: 100
-  - itemPrefab: {fileID: 8427234246184733187, guid: adc55efe544255040a1103e2be80c09a, type: 3}
-    dropRate: 5
 --- !u!50 &7873878884039451452
 Rigidbody2D:
   serializedVersion: 4

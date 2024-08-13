@@ -1,89 +1,58 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class KamikazeBehaviour : MonoBehaviour
 {
-    EnemyStats stats;
-    SpriteRenderer sprite;
-    Vector2 knockbackVelocity;
-    float knockbackDuration;
-    public LayerMask LayerToHit;
-    public float fieldofImpact;
-    public float force;
+    private EnemyStats stats;
+    private Transform player;
+    public GameObject spawns; // Prefab of enemy to spawn when killed
+    public bool isCluster; // Check for cluster bomb spawning
 
-    private void Awake()
+    public GameObject explosionEffect;         
+    public GameObject explosionRadiusIndicator; // Prefab for explosion radius circle
+    private GameObject radiusIndicator;
+    public float explosionRadius = 3.0f;      
+    public float triggerDistance = 1.5f; // Distance from the player to trigger explosion
+    public float explosionDelay = 2.0f; // Time before explosion after triggering
+    private bool isExploding = false;
+
+
+    void Start()
     {
-        stats = GetComponent<EnemyStats>();
-        sprite = GetComponentInChildren<SpriteRenderer>(); // Get the SpriteRenderer from the child GameObject
-        //ExplosionEffect.SetActive(false);
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-    public void Knockback(Vector2 velocity, float duration)
+    void Update()
     {
-        // Ignore the knockback if the duration is >0
-        if (knockbackDuration > 0) return;
+        if (isExploding) return;
 
-        // Begin the knockback
-        knockbackVelocity = velocity;
-        knockbackDuration = duration;
+        // Move towards the player
+        transform.position = Vector2.MoveTowards(transform.position, player.position, stats.Actual.moveSpeed * Time.deltaTime);
 
-    }
-
-    private void explode()
-    {
-        Collider2D[] objects = Physics2D.OverlapCircleAll(transform.position, fieldofImpact, LayerToHit);
-        
-        foreach(Collider2D obj in objects)
+        // Check if within triggering distance
+        if (Vector2.Distance(transform.position, player.position) <= triggerDistance)
         {
-            Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
-            if (rb != null)
-            {
-                Vector2 direction = obj.transform.position - transform.position;
-                rb.AddForce(direction * force);
-            }
-
+            StartCoroutine(Explode());
         }
+    }
+
+    IEnumerator Explode()
+    {
+        isExploding = true;
+
+        // Show explosion radius
+        radiusIndicator = Instantiate(explosionRadiusIndicator, transform.position, Quaternion.identity);
+        radiusIndicator.transform.localScale = new Vector3(explosionRadius * 2, explosionRadius * 2, 1);
+
+        yield return new WaitForSeconds(explosionDelay);
+
+        // Trigger explosion
+        Instantiate(explosionEffect, transform.position, Quaternion.identity);
+
+        // Destroy enemy and radius indicator
+        Destroy(radiusIndicator);
         Destroy(gameObject);
-        //GameObject ExplosionEffectIns = Instantiate(ExplosionEffect, transform.position, Quaternion.identity);
-        //Destroy(ExplosionEffectIns, 10);
-        //Destroy(gameObject);
-    }
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position,fieldofImpact);
-    }
-
-    private void FixedUpdate()
-    {
-        if (PlayerStats.instance != null)
-        {
-            if (knockbackDuration > 0) // Currently being knockedback
-            {
-                transform.position += (Vector3)knockbackVelocity * Time.deltaTime;
-                knockbackDuration -= Time.deltaTime;
-            }
-            else // Otherwise, Move the enemy towards player
-            {
-                Vector3 targetPosition = PlayerStats.instance.transform.position; // Player is target destination
-                transform.position = Vector2.MoveTowards(transform.position, targetPosition, stats.currentSpeed * Time.fixedDeltaTime);
-
-                //If within the range of the player, explode and reduce player health
-                if(Mathf.Abs(targetPosition.x - transform.position.x) < 1.5)
-                {
-                    explode();
-                    PlayerStats.instance.CurrentHealth -= 5;
-                    Destroy(gameObject);
-                }
-
-                Vector2 moveDirection = (targetPosition - transform.position).normalized;
-                if (moveDirection.x != 0) // Flip the sprite based on the horizontal direction
-                {
-                    sprite.flipX = moveDirection.x > 0; // Flip when moving right
-                }
-            }
-        }
+        // Logic to deal damage to player or other entities within explosionRadius can be added here
     }
 }

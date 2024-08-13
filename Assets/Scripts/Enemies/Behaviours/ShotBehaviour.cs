@@ -19,16 +19,7 @@ public class ShotBehaviour : MonoBehaviour
         if (hitInfo.CompareTag("Player"))
         {
             hitInfo.GetComponent<PlayerStats>().CurrentHealth -= damage;
-            Debug.Log("PLAYER!");
             Destroy(gameObject);
         }
-
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

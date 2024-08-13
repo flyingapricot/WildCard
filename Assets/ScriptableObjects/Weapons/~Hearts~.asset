@@ -169,7 +169,7 @@ MonoBehaviour:
     speed: 0
     cooldown: 0
     projectileInterval: 0
-    knockback: 1
+    knockback: 2
     amount: 0
     pierce: 0
     maxInstances: 0

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance; // Singleton instance
-    public GameObject playerObject;
+    PlayerStats[] players; // Tracks all players.
 
     // Defines the different states of the game
     public enum GameState
@@ -24,6 +24,34 @@ public class GameManager : MonoBehaviour
     // Getters for parity with older scripts.
     public bool IsGameOver { get { return currentState == GameState.Paused; } }
     public bool ChoosingUpgrade { get { return currentState == GameState.LevelUp; } }
+
+    #region Curse
+    // Sums up the curse stat of all players and returns the value.
+    public static float GetCumulativeCurse()
+    {
+        if (!instance) return 1;
+
+        float totalCurse = 0;
+        foreach(PlayerStats p in instance.players)
+        {
+            totalCurse += p.Actual.curse;
+        }
+        return Mathf.Max(1, totalCurse);
+    }
+
+    // Sum up the levels of all players and returns the value.
+    public static int GetCumulativeLevels()
+    {
+        if (!instance) return 1;
+
+        int totalLevel = 0;
+        foreach (PlayerStats p in instance.players)
+        {
+            totalLevel += p.level;
+        }
+        return Mathf.Max(1, totalLevel);
+    }
+    #endregion
 
     #region Headers
     [Header("BGM")]
@@ -72,6 +100,7 @@ public class GameManager : MonoBehaviour
 
         // Find the "DamageTexts" GameObject
         damageTextParent = damageTextCanvas.transform.Find("DamageTexts");
+        players = FindObjectsOfType<PlayerStats>();
         audioSource = GetComponent<AudioSource>();
         DisableScreens();
     }
@@ -215,7 +244,8 @@ public class GameManager : MonoBehaviour
         ChangeState(GameState.LevelUp);
         levelUpScreen.SetActive(true);
         Time.timeScale = 0f; // Pause game
-        playerObject.SendMessage("RemoveAndApplyUpgrades"); // Execute function in InventoryManager
+        foreach(PlayerStats p in players)
+            p.SendMessage("RemoveAndApplyUpgrades"); // Execute function in InventoryManager
     }
 
     public void EndLevelUp()
@@ -233,7 +263,8 @@ public class GameManager : MonoBehaviour
         UpdateStopwatchDisplay();
         if (stopwatchTime >= timeLimit)
         {
-            PlayerStats.instance.Kill();
+            foreach(PlayerStats p in players)
+                p.Kill();
         }
     }
 

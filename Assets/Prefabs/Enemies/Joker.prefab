@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4801505653317531056}
   - component: {fileID: 5672961783117540736}
+  - component: {fileID: 9194235497458676776}
   - component: {fileID: -6841193894051939651}
   - component: {fileID: 8415253034408921534}
   - component: {fileID: 7873878884039451452}
@@ -49,10 +50,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57382f6bc75c9bf499be22ee71c6df98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 1000
-  currentDamage: 1
-  currentSpeed: 0.8
+  baseStats:
+    maxHealth: 11000
+    damage: 20
+    moveSpeed: 1.5
+    knockbackMultiplier: 0.5
+    resistances:
+      freeze: 0.5
+      kill: 0.5
+      debuff: 0.5
+    curseBoosts: 0
+    levelBoosts: 0
   damageColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &9194235497458676776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3996832791091268854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2191ffe4733a1df449fb0a8f222e474a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackVariance: 2
+  outOfFrameAction: 0
+  elasticity: 2
+  minDistance: 1
+  maxDistance: 5
 --- !u!114 &-6841193894051939651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,8 +112,6 @@ MonoBehaviour:
   dropsList:
   - itemPrefab: {fileID: 5969430364891984471, guid: baad5129f723c2846878cab5199fdadd, type: 3}
     dropRate: 100
-  - itemPrefab: {fileID: 8427234246184733187, guid: adc55efe544255040a1103e2be80c09a, type: 3}
-    dropRate: 5
 --- !u!50 &7873878884039451452
 Rigidbody2D:
   serializedVersion: 4

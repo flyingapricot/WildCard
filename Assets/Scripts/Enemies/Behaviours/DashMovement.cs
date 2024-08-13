@@ -16,7 +16,7 @@ public class DashMovement : EnemyMovement
     // the direction we are charging towards.
     public override void Move()
     {
-        transform.position += stats.currentSpeed * Time.deltaTime * (Vector3)chargeDirection;
+        transform.position += DEFAULT_MOVESPEED * stats.Actual.moveSpeed * Time.deltaTime * (Vector3)chargeDirection;
 
         if (chargeDirection.x != 0) // Flip the sprite based on the horizontal direction
         {
