@@ -1,36 +1,27 @@
 using System.Collections;
 using UnityEngine;
 
-public class KamikazeBehaviour : MonoBehaviour
+public class KamikazeBehaviour : EnemyMovement
 {
-    private EnemyStats stats;
-    private Transform player;
-    public GameObject spawns; // Prefab of enemy to spawn when killed
-    public bool isCluster; // Check for cluster bomb spawning
-
+    [Header("Damage Feedback")]
     public GameObject explosionEffect;         
-    public GameObject explosionRadiusIndicator; // Prefab for explosion radius circle
-    private GameObject radiusIndicator;
-    public float explosionRadius = 3.0f;      
+    public GameObject radiusIndicator; // Prefab for explosion radius circle
+    public float explosionRadius = 3.0f; 
     public float triggerDistance = 1.5f; // Distance from the player to trigger explosion
     public float explosionDelay = 2.0f; // Time before explosion after triggering
     private bool isExploding = false;
 
+    [Header("Damage Feedback")]
+    public bool isCluster; // Check for cluster bomb spawning
+    public GameObject spawns; // Prefab of enemy to spawn when killed
+    [Min(0)] public float spawnAmount = 5f, spawnRadius = 2f;
 
-    void Start()
+    protected override void Update()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-    }
-
-    void Update()
-    {
-        if (isExploding) return;
-
-        // Move towards the player
-        transform.position = Vector2.MoveTowards(transform.position, player.position, stats.Actual.moveSpeed * Time.deltaTime);
-
+        base.Update();
+        if (transform == null) { return; }
         // Check if within triggering distance
-        if (Vector2.Distance(transform.position, player.position) <= triggerDistance)
+        if (!isExploding && Vector2.Distance(transform.position, player.position) <= triggerDistance)
         {
             StartCoroutine(Explode());
         }
@@ -39,20 +30,57 @@ public class KamikazeBehaviour : MonoBehaviour
     IEnumerator Explode()
     {
         isExploding = true;
+        // When exploding, slow down enemy
+        stats.baseStats.moveSpeed /= 2;
 
-        // Show explosion radius
-        radiusIndicator = Instantiate(explosionRadiusIndicator, transform.position, Quaternion.identity);
-        radiusIndicator.transform.localScale = new Vector3(explosionRadius * 2, explosionRadius * 2, 1);
+        // Set the radius of the indicator to match the explosion radius
+        radiusIndicator.transform.localScale = new Vector3(explosionRadius * 5, explosionRadius * 5, 1);
+        GameObject radius = Instantiate(radiusIndicator, transform.position, Quaternion.identity, transform);
 
         yield return new WaitForSeconds(explosionDelay);
 
+        // Check if the player is within the explosion radius
+        CircleCollider2D radiusCollider = radius.GetComponent<CircleCollider2D>();
+        if (radiusCollider.OverlapPoint(player.position))
+        {
+            // Deal damage to the player
+            PlayerStats.instance.TakeDamage(stats.Actual.damage);
+        }
+
+        // Destroy the radius indicator
+        Destroy(radius);
+
         // Trigger explosion
-        Instantiate(explosionEffect, transform.position, Quaternion.identity);
+        if (explosionEffect)
+        {
+            explosionEffect.transform.localScale = new Vector3(explosionRadius * 5, explosionRadius * 5, 1);
+            Destroy(Instantiate(explosionEffect, transform.position, Quaternion.identity), 0.1f);
+        }
 
-        // Destroy enemy and radius indicator
-        Destroy(radiusIndicator);
-        Destroy(gameObject);
+        if (isCluster) // Spawn cluster enemies around transform
+        {
+            ClusterSpawn();
+        }
 
-        // Logic to deal damage to player or other entities within explosionRadius can be added here
+        stats.Kill(); // Destroy Enemy
+    }
+
+    void ClusterSpawn()
+    {
+        for (int i = 0; i < spawnAmount; i++)
+        {
+            // Generate a random angle between 0 and 360 degrees
+            float angle = Random.Range(0f, 360f);
+            
+            // Convert the angle to radians and calculate the x and y coordinates
+            float spawnX = transform.position.x + Mathf.Cos(angle * Mathf.Deg2Rad) * spawnRadius;
+            float spawnY = transform.position.y + Mathf.Sin(angle * Mathf.Deg2Rad) * spawnRadius;
+            
+            // Create the spawn position
+            Vector2 spawnPosition = new(spawnX, spawnY);
+            
+            // Instantiate the object at the calculated position
+            Instantiate(spawns, spawnPosition, Quaternion.identity);
+        }
     }
 }

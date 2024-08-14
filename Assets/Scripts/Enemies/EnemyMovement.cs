@@ -95,7 +95,7 @@ public class EnemyMovement : MonoBehaviour
 
     public virtual void Move()
     {
-        // If Player is missing,  return to avoid accessing a destroyed object
+        // If Player is missing, return to avoid accessing a destroyed object
         if (player == null) return;
     
         // If there is a rigidbody, use it to move instead of moving the position directly.

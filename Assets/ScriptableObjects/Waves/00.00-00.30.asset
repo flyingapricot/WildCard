@@ -17,7 +17,7 @@ MonoBehaviour:
   spawnInterval: {x: 1, y: 2}
   spawnsPerTick: {x: 1, y: 1}
   duration: 30
-  startingCount: 3
+  startingCount: 10
   totalSpawns: 4294967295
   exitConditions: 1
   mustKillAll: 0

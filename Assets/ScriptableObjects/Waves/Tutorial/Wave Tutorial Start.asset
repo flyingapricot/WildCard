@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wave Tutorial Start
   m_EditorClassIdentifier: 
   possibleSpawnPrefabs:
-  - {fileID: 3996832791091268854, guid: 87827efc02035e94d8cf5efaf401bf07, type: 3}
+  - {fileID: 3996832791091268854, guid: b7186f5a142cec44f91a0d53fa5c9a59, type: 3}
   spawnInterval: {x: 2, y: 3}
   spawnsPerTick: {x: 1, y: 1}
   duration: 30

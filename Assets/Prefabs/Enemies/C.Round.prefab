@@ -116,7 +116,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4801505653317531056}
   - component: {fileID: 5672961783117540736}
-  - component: {fileID: -155363441141303832}
   - component: {fileID: 8212327790544757435}
   - component: {fileID: 8415253034408921534}
   - component: {fileID: 7873878884039451452}
@@ -156,10 +155,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57382f6bc75c9bf499be22ee71c6df98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyType: 0
   baseStats:
     maxHealth: 30
     damage: 6
-    moveSpeed: 0.85
+    moveSpeed: 1
     knockbackMultiplier: 2
     resistances:
       freeze: 0
@@ -168,20 +168,6 @@ MonoBehaviour:
     curseBoosts: 0
     levelBoosts: 0
   damageColor: {r: 1, g: 0, b: 0, a: 1}
---- !u!114 &-155363441141303832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3996832791091268854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa1caead01658654f9d6e0aac8fda269, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  knockbackVariance: 2
-  outOfFrameAction: 0
 --- !u!114 &8212327790544757435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,11 +180,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd5690173fab842439fa7ada684c7a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LayerToHit:
-    serializedVersion: 2
-    m_Bits: 1
-  fieldofImpact: 40
-  force: 200
+  knockbackVariance: 2
+  outOfFrameAction: 0
+  explosionEffect: {fileID: 115846657216147525, guid: 817b79c8801d8ab4585a14b2dea0d3df, type: 3}
+  radiusIndicator: {fileID: 115846657216147525, guid: 0d509f6ae023be2478bcfac20431022b, type: 3}
+  explosionRadius: 3
+  triggerDistance: 3
+  explosionDelay: 2
+  isCluster: 0
+  spawns: {fileID: 0}
+  spawnAmount: 3
+  spawnRadius: 2
 --- !u!114 &8415253034408921534
 MonoBehaviour:
   m_ObjectHideFlags: 0

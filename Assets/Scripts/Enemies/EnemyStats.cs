@@ -7,6 +7,8 @@ public class EnemyStats : MonoBehaviour, IDamageable
 {
     EnemyMovement movement;
     public static int count; // Track the number of enemies on the screen.
+    public enum EnemyType { basic, elite, boss }; // Used to determine highscore
+    public EnemyType enemyType;
 
     #region Stats
     [System.Serializable]
@@ -146,6 +148,11 @@ public class EnemyStats : MonoBehaviour, IDamageable
         // since drops are disabled by default.
         DropRateManager drops = GetComponent<DropRateManager>();
         if(drops) drops.active = true;
+
+        // Increment respective enemy type count
+        if (enemyType == EnemyType.basic) { GameManager.instance.basicDefeated++; }
+        if (enemyType == EnemyType.elite) { GameManager.instance.eliteDefeated++; }
+        if (enemyType == EnemyType.boss) { GameManager.instance.bossDefeated++; }
 
         StartCoroutine(KillFade());
     }

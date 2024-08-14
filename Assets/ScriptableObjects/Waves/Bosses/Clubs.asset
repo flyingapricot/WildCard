@@ -20,5 +20,5 @@ MonoBehaviour:
   startingCount: 0
   totalSpawns: 1
   exitConditions: 2
-  mustKillAll: 0
+  mustKillAll: 1
   spawnCount: 0

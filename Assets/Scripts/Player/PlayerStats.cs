@@ -220,8 +220,7 @@ public class PlayerStats : MonoBehaviour
     {
         if (!GameManager.instance.IsGameOver)
         {
-            // GameManager.instance.AssignCharacterUI(characterData);
-            GameManager.instance.AssignLevelReached(level);
+            GameManager.instance.AssignScore(level);
             GameManager.instance.GameOver();
         }
     }

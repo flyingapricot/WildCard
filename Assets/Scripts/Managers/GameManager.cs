@@ -20,6 +20,11 @@ public class GameManager : MonoBehaviour
 
     public GameState currentState; // Stores the current state of the game
     public GameState previousState; // Stores the state of the game before it was paused
+    [HideInInspector] public int highscore; // Score determined from enemies defeated, time survived and level reached
+    [HideInInspector] public int totalDefeated; // Total number of enemies player has defeated in current gameplay
+    [HideInInspector] public int basicDefeated; 
+    [HideInInspector] public int eliteDefeated; 
+    [HideInInspector] public int bossDefeated; 
 
     // Getters for parity with older scripts.
     public bool IsGameOver { get { return currentState == GameState.Paused; } }
@@ -68,11 +73,13 @@ public class GameManager : MonoBehaviour
     [Header("Results Screen Stats")]
     public Image chosenCharacterSprite;
     public Image chosenCharacterName;
-    public TMP_Text levelReached;
     public TMP_Text timeSurvived;
+    public TMP_Text levelReached;
+    public TMP_Text scoreCount;
+    public TMP_Text killCount;
 
     [Header("Stopwatch")]
-    public float timeLimit; // Time when reapers spawn
+    public float timeLimit; // Kills player instantly
     float stopwatchTime; // Time elapsed (in seconds)
     public TMP_Text stopwatchDisplay;
     public float GetElapsedTime() { return stopwatchTime; } // Gives us the time since the level has started.
@@ -97,6 +104,10 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        // Load the saved kill count and highscore
+        totalDefeated = PlayerPrefs.GetInt("totalKills", 0);
+        highscore = PlayerPrefs.GetInt("highscore", 0);
 
         // Find the "DamageTexts" GameObject
         damageTextParent = damageTextCanvas.transform.Find("DamageTexts");
@@ -219,6 +230,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f; // Stop the game
         SwitchBGM(gameOverBGM);
         DisplayResults();
+        UpdateTotalDefeated();
     }
 
     void DisplayResults()
@@ -232,10 +244,30 @@ public class GameManager : MonoBehaviour
         chosenCharacterSprite.sprite = characterData.Sprite;
     }
 
-    public void AssignLevelReached(int levelData)
+    public void AssignScore(int level)
     {
-        levelReached.text = levelData.ToString();
+        // Assign Level Reached
+        levelReached.text = level.ToString();
+
+        // Assign current gameplay score
+        int baseScore = basicDefeated * 75 + eliteDefeated * 428 + bossDefeated * 2251 + (int)stopwatchTime / 60 * 126 + (int)stopwatchTime % 60 * 10 + level * 1219;
+        scoreCount.text = baseScore.ToString();
+
+        // If the score is the highest, save the highscore
+        if (baseScore > highscore) { PlayerPrefs.SetInt("highscore", baseScore); }
     }
+
+    public void UpdateTotalDefeated()
+    {
+        // Calculate total amount of enemies killed this gameplay
+        int currentDefeated = basicDefeated + eliteDefeated + bossDefeated;
+        killCount.text = currentDefeated.ToString();
+
+        // Save the updated kill count
+        totalDefeated += currentDefeated;
+        PlayerPrefs.SetInt("totalKills", totalDefeated);
+    }
+
     #endregion
 
     #region Level Up
