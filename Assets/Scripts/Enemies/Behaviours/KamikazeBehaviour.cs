@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class KamikazeBehaviour : EnemyMovement
 {
-    [Header("Damage Feedback")]
+    [Header("Explosion")]
     public GameObject explosionEffect;         
     public GameObject radiusIndicator; // Prefab for explosion radius circle
     public float explosionRadius = 3.0f; 
@@ -11,7 +11,7 @@ public class KamikazeBehaviour : EnemyMovement
     public float explosionDelay = 2.0f; // Time before explosion after triggering
     private bool isExploding = false;
 
-    [Header("Damage Feedback")]
+    [Header("Cluster Spawn")]
     public bool isCluster; // Check for cluster bomb spawning
     public GameObject spawns; // Prefab of enemy to spawn when killed
     [Min(0)] public float spawnAmount = 5f, spawnRadius = 2f;
