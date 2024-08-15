@@ -158,9 +158,20 @@ MonoBehaviour:
   enemyType: 0
   baseStats:
     maxHealth: 30
-    damage: 6
+    damage: 10
     moveSpeed: 1
     knockbackMultiplier: 2
+    resistances:
+      freeze: 0
+      kill: 0
+      debuff: 0
+    curseBoosts: 0
+    levelBoosts: 0
+  actualStats:
+    maxHealth: 0
+    damage: 0
+    moveSpeed: 0
+    knockbackMultiplier: 0
     resistances:
       freeze: 0
       kill: 0
@@ -186,7 +197,7 @@ MonoBehaviour:
   radiusIndicator: {fileID: 115846657216147525, guid: 0d509f6ae023be2478bcfac20431022b, type: 3}
   explosionRadius: 3
   triggerDistance: 3
-  explosionDelay: 2
+  explosionDelay: 1
   isCluster: 0
   spawns: {fileID: 0}
   spawnAmount: 3

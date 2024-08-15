@@ -49,11 +49,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57382f6bc75c9bf499be22ee71c6df98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyType: 0
   baseStats:
     maxHealth: 20
     damage: 2
-    moveSpeed: 3
+    moveSpeed: 2
     knockbackMultiplier: 0.5
+    resistances:
+      freeze: 0
+      kill: 0
+      debuff: 0
+    curseBoosts: 0
+    levelBoosts: 0
+  actualStats:
+    maxHealth: 0
+    damage: 0
+    moveSpeed: 0
+    knockbackMultiplier: 0
     resistances:
       freeze: 0
       kill: 0

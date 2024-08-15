@@ -34,8 +34,8 @@ public abstract class Weapon : Item
                 // Otherwise, use corresponding values from s1
                 name = s2.name ?? s1.name,
                 description = s2.description ?? s1.description,
-                projectilePrefab = s2.projectilePrefab ?? s1.projectilePrefab,
-                auraPrefab = s2.auraPrefab ?? s1.auraPrefab,
+                projectilePrefab = s2.projectilePrefab != null ? s2.projectilePrefab : s1.projectilePrefab,
+                auraPrefab = s2.auraPrefab != null ? s2.auraPrefab : s1.auraPrefab,
                 hitEffect = s2.hitEffect == null ? s1.hitEffect : s2.hitEffect,
 
                 spawnVariance = s2.spawnVariance,

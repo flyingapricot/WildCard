@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4801505653317531056}
   - component: {fileID: 5672961783117540736}
-  - component: {fileID: 5841460527192078015}
+  - component: {fileID: -3870446602758541395}
   - component: {fileID: 8415253034408921534}
   - component: {fileID: 7873878884039451452}
   - component: {fileID: 6194128249770924480}
@@ -49,8 +49,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57382f6bc75c9bf499be22ee71c6df98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyType: 0
   baseStats:
-    maxHealth: 20
+    maxHealth: 200
     damage: 2
     moveSpeed: 1.15
     knockbackMultiplier: 0.5
@@ -61,7 +62,7 @@ MonoBehaviour:
     curseBoosts: 0
     levelBoosts: 0
   damageColor: {r: 1, g: 0, b: 0, a: 1}
---- !u!114 &5841460527192078015
+--- !u!114 &-3870446602758541395
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74,7 +75,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockbackVariance: 2
-  outOfFrameAction: 0
+  outOfFrameAction: 2
 --- !u!114 &8415253034408921534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,7 +90,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   dropsList:
-  - itemPrefab: {fileID: 5969430364891984471, guid: 472b40d07c026bf4fa03bc0d53265fd5, type: 3}
+  - itemPrefab: {fileID: 5969430364891984471, guid: 1c1688c6891254d4ab5070b93d100e65, type: 3}
     dropRate: 100
   - itemPrefab: {fileID: 8427234246184733187, guid: 49291040109599b409e1b3d9db61f02b, type: 3}
     dropRate: 1

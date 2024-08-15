@@ -28,7 +28,7 @@ MonoBehaviour:
       projSpeed: 0
       duration: 0
       amount: 0
-      cooldown: -0.2
+      cooldown: -0.1
       luck: 0
       growth: 0
       greed: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
       projSpeed: 0
       duration: 0
       amount: 0
-      cooldown: -0.3
+      cooldown: -0.2
       luck: 0
       growth: 0
       greed: 0
@@ -67,7 +67,7 @@ MonoBehaviour:
       projSpeed: 0
       duration: 0
       amount: 0
-      cooldown: -0.5
+      cooldown: -0.2
       luck: 0
       growth: 0
       greed: 0

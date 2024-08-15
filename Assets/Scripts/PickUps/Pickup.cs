@@ -78,11 +78,11 @@ public class Pickup : MonoBehaviour
 
         if (instantLevel) // Instantly levels up
         {
-            target.GainExperience(target.experienceCap);
+            target.IncreaseExperience(target.experienceCap);
         }
         else if (minExperience != 0 && maxExperience != 0) 
         {
-            target.GainExperience(Random.Range(minExperience, maxExperience + 1));
+            target.IncreaseExperience(Random.Range(minExperience, maxExperience + 1));
         }
 
         // No need instant healing since its already capped at max health

@@ -47,7 +47,6 @@ public class ProjectileWeapon : Weapon // Inheritance
             player.transform.position + (Vector3)GetSpawnOffset(spawnAngle), // Spawn point = player position + randomized offset
             Quaternion.Euler(0, 0, spawnAngle) 
         );
-        prefab.transform.SetParent(player.transform); // Set player as parent
         
         prefab.weapon = this;
         prefab.player = player;

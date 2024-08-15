@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   possibleSpawnPrefabs:
   - {fileID: 3996832791091268854, guid: eef4472a6e462fa4699a0cac4bd8d6b4, type: 3}
-  spawnInterval: {x: 1, y: 1}
+  spawnInterval: {x: 10, y: 10}
   spawnsPerTick: {x: 1, y: 1}
-  duration: 90
+  duration: 5
   startingCount: 0
   totalSpawns: 1
   exitConditions: 2

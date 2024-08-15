@@ -72,8 +72,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4801505653317531056}
   - component: {fileID: 5672961783117540736}
-  - component: {fileID: 630070124606761961}
-  - component: {fileID: -8798488598029441206}
+  - component: {fileID: -162012414687954527}
+  - component: {fileID: 8029889186920495178}
   - component: {fileID: 8415253034408921534}
   - component: {fileID: 7873878884039451452}
   - component: {fileID: 6194128249770924480}
@@ -115,17 +115,28 @@ MonoBehaviour:
   enemyType: 2
   baseStats:
     maxHealth: 8000
-    damage: 15
+    damage: 10
     moveSpeed: 1
-    knockbackMultiplier: 0.5
+    knockbackMultiplier: 0
     resistances:
       freeze: 0.5
       kill: 0.5
       debuff: 0.5
     curseBoosts: 0
     levelBoosts: 0
+  actualStats:
+    maxHealth: 0
+    damage: 0
+    moveSpeed: 0
+    knockbackMultiplier: 0
+    resistances:
+      freeze: 0
+      kill: 0
+      debuff: 0
+    curseBoosts: 0
+    levelBoosts: 0
   damageColor: {r: 1, g: 0, b: 0, a: 1}
---- !u!114 &630070124606761961
+--- !u!114 &-162012414687954527
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,7 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockbackVariance: 2
   outOfFrameAction: 0
---- !u!114 &-8798488598029441206
+--- !u!114 &8029889186920495178
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,12 +159,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 3996832791091268854}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 287b6b32f7f61d349b3b53496718ec34, type: 3}
+  m_Script: {fileID: 11500000, guid: f27145fffa645b0448bbd9c295bae5d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FirePoint1: {fileID: 2205829967236635367}
-  FirePoint2: {fileID: 5221191278174381306}
-  bulletPrefab: {fileID: 1901397443294861216, guid: acde5a08d27fa844284661e4ee931508, type: 3}
+  fireball: {fileID: 8934046658588723643, guid: 2d24985a94167804ab5c7594dac95e91, type: 3}
+  cooldown: 0.1
+  coneRange: 70
+  fireballCount: 3
+  attackDuration: 5
+  attackDelay: 5
 --- !u!114 &8415253034408921534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,7 +275,6 @@ GameObject:
   - component: {fileID: 1194908773296797409}
   - component: {fileID: 6645466106630857824}
   - component: {fileID: 5031660416252614488}
-  - component: {fileID: 2807537647034816786}
   m_Layer: 7
   m_Name: StarWalkerSprite
   m_TagString: Untagged
@@ -359,18 +372,3 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2807537647034816786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4749841678402291558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 287b6b32f7f61d349b3b53496718ec34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FirePoint1: {fileID: 2205829967236635367}
-  FirePoint2: {fileID: 5221191278174381306}
-  bulletPrefab: {fileID: 1901397443294861216, guid: acde5a08d27fa844284661e4ee931508, type: 3}

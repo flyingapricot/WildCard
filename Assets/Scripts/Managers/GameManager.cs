@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int basicDefeated; 
     [HideInInspector] public int eliteDefeated; 
     [HideInInspector] public int bossDefeated; 
+    int stackedLevelUps = 0; // If we try to StartLevelUp() multiple times.
 
     // Getters for parity with older scripts.
     public bool IsGameOver { get { return currentState == GameState.Paused; } }
@@ -117,9 +118,7 @@ public class GameManager : MonoBehaviour
     }
 
     void Update()
-    {        
-        // Define the behaviour for each state
-
+    {      
         switch (currentState) 
         {
             case GameState.Gameplay:
@@ -274,10 +273,14 @@ public class GameManager : MonoBehaviour
     public void StartLevelUp()
     {
         ChangeState(GameState.LevelUp);
-        levelUpScreen.SetActive(true);
-        Time.timeScale = 0f; // Pause game
-        foreach(PlayerStats p in players)
-            p.SendMessage("RemoveAndApplyUpgrades"); // Execute function in InventoryManager
+        if(levelUpScreen.activeSelf) stackedLevelUps++;
+        else
+        {
+            levelUpScreen.SetActive(true);
+            Time.timeScale = 0f; // Pause the game for now
+            // Execute function in InventoryManager
+            foreach(PlayerStats p in players) { p.SendMessage("RemoveAndApplyUpgrades"); } 
+        }
     }
 
     public void EndLevelUp()
@@ -285,6 +288,11 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f; // Resume Game
         levelUpScreen.SetActive(false);
         ChangeState(GameState.Gameplay);
+        if(stackedLevelUps > 0)
+        {
+            stackedLevelUps--;
+            StartLevelUp();
+        }
     }
     #endregion
 
