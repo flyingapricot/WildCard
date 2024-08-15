@@ -3,7 +3,7 @@ using System.Linq;
 
 /// <summary>
 /// Component that you attach to all projectile prefabs. 
-/// ALl Spawned projectiles will fly in the direction they are facing and deal damage when they hit an object.
+/// All Spawned projectiles will fly in the direction they are facing and deal damage when they hit an object.
 /// </summary>
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -23,11 +23,12 @@ public class Projectile : WeaponEffect // Inheritance
         rb = GetComponent<Rigidbody2D>();
         Weapon.Stats stats = weapon.GetStats();
 
-        // Set up initial velocity if dynamic
+        // Set up initial velocity based on the facing direction of the projectile
         if (rb.bodyType == RigidbodyType2D.Dynamic)
         {
-            rb.angularVelocity = arcSpeed;
+            // Calculate the velocity once
             rb.velocity = stats.speed * weapon.Player.Stats.projSpeed * transform.right;
+            rb.angularVelocity = arcSpeed;  // If you're using angular velocity for rotation
         }
 
         // Prevent the area from being 0, as it hides the projectile
@@ -86,8 +87,10 @@ public class Projectile : WeaponEffect // Inheritance
         // Only drive movement ourselves if this is a kinematic
         if (rb.bodyType == RigidbodyType2D.Kinematic)
         {
+            // Use transform.right directly, as this is based on its independent facing direction
             transform.position += stats.speed * Time.fixedDeltaTime * weapon.Player.Stats.projSpeed * transform.right;
             rb.MovePosition(transform.position);
+            
             // Move the projectile around an arc
             transform.Rotate(0, 0, arcSpeed * Time.fixedDeltaTime);
         }

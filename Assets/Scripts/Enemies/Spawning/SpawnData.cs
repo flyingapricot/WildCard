@@ -6,10 +6,10 @@ public abstract class SpawnData : ScriptableObject
     public GameObject[] possibleSpawnPrefabs = new GameObject[1];
 
     [Tooltip("Time between each spawn (in seconds). Will take a random number between X and Y.")]
-    public Vector2 spawnInterval = new Vector2(2, 3);
+    public Vector2 spawnInterval = new(2, 3);
 
     [Tooltip("How many enemies are spawned per interval?")]
-    public Vector2Int spawnsPerTick = new Vector2Int(1, 1);
+    public Vector2Int spawnsPerTick = new(1, 1);
 
     [Tooltip("How long (in seconds) this will spawn enemies for.")]
     [Min(0.1f)] public float duration = 60;

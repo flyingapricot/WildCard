@@ -67,7 +67,7 @@ public class SwordWeapon : ProjectileWeapon
         if (attackCount > 0)
         {
             currentAttackCount = attackCount;
-            currentAttackInterval = data.baseStats.projectileInterval;
+            currentAttackInterval = currentStats.projectileInterval;
         }
 
         return true;

@@ -19,9 +19,11 @@ public class PlayerStats : MonoBehaviour
     public CharacterData.Stats Stats
     {
         get { return actualStats;  }
-        set { 
-            actualStats = value;
-        }
+        set { actualStats = value; }
+    }
+    public CharacterData.Stats Actual
+    {
+        get { return actualStats; }
     }
 
     float health;
@@ -51,16 +53,19 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] EXPBar expBar;
 
     [Header("Visual Feedback")]
-    public GameObject healAnimation; // Healing animation
-    public GameObject healEffect; // Healing Effect
-    public GameObject hitAnimation; // Getting Hit animation
-    public GameObject hitEffect; // Getting Hit Effect
+    public GameObject healAnimation;
+    public GameObject healEffect; 
+    public GameObject hitAnimation; 
+    public GameObject hitEffect; 
+    public GameObject reviveAnimation; 
+    public GameObject reviveEffect; 
     //public ParticleSystem blockedEffect; // If armor completely blocks damage.
 
     [Header("Audio Feedback")]
     [SerializeField] private AudioClip hitAudio; // Sound effect when damaged
     [SerializeField] private AudioClip healAudio; // Sound effect when healed
     [SerializeField] private AudioClip levelAudio; // Sound effect when leveling up
+    [SerializeField] private AudioClip reviveAudio; // Sound effect when player revived
     private AudioSource audioSource; // The audio source that will play all the SFX
     #endregion
 
@@ -147,13 +152,6 @@ public class PlayerStats : MonoBehaviour
         collector.SetRadius(actualStats.magnet);
     }
 
-    public void GainExperience(int amount)
-    {
-        experience += amount;
-        LevelUp(); // Call LevelUp first to handle leveling logic
-        expBar.SetExp(experience, experienceCap, level); // Then update the EXP bar with the final values
-    }
-    
     public int SetExperienceCap(int currentLevel) // Method to calculate the experience required for the next level
     {
         float nextLevelExp = Mathf.Pow(4 * (currentLevel + 1), 2f);
@@ -162,9 +160,17 @@ public class PlayerStats : MonoBehaviour
         return Mathf.RoundToInt(nextLevelExp) - Mathf.RoundToInt(currentLevelExp);
     }
 
+    public void IncreaseExperience(int amount)
+    {
+        experience += amount;
+
+        LevelUp(); // Call LevelUp first to handle leveling logic
+        expBar.SetExp(experience, experienceCap, level); // Update the EXP bar with the final values
+    }
+
     void LevelUp()
     {
-        while (experience >= experienceCap) // Using a loop in case the player gains multiple levels at once
+        if (experience >= experienceCap)
         {
             // Play level up sound
             audioSource.clip = levelAudio;
@@ -173,8 +179,13 @@ public class PlayerStats : MonoBehaviour
             // Level up the player and reduce their experience by the experience cap
             level++;
             experience -= experienceCap;
+            // Find the experience cap increase for the current level range
             experienceCap = SetExperienceCap(level);
+
             GameManager.instance.StartLevelUp();
+
+            // If the experience still exceeds the experience cap, level up again.
+            if(experience >= experienceCap) LevelUp();
         }
     }
 
@@ -192,7 +203,18 @@ public class PlayerStats : MonoBehaviour
             // Check if the player's health has dropped to or below 0
             if (CurrentHealth <= 0)
             {
-                Kill();
+                // If have revives, revive player with 30% health
+                if (Stats.revive > 0)
+                {
+                    PlayAudio(reviveAudio);
+                    PlayEffect(reviveAnimation, reviveEffect);
+                    CurrentHealth = Stats.maxHealth / 3;
+                    actualStats.revive--;
+                }
+                else
+                {
+                    Kill();
+                }
             }
             
             invincibilityTimer = invincibilityDuration;
@@ -204,9 +226,7 @@ public class PlayerStats : MonoBehaviour
     {
         if (!GameManager.instance.IsGameOver)
         {
-            // GameManager.instance.AssignCharacterUI(characterData);
-            GameManager.instance.AssignLevelReached(level);
-            GameManager.instance.AssignInventory(inventory.weaponSlots, inventory.passiveSlots);
+            GameManager.instance.AssignScore(level);
             GameManager.instance.GameOver();
         }
     }

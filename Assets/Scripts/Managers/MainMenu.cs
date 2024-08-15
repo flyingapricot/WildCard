@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using TMPro;
 
 public class MainMenu : MonoBehaviour
@@ -13,15 +9,21 @@ public class MainMenu : MonoBehaviour
     public GameObject settingsScreen;
     public GameObject creditsScreen;
     public GameObject shopScreen;
+    public TMP_Text killCount;
+    public TMP_Text scoreCount;
 
     void Start()
     {
-        SoulsManager.instance.LoadSouls();
         MenuSelect();
     }
 
     public void MenuSelect()
     {
+        // Update highscore and total kills
+        killCount.text = PlayerPrefs.GetInt("totalKills", 0).ToString();
+        scoreCount.text = PlayerPrefs.GetInt("highscore", 0).ToString();
+
+        // Activate title screen only
         titleScreen.SetActive(true);
         characterScreen.SetActive(false);
         tutorialScreen.SetActive(false);

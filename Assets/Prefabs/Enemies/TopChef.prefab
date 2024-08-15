@@ -155,9 +155,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57382f6bc75c9bf499be22ee71c6df98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 50
-  currentDamage: 4
-  currentSpeed: 8
+  enemyType: 0
+  baseStats:
+    maxHealth: 180
+    damage: 7
+    moveSpeed: 3
+    knockbackMultiplier: 0
+    resistances:
+      freeze: 0
+      kill: 0
+      debuff: 0
+    curseBoosts: 0
+    levelBoosts: 0
+  actualStats:
+    maxHealth: 0
+    damage: 0
+    moveSpeed: 0
+    knockbackMultiplier: 0
+    resistances:
+      freeze: 0
+      kill: 0
+      debuff: 0
+    curseBoosts: 0
+    levelBoosts: 0
   damageColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &3397973300042371140
 MonoBehaviour:
@@ -171,6 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec8482b8bdf547b4caf380965f33743f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockbackVariance: 2
   outOfFrameAction: 2
 --- !u!114 &8415253034408921534
 MonoBehaviour:

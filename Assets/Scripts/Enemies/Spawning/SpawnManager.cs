@@ -2,19 +2,17 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    
+    public static SpawnManager instance;
+    public WaveData[] data;
     int currentWaveIndex; //The index of the current wave [Remember, a list starts from 0]
     int currentWaveSpawnCount = 0; // Tracks how many enemies current wave has spawned.
-
-    public WaveData[] data;
     Camera referenceCamera;
 
     [Tooltip("If there are more than this number of enemies, stop spawning any more. For performance.")]
     public int maximumEnemyCount = 300;
     float spawnTimer; // Timer used to determine when to spawn the next group of enemy.
     float currentWaveDuration = 0f;
-
-    public static SpawnManager instance;
+    public bool boostedByCurse = true;
 
     void Start()
     {
@@ -22,7 +20,7 @@ public class SpawnManager : MonoBehaviour
         instance = this;
 
         // Find the main camera in the gameplay scene
-        referenceCamera = Camera.main;
+        referenceCamera = FindObjectOfType<Camera>();
         if (referenceCamera == null)
         {
             Debug.LogError("Main camera not found. Ensure there is a camera tagged as 'MainCamera' in the scene.");
@@ -55,7 +53,7 @@ public class SpawnManager : MonoBehaviour
             // Do not spawn enemies if we do not meet the conditions to do so.
             if (!CanSpawn())
             {
-                spawnTimer += data[currentWaveIndex].GetSpawnInterval();
+                ActivateCooldown();
                 return;
             }
 
@@ -69,13 +67,19 @@ public class SpawnManager : MonoBehaviour
                 if (!CanSpawn()) continue;
 
                 // Spawn the enemy.
-                Instantiate(prefab, GeneratePosition(), Quaternion.identity);
+                GameObject enemy = Instantiate(prefab, GeneratePosition(), Quaternion.identity);
+                enemy.transform.SetParent(transform); // Set ---ENEMIES--- as parent
                 currentWaveSpawnCount++;
             }
-            
-            // Regenerates the spawn timer.
-            spawnTimer += data[currentWaveIndex].GetSpawnInterval();
+            ActivateCooldown();
         }
+    }
+    
+    // Resets the spawn interval.
+    public void ActivateCooldown()
+    {
+        float curseBoost = boostedByCurse ? GameManager.GetCumulativeCurse() : 1;
+        spawnTimer += data[currentWaveIndex].GetSpawnInterval() / curseBoost;
     }
 
     // Do we meet the conditions to be able to continue spawning?
@@ -137,14 +141,16 @@ public class SpawnManager : MonoBehaviour
             Debug.LogWarning("The reference camera is not orthographic! This will cause enemy spawns to sometimes appear within camera boundaries!");
 
         // Generate a position outside of camera boundaries using 2 random numbers.
-        float x = Random.Range(0f, 1f), y = Random.Range(0f, 1f);
+        // Slightly extend the range to account for edge cases.
+        float x = Random.Range(0.1f, 1.1f), y = Random.Range(0.1f, 1.1f);
 
         // Then, randomly choose whether we want to round the x or the y value.
-        switch(Random.Range(0, 2)) {
+        switch(Random.Range(0, 2)) 
+        {
             case 0: default:
-                return instance.referenceCamera.ViewportToWorldPoint( new Vector3(Mathf.Round(x), y) );
+                return instance.referenceCamera.ViewportToWorldPoint( new Vector3(Mathf.Round(x), y, instance.referenceCamera.nearClipPlane) );
             case 1:
-                return instance.referenceCamera.ViewportToWorldPoint( new Vector3(x, Mathf.Round(y)) );
+                return instance.referenceCamera.ViewportToWorldPoint( new Vector3(x, Mathf.Round(y), instance.referenceCamera.nearClipPlane) );
         }
     }
 

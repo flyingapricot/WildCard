@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b1bd3c84287f864e91c60e1b93c73a4, type: 3}
+  m_Name: Annoying Dog
+  m_EditorClassIdentifier: 
+  icon: {fileID: -1196547508, guid: 30f66e5a6e231844481adcd98a680c2e, type: 3}
+  maxLevel: 3
+  evolutionData: []
+  baseStats:
+    name: '>> Level 1'
+    description: A little white dog. It's fast asleep... Enemies are stronger.
+    boosts:
+      maxHealth: 0
+      recovery: 0
+      armour: 0
+      moveSpeed: 0
+      might: 0
+      area: 0
+      projSpeed: 0
+      duration: 0
+      amount: 0
+      cooldown: 0
+      luck: 0
+      growth: 0
+      greed: 0
+      curse: 1
+      magnet: 0
+      revive: 0
+  growth:
+  - name: '>> Level 2'
+    description: Are you sure you want to do this? Enemies are even stronger.
+    boosts:
+      maxHealth: 0
+      recovery: 0
+      armour: 0
+      moveSpeed: 0
+      might: 0
+      area: 0
+      projSpeed: 0
+      duration: 0
+      amount: 0
+      cooldown: 0
+      luck: 0
+      growth: 0
+      greed: 0
+      curse: 1
+      magnet: 0
+      revive: 0
+  - name: '>> Level 3'
+    description: You feel your sins crawling on your back.
+    boosts:
+      maxHealth: 0
+      recovery: 0
+      armour: 0
+      moveSpeed: 0
+      might: 0
+      area: 0
+      projSpeed: 0
+      duration: 0
+      amount: 0
+      cooldown: 0
+      luck: 0
+      growth: 0
+      greed: 0
+      curse: 1
+      magnet: 0
+      revive: 0

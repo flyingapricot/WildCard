@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4801505653317531056}
   - component: {fileID: 5672961783117540736}
-  - component: {fileID: 5841460527192078015}
+  - component: {fileID: 5974432584784753130}
   - component: {fileID: 8415253034408921534}
   - component: {fileID: 7873878884039451452}
   - component: {fileID: 6194128249770924480}
@@ -49,11 +49,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57382f6bc75c9bf499be22ee71c6df98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 20
-  currentDamage: 2
-  currentSpeed: 5
+  enemyType: 0
+  baseStats:
+    maxHealth: 220
+    damage: 8
+    moveSpeed: 0.8
+    knockbackMultiplier: 1
+    resistances:
+      freeze: 0
+      kill: 0
+      debuff: 0
+    curseBoosts: 0
+    levelBoosts: 0
   damageColor: {r: 1, g: 0, b: 0, a: 1}
---- !u!114 &5841460527192078015
+--- !u!114 &5974432584784753130
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -62,10 +71,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3996832791091268854}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec8482b8bdf547b4caf380965f33743f, type: 3}
+  m_Script: {fileID: 11500000, guid: fa1caead01658654f9d6e0aac8fda269, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outOfFrameAction: 2
+  knockbackVariance: 2
+  outOfFrameAction: 1
 --- !u!114 &8415253034408921534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,7 +90,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   dropsList:
-  - itemPrefab: {fileID: 5969430364891984471, guid: 472b40d07c026bf4fa03bc0d53265fd5, type: 3}
+  - itemPrefab: {fileID: 5969430364891984471, guid: 85ae39b0ebe8f9b44a35b9a58a61910f, type: 3}
     dropRate: 100
   - itemPrefab: {fileID: 8427234246184733187, guid: 49291040109599b409e1b3d9db61f02b, type: 3}
     dropRate: 1

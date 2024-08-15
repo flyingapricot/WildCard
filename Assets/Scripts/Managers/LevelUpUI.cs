@@ -45,8 +45,7 @@ public class LevelUpUI : MonoBehaviour
     // This is the main function that we will be calling on this script.
     // You need to specify which <inventory> to add the item to, and a list of all
     // <possibleUpgrades> to show. It will select <pick> number of upgrades and show
-    // them. Finally, if you specify a <tooltip>, then some text will appear at the bottom of
-    // the window.
+    // them. Finally, if you specify a <tooltip>, then some text will appear at the bottom of the window.
     public void SetUpgrades(PlayerInventory inventory, List<ItemData> possibleUpgrades, int pick = 3, string tooltip = "") 
     {
         pick = Mathf.Min(maxOptions, pick);
@@ -158,7 +157,6 @@ public class LevelUpUI : MonoBehaviour
     // space all the elements evenly.
     void RecalculateLayout()
     {
-        
         // Calculates the total available height for all options, then divides it by the number of options.
         optionHeight = rectTransform.rect.height - verticalLayout.padding.top - verticalLayout.padding.bottom - (maxOptions - 1) * verticalLayout.spacing;
         if (activeOptions == maxOptions && tooltipTemplate.gameObject.activeSelf)

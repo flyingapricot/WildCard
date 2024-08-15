@@ -22,7 +22,7 @@ MonoBehaviour:
       maxHealth: 0
       recovery: 0
       armour: 0
-      moveSpeed: 1
+      moveSpeed: 0.2
       might: 0
       area: 0
       projSpeed: 0
@@ -43,7 +43,7 @@ MonoBehaviour:
       maxHealth: 0
       recovery: 0
       armour: 0
-      moveSpeed: 1
+      moveSpeed: 0.3
       might: 0
       area: 0
       projSpeed: 0
@@ -63,7 +63,7 @@ MonoBehaviour:
       maxHealth: 0
       recovery: 0
       armour: 0
-      moveSpeed: 1
+      moveSpeed: 0.5
       might: 0
       area: 0
       projSpeed: 0

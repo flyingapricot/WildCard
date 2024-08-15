@@ -170,7 +170,11 @@ public class PlayFabManager : MonoBehaviour
                 }
             }
         }; 
-        PlayFabClientAPI.UpdatePlayerStatistics(request, OnLeaderboardUpdate, OnError);
+        
+        if (PlayFabClientAPI.IsClientLoggedIn())
+        {
+            PlayFabClientAPI.UpdatePlayerStatistics(request, OnLeaderboardUpdate, OnError);
+        }
     }
 
     static void OnLeaderboardUpdate(UpdatePlayerStatisticsResult result)
