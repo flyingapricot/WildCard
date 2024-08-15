@@ -3,11 +3,9 @@ name: Test project
 on: [push, pull_request]
 
 jobs:
+
   foo:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Delete huge unnecessary tools folder
-        run: rm -rf /opt/hostedtoolcache
+
         
   testAllModes:
     name: Test in ${{ matrix.testMode }}
@@ -20,6 +18,8 @@ jobs:
           - editmode
           - standalone
     steps:
+      - name: Free disk space
+        run: .github/workflows/scripts/free_disk_space.sh
       - uses: actions/checkout@v4
         with:
           lfs: true
