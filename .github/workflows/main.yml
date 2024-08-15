@@ -3,6 +3,13 @@ name: Test project
 on: [push, pull_request]
 
 jobs:        
+  foo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete huge unnecessary tools folder
+        run: rm -rf /opt/hostedtoolcache
+
+      - uses: actions/checkout@v3
   testAllModes:
     name: Test in ${{ matrix.testMode }}
     runs-on: ubuntu-latest
