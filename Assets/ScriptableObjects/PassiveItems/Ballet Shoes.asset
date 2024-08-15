@@ -17,7 +17,7 @@ MonoBehaviour:
   evolutionData: []
   baseStats:
     name: '>> Level 1'
-    description: A pair of old shoes lost in some seagrass. Increases your move speed.
+    description: Increases your move speed ~ A pair of old shoes lost in some seagrass.
     boosts:
       maxHealth: 0
       recovery: 0
@@ -37,8 +37,7 @@ MonoBehaviour:
       revive: 0
   growth:
   - name: '>> Level 2'
-    description: Damn, Daniel! back at it again with the white vans! Move speed is
-      increased further.
+    description: Move speed is increased further ~ Gotta go fast.
     boosts:
       maxHealth: 0
       recovery: 0
@@ -57,8 +56,7 @@ MonoBehaviour:
       magnet: 0
       revive: 0
   - name: '>> Level MAX'
-    description: These used shoes make you feel incredibly agile. Speed increased
-      tremendously.
+    description: Speed increased tremendously ~ Your name is now Barry Allen.
     boosts:
       maxHealth: 0
       recovery: 0

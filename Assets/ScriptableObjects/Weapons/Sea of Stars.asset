@@ -18,7 +18,7 @@ MonoBehaviour:
   behaviour: ProjectileWeapon
   baseStats:
     name: '>> Level 1'
-    description: Fires rapid stars at random targets.
+    description: Master Ninjutsu and throw shuriken stars rapidly at random targets.
     projectilePrefab: {fileID: 241943984323791842, guid: 56cfa4b91ffd4b64a9ffb5b914e5793e, type: 3}
     auraPrefab: {fileID: 0}
     hitEffect: {fileID: 0}

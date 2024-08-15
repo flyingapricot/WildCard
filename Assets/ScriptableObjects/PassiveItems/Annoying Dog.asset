@@ -17,7 +17,7 @@ MonoBehaviour:
   evolutionData: []
   baseStats:
     name: '>> Level 1'
-    description: A little white dog. It's fast asleep... Enemies are stronger.
+    description: 'Enemies are stronger ~ A little white dog. It''s fast asleep... '
     boosts:
       maxHealth: 0
       recovery: 0
@@ -37,7 +37,7 @@ MonoBehaviour:
       revive: 0
   growth:
   - name: '>> Level 2'
-    description: Are you sure you want to do this? Enemies are even stronger.
+    description: Enemies are even stronger ~ Are you sure you want to do this?
     boosts:
       maxHealth: 0
       recovery: 0
@@ -56,7 +56,8 @@ MonoBehaviour:
       magnet: 0
       revive: 0
   - name: '>> Level 3'
-    description: You feel your sins crawling on your back.
+    description: Enemies are buffed to the max. You feel your sins crawling on your
+      back.
     boosts:
       maxHealth: 0
       recovery: 0

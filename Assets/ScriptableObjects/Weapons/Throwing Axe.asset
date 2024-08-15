@@ -18,7 +18,7 @@ MonoBehaviour:
   behaviour: AxeWeapon
   baseStats:
     name: '>> Level 1'
-    description: Throws axes in an arc.
+    description: Throw an axe that travels in an arc. Careful not to hit yourself!
     projectilePrefab: {fileID: -961063878184222650, guid: f7df05be5ba42c84ab2d867ccb51603c, type: 3}
     auraPrefab: {fileID: 0}
     hitEffect: {fileID: 0}

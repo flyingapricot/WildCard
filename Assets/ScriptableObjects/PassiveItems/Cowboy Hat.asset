@@ -17,7 +17,8 @@ MonoBehaviour:
   evolutionData: []
   baseStats:
     name: '>> Level 1'
-    description: Its High Noon. Reduces cooldown between attacks by 20%.
+    description: "Reduces cooldown between attacks by 20% ~ \tThis battle-worn hat
+      makes you want to grow a beard."
     boosts:
       maxHealth: 0
       recovery: 0
@@ -37,7 +38,8 @@ MonoBehaviour:
       revive: 0
   growth:
   - name: '>> Level 2'
-    description: Reduce cooldown between attack by 50%.
+    description: Reduce cooldown between attack by 50% ~ Gunslingers are impressed
+      by your fast draw.
     boosts:
       maxHealth: 0
       recovery: 0
@@ -56,7 +58,7 @@ MonoBehaviour:
       magnet: 0
       revive: 0
   - name: '>> Level 3'
-    description: Halves the cooldown between attacks.
+    description: Halves the cooldown between attacks ~ It's High Noon.
     boosts:
       maxHealth: 0
       recovery: 0

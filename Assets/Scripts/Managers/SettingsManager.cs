@@ -99,6 +99,7 @@ public class SettingsManager : MonoBehaviour
 
     void HighlightSelectedOption()
     {
+        SoundManager.instance.PlayHoverSound();
         // Clear existing highlights
         foreach (var option in options)
         {

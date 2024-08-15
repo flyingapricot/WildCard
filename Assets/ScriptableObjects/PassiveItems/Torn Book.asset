@@ -17,7 +17,7 @@ MonoBehaviour:
   evolutionData: []
   baseStats:
     name: '>> Level 1'
-    description: Contains illegible scrawls. Increases your collection radius.
+    description: 'Increases your collection radius ~ Contains illegible scrawls. '
     boosts:
       maxHealth: 0
       recovery: 0
@@ -37,8 +37,8 @@ MonoBehaviour:
       revive: 0
   growth:
   - name: '>> Level 2'
-    description: Mmm... The smell of brand new pages... Expands your collection radius
-      even more.
+    description: Expands your collection radius even more ~ There must be secrets
+      within this book...
     boosts:
       maxHealth: 0
       recovery: 0
@@ -57,8 +57,8 @@ MonoBehaviour:
       magnet: 1
       revive: 0
   - name: '>> Level MAX'
-    description: Whose diary is this? They have such a magnetic personality your
-      collection radius got even bigger!
+    description: Your collection radius covers half the screen ~ It's... the 3rd
+      Journal!
     boosts:
       maxHealth: 0
       recovery: 0

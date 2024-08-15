@@ -18,7 +18,7 @@ MonoBehaviour:
   behaviour: LightningWeapon
   baseStats:
     name: '>> Level 1'
-    description: Strikes down on random enemies.
+    description: Harness the power of Zeus and strike down onto 2 random enemies.
     projectilePrefab: {fileID: 0}
     auraPrefab: {fileID: 0}
     hitEffect: {fileID: 3530576675584005262, guid: aea72895cc4a34d4c9bc68b4e7b21347, type: 3}

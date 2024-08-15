@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,12 +19,14 @@ public class GameManager : MonoBehaviour
 
     public GameState currentState; // Stores the current state of the game
     public GameState previousState; // Stores the state of the game before it was paused
+    public TMP_Text rerollText; // Text showing number of rerolls left
     [HideInInspector] public int highscore; // Score determined from enemies defeated, time survived and level reached
     [HideInInspector] public int totalDefeated; // Total number of enemies player has defeated in current gameplay
     [HideInInspector] public int basicDefeated; 
     [HideInInspector] public int eliteDefeated; 
     [HideInInspector] public int bossDefeated; 
     int stackedLevelUps = 0; // If we try to StartLevelUp() multiple times.
+    int rerolls = 3; // Number of times player can reroll in a playthrough.
 
     // Getters for parity with older scripts.
     public bool IsGameOver { get { return currentState == GameState.Paused; } }
@@ -291,6 +292,17 @@ public class GameManager : MonoBehaviour
         if(stackedLevelUps > 0)
         {
             stackedLevelUps--;
+            StartLevelUp();
+        }
+    }
+
+    public void Reroll()
+    {
+        if (rerolls > 0)
+        {
+            rerolls--;
+            rerollText.text = rerolls.ToString() + "/3";
+            EndLevelUp();
             StartLevelUp();
         }
     }

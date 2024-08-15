@@ -17,8 +17,7 @@ MonoBehaviour:
   evolutionData: []
   baseStats:
     name: '>> Level 1'
-    description: You are filled with determination. You can revive with 30% health
-      once.
+    description: You can revive with 30% health once ~ You are filled with determination.
     boosts:
       maxHealth: 0
       recovery: 0
@@ -38,7 +37,7 @@ MonoBehaviour:
       revive: 1
   growth:
   - name: '>> Level 2'
-    description: You are bursting with determination. You can revive one more time.
+    description: You can revive one more time ~ You are bursting with determination.
     boosts:
       maxHealth: 0
       recovery: 0
@@ -57,7 +56,7 @@ MonoBehaviour:
       magnet: 0
       revive: 1
   - name: '>> Level 3'
-    description: You ARE determination. You can revive one more time.
+    description: You can revive 3 total times ~ You ARE determination.
     boosts:
       maxHealth: 0
       recovery: 0

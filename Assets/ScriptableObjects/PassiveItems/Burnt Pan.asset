@@ -17,7 +17,7 @@ MonoBehaviour:
   evolutionData: []
   baseStats:
     name: '>> Level 1'
-    description: Hungry? Just cook during battle! Increases your max health slightly.
+    description: 'Increases your max health slightly ~ Hungry? Just cook during battle! '
     boosts:
       maxHealth: 10
       recovery: 0
@@ -37,8 +37,7 @@ MonoBehaviour:
       revive: 0
   growth:
   - name: '>> Level 2'
-    description: Your pan is finally non-stick! Look at the eggs glide across the
-      pan... Your maximum health is raised further.
+    description: 'Your maximum health is raised further ~ Your pan is finally non-stick! '
     boosts:
       maxHealth: 10
       recovery: 0
@@ -57,8 +56,8 @@ MonoBehaviour:
       magnet: 0
       revive: 0
   - name: '>> Level MAX'
-    description: Haiyaaaaa... why you burn your fried rice... Maximum health boosted
-      greatly.
+    description: Maximum health boosted greatly ~ What do you call someone who likes
+      pans? A Pansexual.
     boosts:
       maxHealth: 20
       recovery: 0

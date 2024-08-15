@@ -17,8 +17,8 @@ MonoBehaviour:
   evolutionData: []
   baseStats:
     name: '>> Level 1'
-    description: Remember, switching to your pistol is always faster than reloading.
-      All projectile weapons get 1 more projectile.
+    description: All projectile weapons get 1 more projectile ~ An antique revolver.
+      It has no ammo.
     boosts:
       maxHealth: 0
       recovery: 0
@@ -38,7 +38,8 @@ MonoBehaviour:
       revive: 0
   growth:
   - name: '>> Level 2'
-    description: Projectile weapons get 1 more projectile.
+    description: Projectile weapons get 1 more projectile ~ Remember, switching to
+      your pistol is always faster than reloading.
     boosts:
       maxHealth: 0
       recovery: 0
@@ -57,7 +58,7 @@ MonoBehaviour:
       magnet: 0
       revive: 0
   - name: '>> Level 3'
-    description: Projectile weapons get 1 more projectile.
+    description: Projectile weapons get 1 more projectile ~ Random Bullshit Go!
     boosts:
       maxHealth: 0
       recovery: 0

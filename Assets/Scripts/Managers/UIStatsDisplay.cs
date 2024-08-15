@@ -76,7 +76,7 @@ public class UIStatsDisplay : MonoBehaviour
                 }
                 else
                 {
-                    StringBuilder value = new StringBuilder();
+                    StringBuilder value = new();
                     if (percentage > 0)
                         value.Append('+');
                     value.Append(percentage).Append('%').Append('\n');
@@ -124,7 +124,7 @@ public class UIStatsDisplay : MonoBehaviour
         // Return an empty string if StringBuilder is empty.
         if (input.Length <= 0) return string.Empty;
 
-        StringBuilder result = new StringBuilder();
+        StringBuilder result = new();
         char last = '\0';
         for(int i = 0; i < input.Length; i++)
         {

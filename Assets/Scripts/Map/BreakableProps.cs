@@ -7,11 +7,14 @@ public class BreakableProps : MonoBehaviour, IDamageable
     public float durability; // Number of hits it can take
     public Sprite brokenSprite; // Reference to the broken sprite
     public float fadeDuration = 1f; // Duration of the fade-out
+    public AudioClip breakSound; // Breaking Sound Effect
 
     private SpriteRenderer spriteRenderer;
+    private AudioSource audioSource;
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         if (!TryGetComponent<SpriteRenderer>(out spriteRenderer))
         {
             Debug.LogError("SpriteRenderer not found on the GameObject");
@@ -22,6 +25,7 @@ public class BreakableProps : MonoBehaviour, IDamageable
     {
         if (this != null)
         {
+            audioSource.PlayOneShot(breakSound);
             durability -= 1;
             if (durability <= 0)
             {

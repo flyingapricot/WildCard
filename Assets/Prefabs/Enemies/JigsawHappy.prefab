@@ -61,6 +61,17 @@ MonoBehaviour:
       debuff: 0
     curseBoosts: 0
     levelBoosts: 0
+  actualStats:
+    maxHealth: 0
+    damage: 0
+    moveSpeed: 0
+    knockbackMultiplier: 0
+    resistances:
+      freeze: 0
+      kill: 0
+      debuff: 0
+    curseBoosts: 0
+    levelBoosts: 0
   damageColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &4523702783945740806
 MonoBehaviour:
@@ -89,15 +100,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
+  singular: 0
   dropsList:
   - itemPrefab: {fileID: 5969430364891984471, guid: 472b40d07c026bf4fa03bc0d53265fd5, type: 3}
     dropRate: 100
   - itemPrefab: {fileID: 8427234246184733187, guid: 49291040109599b409e1b3d9db61f02b, type: 3}
-    dropRate: 1
+    dropRate: 0.1
   - itemPrefab: {fileID: 8427234246184733187, guid: adc55efe544255040a1103e2be80c09a, type: 3}
-    dropRate: 5
+    dropRate: 0.5
   - itemPrefab: {fileID: 8427234246184733187, guid: 7df25bef23d7e724d8181fe8bd41bda9, type: 3}
-    dropRate: 20
+    dropRate: 1
 --- !u!50 &7873878884039451452
 Rigidbody2D:
   serializedVersion: 4

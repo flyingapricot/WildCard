@@ -17,8 +17,7 @@ MonoBehaviour:
   evolutionData: []
   baseStats:
     name: '>> Level 1'
-    description: A psychologically damaged spinach egg pie. Boosts your recovery
-      speed.
+    description: Boosts your recovery speed ~ Butterscotch-cinnamon pie, one slice.
     boosts:
       maxHealth: 0
       recovery: 1
@@ -38,7 +37,7 @@ MonoBehaviour:
       revive: 0
   growth:
   - name: '>> Level 2'
-    description: An acquired taste. Your recovery is improved further.
+    description: Your recovery is improved further ~ It smells like home.
     boosts:
       maxHealth: 0
       recovery: 2
@@ -57,8 +56,8 @@ MonoBehaviour:
       magnet: 0
       revive: 0
   - name: '>> Level MAX'
-    description: Butterscotch-cinnamon pie, one slice. Smells like home. Your recovery
-      is akin to Wolverine.
+    description: You recover very quickly ~ Its almost like watching Wolverine and
+      Deadpool.
     boosts:
       maxHealth: 0
       recovery: 2

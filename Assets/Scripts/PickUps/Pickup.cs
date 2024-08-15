@@ -76,13 +76,13 @@ public class Pickup : MonoBehaviour
         if (!target) return;
         target.PlayAudio(soundEffect); // Let player cue the sound
 
-        if (instantLevel) // Instantly levels up
+        if (instantLevel) // Instantly levels up without increasing level
         {
-            target.IncreaseExperience(target.experienceCap);
+            GameManager.instance.StartLevelUp();
         }
         else if (minExperience != 0 && maxExperience != 0) 
         {
-            target.IncreaseExperience(Random.Range(minExperience, maxExperience + 1));
+            target.IncreaseExperience(Random.Range(minExperience, maxExperience + 1) * target.Actual.growth);
         }
 
         // No need instant healing since its already capped at max health
@@ -93,7 +93,7 @@ public class Pickup : MonoBehaviour
 
         if (souls != 0) 
         {
-            currency.AddSouls(souls);
+            currency.AddSouls((int)(souls * target.Actual.greed));
         }
     }
 }

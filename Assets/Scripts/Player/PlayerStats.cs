@@ -1,9 +1,5 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -78,9 +74,9 @@ public class PlayerStats : MonoBehaviour
 
     #region Experience / Levels
     [Header("Experience / Level")]
-    public int experience = 0; // Player current experience points
     public int level = 1; // Player current level
-    public int experienceCap; // Experience needed to level up
+    public float experience = 0; // Player current experience points
+    public float experienceCap; // Experience needed to level up
     #endregion
 
     void Awake()
@@ -152,7 +148,7 @@ public class PlayerStats : MonoBehaviour
         collector.SetRadius(actualStats.magnet);
     }
 
-    public int SetExperienceCap(int currentLevel) // Method to calculate the experience required for the next level
+    public float SetExperienceCap(int currentLevel) // Method to calculate the experience required for the next level
     {
         float nextLevelExp = Mathf.Pow(4 * (currentLevel + 1), 2f);
         float currentLevelExp = Mathf.Pow(4 * currentLevel, 2f);
@@ -160,7 +156,7 @@ public class PlayerStats : MonoBehaviour
         return Mathf.RoundToInt(nextLevelExp) - Mathf.RoundToInt(currentLevelExp);
     }
 
-    public void IncreaseExperience(int amount)
+    public void IncreaseExperience(float amount)
     {
         experience += amount;
 

@@ -17,7 +17,8 @@ MonoBehaviour:
   evolutionData: []
   baseStats:
     name: '>> Level 1'
-    description: Some protection is better than none. Gives you some Armour.
+    description: Gives you some Armour ~ A worn pink leather glove. For five-fingered
+      folk.
     boosts:
       maxHealth: 0
       recovery: 0
@@ -37,7 +38,7 @@ MonoBehaviour:
       revive: 0
   growth:
   - name: '>> Level 2'
-    description: The smell of new polished leather fills the air. Provides more Armour.
+    description: Provides more Armour ~ You found the other Glove.
     boosts:
       maxHealth: 0
       recovery: 0
@@ -56,8 +57,7 @@ MonoBehaviour:
       magnet: 0
       revive: 0
   - name: '>> Level MAX'
-    description: A worn pink leather glove. For five-fingered folk. You now have
-      all the Armour in the world.
+    description: You are Armoured Up ~ Nothing will get past you!
     boosts:
       maxHealth: 0
       recovery: 0

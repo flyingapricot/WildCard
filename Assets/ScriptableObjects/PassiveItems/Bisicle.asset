@@ -17,7 +17,8 @@ MonoBehaviour:
   evolutionData: []
   baseStats:
     name: '>> Level 1'
-    description: 2 Icicles for the price of 1! You get 20% more souls.
+    description: You get 20% more souls ~ It's a two-pronged popsicle, so you can
+      eat it twice.
     boosts:
       maxHealth: 0
       recovery: 0
@@ -37,7 +38,8 @@ MonoBehaviour:
       revive: 0
   growth:
   - name: '>> Level 2'
-    description: You get 50% more souls.
+    description: You get 50% more souls ~ Did you know that you can unlock a character
+      in the shop?
     boosts:
       maxHealth: 0
       recovery: 0
@@ -56,7 +58,8 @@ MonoBehaviour:
       magnet: 0
       revive: 0
   - name: '>> Level 3'
-    description: The amount of souls you get is doubled.
+    description: The amount of souls you get is doubled ~ You must be desperate to
+      unlock Sans.
     boosts:
       maxHealth: 0
       recovery: 0

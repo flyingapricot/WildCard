@@ -122,7 +122,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
+  singular: 0
   dropsList:
+  - itemPrefab: {fileID: 5969430364891984471, guid: 1c17291c20e9ff342af9c79c3f2f6ac2, type: 3}
+    dropRate: 100
+  - itemPrefab: {fileID: 5969430364891984471, guid: 1c17291c20e9ff342af9c79c3f2f6ac2, type: 3}
+    dropRate: 100
+  - itemPrefab: {fileID: 8427234246184733187, guid: 49291040109599b409e1b3d9db61f02b, type: 3}
+    dropRate: 0.1
+  - itemPrefab: {fileID: 8427234246184733187, guid: 7df25bef23d7e724d8181fe8bd41bda9, type: 3}
+    dropRate: 1
+  - itemPrefab: {fileID: 8427234246184733187, guid: adc55efe544255040a1103e2be80c09a, type: 3}
+    dropRate: 0.5
   - itemPrefab: {fileID: 5969430364891984471, guid: baad5129f723c2846878cab5199fdadd, type: 3}
     dropRate: 100
 --- !u!50 &7873878884039451452
