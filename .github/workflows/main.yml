@@ -2,11 +2,7 @@ name: Test project
 
 on: [push, pull_request]
 
-jobs:
-
-  foo:
-
-        
+jobs:        
   testAllModes:
     name: Test in ${{ matrix.testMode }}
     runs-on: ubuntu-latest
