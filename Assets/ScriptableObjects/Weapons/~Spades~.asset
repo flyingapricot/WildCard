@@ -24,12 +24,12 @@ MonoBehaviour:
     hitEffect: {fileID: 0}
     spawnVariance:
       serializedVersion: 2
-      x: 1
+      x: 1.5
       y: 0
       width: 0
       height: 0
     lifespan: 0.3
-    damage: 9
+    damage: 11
     damageVariance: 2
     area: 3
     speed: 0
@@ -187,7 +187,7 @@ MonoBehaviour:
     lifespan: 0.7
     damage: 8
     damageVariance: 0
-    area: 2
+    area: 1
     speed: 0
     cooldown: 0
     projectileInterval: 0

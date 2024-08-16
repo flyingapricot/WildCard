@@ -53,7 +53,7 @@ MonoBehaviour:
   damageSource: 1
   hasAutoAim: 0
   arcSpeed: 0
-  soundEffect: {fileID: 8300000, guid: c8bd3b991f0ee9142827a238b0167574, type: 3}
+  soundEffect: {fileID: 0}
 --- !u!212 &8616907360068959225
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -96,7 +96,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2824b516666810f46aa624c42bb0b7b9, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.78431374}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

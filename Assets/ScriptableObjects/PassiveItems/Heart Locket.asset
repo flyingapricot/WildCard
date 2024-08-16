@@ -64,7 +64,7 @@ MonoBehaviour:
       armour: 0
       moveSpeed: 0
       might: 0
-      area: 1
+      area: 0.5
       projSpeed: 0
       duration: 0
       amount: 0

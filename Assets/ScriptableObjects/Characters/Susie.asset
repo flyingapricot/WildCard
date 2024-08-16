@@ -17,7 +17,7 @@ MonoBehaviour:
   animation: {fileID: 9100000, guid: ee7b86a093c444b42ba3aa7135b902bd, type: 2}
   startingWeapon: {fileID: 11400000, guid: f500b721334a25c46a2e1236e5dc06a0, type: 2}
   stats:
-    maxHealth: 60
+    maxHealth: 80
     recovery: 0
     armour: 0
     moveSpeed: 1

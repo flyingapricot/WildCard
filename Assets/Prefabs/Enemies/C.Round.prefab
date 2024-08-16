@@ -159,7 +159,7 @@ MonoBehaviour:
   baseStats:
     maxHealth: 30
     damage: 10
-    moveSpeed: 1
+    moveSpeed: 1.5
     knockbackMultiplier: 2
     resistances:
       freeze: 0

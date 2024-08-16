@@ -198,7 +198,7 @@ public class GameManager : MonoBehaviour
     // Define the method to check for pause and resume input
     void CheckForPauseAndResume()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
         {
             if (currentState == GameState.Paused)
             {

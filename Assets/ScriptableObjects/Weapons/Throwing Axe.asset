@@ -34,7 +34,7 @@ MonoBehaviour:
     area: 2.5
     speed: 10
     cooldown: 4
-    projectileInterval: 0
+    projectileInterval: 0.5
     knockback: 0
     amount: 1
     pierce: 10

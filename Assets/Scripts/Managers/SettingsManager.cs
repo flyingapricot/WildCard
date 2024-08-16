@@ -115,8 +115,11 @@ public class SettingsManager : MonoBehaviour
         // Apply master volume
         AudioListener.volume = volumeLevels[masterVolumeIndex] / 100f;
 
-        // Apply BGM and SFX volume
-        audioMixer.SetFloat("BGMVolume", Mathf.Log10(volumeLevels[bgmVolumeIndex] / 100f) * 20);
-        audioMixer.SetFloat("SFXVolume", Mathf.Log10(volumeLevels[sfxVolumeIndex] / 100f) * 20);
+        // Apply BGM and SFX volume, handling the 0 case explicitly
+        float bgmVolume = volumeLevels[bgmVolumeIndex] == 0 ? -80f : Mathf.Log10(volumeLevels[bgmVolumeIndex] / 100f) * 20;
+        float sfxVolume = volumeLevels[sfxVolumeIndex] == 0 ? -80f : Mathf.Log10(volumeLevels[sfxVolumeIndex] / 100f) * 20;
+
+        audioMixer.SetFloat("BGMVolume", bgmVolume);
+        audioMixer.SetFloat("SFXVolume", sfxVolume);
     }
 }
