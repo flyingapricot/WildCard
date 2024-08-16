@@ -56,7 +56,7 @@ MonoBehaviour:
       magnet: 0
       revive: 0
   - name: '>> Level 3'
-    description: Doubles the amount of EXP gained ~ Solo Levelling.
+    description: Doubles the amount of EXP gained ~ Solo Leveling.
     boosts:
       maxHealth: 0
       recovery: 0

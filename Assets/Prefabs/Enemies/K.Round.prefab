@@ -157,9 +157,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType: 1
   baseStats:
-    maxHealth: 50
-    damage: 20
-    moveSpeed: 2
+    maxHealth: 1000
+    damage: 40
+    moveSpeed: 3
     knockbackMultiplier: 2
     resistances:
       freeze: 0
@@ -217,7 +217,7 @@ MonoBehaviour:
   active: 0
   singular: 0
   dropsList:
-  - itemPrefab: {fileID: 5969430364891984471, guid: d1cd84aaea9e6ba4b983f91aa7e92de1, type: 3}
+  - itemPrefab: {fileID: 5969430364891984471, guid: c5b6e8b3a1282e94181593d861dcf24b, type: 3}
     dropRate: 100
   - itemPrefab: {fileID: 8427234246184733187, guid: 49291040109599b409e1b3d9db61f02b, type: 3}
     dropRate: 0.1
@@ -225,8 +225,6 @@ MonoBehaviour:
     dropRate: 1
   - itemPrefab: {fileID: 8427234246184733187, guid: adc55efe544255040a1103e2be80c09a, type: 3}
     dropRate: 0.5
-  - itemPrefab: {fileID: 5969430364891984471, guid: baad5129f723c2846878cab5199fdadd, type: 3}
-    dropRate: 100
 --- !u!50 &7873878884039451452
 Rigidbody2D:
   serializedVersion: 4

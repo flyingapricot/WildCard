@@ -230,8 +230,6 @@ MonoBehaviour:
     dropRate: 1
   - itemPrefab: {fileID: 8427234246184733187, guid: adc55efe544255040a1103e2be80c09a, type: 3}
     dropRate: 0.5
-  - itemPrefab: {fileID: 5969430364891984471, guid: baad5129f723c2846878cab5199fdadd, type: 3}
-    dropRate: 100
 --- !u!50 &7873878884039451452
 Rigidbody2D:
   serializedVersion: 4

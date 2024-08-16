@@ -157,9 +157,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType: 0
   baseStats:
-    maxHealth: 180
-    damage: 7
-    moveSpeed: 3
+    maxHealth: 200
+    damage: 10
+    moveSpeed: 4
     knockbackMultiplier: 0
     resistances:
       freeze: 0

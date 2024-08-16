@@ -53,8 +53,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType: 2
   baseStats:
-    maxHealth: 11000
-    damage: 15
+    maxHealth: 12000
+    damage: 30
     moveSpeed: 1
     knockbackMultiplier: 0
     resistances:
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 8934046658588723643, guid: f897954168f88ef4a92fa3cea25e3239, type: 3}
   numberOfPoints: 8
-  fireRate: 2
+  fireRate: 1
   rotationSpeed: 10
 --- !u!114 &8415253034408921534
 MonoBehaviour:
@@ -134,8 +134,6 @@ MonoBehaviour:
     dropRate: 1
   - itemPrefab: {fileID: 8427234246184733187, guid: adc55efe544255040a1103e2be80c09a, type: 3}
     dropRate: 0.5
-  - itemPrefab: {fileID: 5969430364891984471, guid: baad5129f723c2846878cab5199fdadd, type: 3}
-    dropRate: 100
 --- !u!50 &7873878884039451452
 Rigidbody2D:
   serializedVersion: 4

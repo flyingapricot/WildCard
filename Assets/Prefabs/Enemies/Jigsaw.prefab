@@ -51,8 +51,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType: 0
   baseStats:
-    maxHealth: 220
-    damage: 8
+    maxHealth: 500
+    damage: 10
     moveSpeed: 0.8
     knockbackMultiplier: 1
     resistances:
