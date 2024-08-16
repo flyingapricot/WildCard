@@ -30,7 +30,7 @@ MonoBehaviour:
       duration: 0
       amount: 0
       cooldown: 0
-      luck: 1
+      luck: 3
       growth: 0
       greed: 0
       curse: 0
@@ -50,7 +50,7 @@ MonoBehaviour:
       duration: 0
       amount: 0
       cooldown: 0
-      luck: 1
+      luck: 3
       growth: 0
       greed: 0
       curse: 0
@@ -70,7 +70,7 @@ MonoBehaviour:
       duration: 0
       amount: 0
       cooldown: 0
-      luck: 1
+      luck: 4
       growth: 0
       greed: 0
       curse: 0
