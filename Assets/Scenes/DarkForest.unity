@@ -184,9 +184,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d0343f0b18912cd4a8707b3560619706, type: 2}
   - {fileID: 11400000, guid: c759bf1663abb5e4ba137ac3dc51f598, type: 2}
   - {fileID: 11400000, guid: bebd310781f72204fb16f8c4f00d260f, type: 2}
-  - {fileID: 11400000, guid: 08e4ac9036330684caf71e2692da8e22, type: 2}
   - {fileID: 11400000, guid: 245fee8b53c63544e8b3246f4dcc1f14, type: 2}
-  - {fileID: 11400000, guid: 08e4ac9036330684caf71e2692da8e22, type: 2}
   - {fileID: 11400000, guid: 5e41280b07a14dc4c963f2fc5b0ef3ed, type: 2}
   - {fileID: 11400000, guid: 846ce0400e26fdd468a28f58d3dc99b7, type: 2}
   maximumEnemyCount: 300

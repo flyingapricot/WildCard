@@ -20,7 +20,7 @@ MonoBehaviour:
   spawnsPerTick: {x: 1, y: 1}
   duration: 30
   startingCount: 10
-  totalSpawns: 4294967295
+  totalSpawns: 1000
   exitConditions: 1
   mustKillAll: 0
   spawnCount: 0

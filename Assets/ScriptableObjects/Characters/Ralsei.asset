@@ -17,11 +17,11 @@ MonoBehaviour:
   animation: {fileID: 9100000, guid: 9f479f1d8e47b2b42b7ff4980b08eb0f, type: 2}
   startingWeapon: {fileID: 11400000, guid: ff78ae705765ce8409b48696856c843a, type: 2}
   stats:
-    maxHealth: 8000
+    maxHealth: 80
     recovery: 1
     armour: 0
     moveSpeed: 0.8
-    might: 10
+    might: 0.8
     area: 1
     projSpeed: 1
     duration: 1
