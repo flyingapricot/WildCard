@@ -8,6 +8,7 @@ using TMPro;
 using System.Text.RegularExpressions;
 using System;
 using Unity.VisualScripting;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class PlayFabManager : MonoBehaviour
 {
@@ -196,6 +197,8 @@ public class PlayFabManager : MonoBehaviour
     void OnRegisterSuccess(RegisterPlayFabUserResult result)
     {
         login_Text.GetComponent<TMP_Text>().text = "Registered successfully, login now";
+        PlayerPrefs.SetInt("totalKills", 0);
+        PlayerPrefs.SetInt("highscore", 0);
     }
     void OnRegisterFail(PlayFabError error)
     {
