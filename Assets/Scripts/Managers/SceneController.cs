@@ -1,4 +1,6 @@
+using PlayFab.ClientModels;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,7 +12,9 @@ public class SceneController : MonoBehaviour // Cannot be called SceneManager
     public string gameplaySceneName = "Gameplay"; 
     public string tutorialSceneName = "Tutorial"; 
     public string levelSceneName = "DarkForest"; 
-    public string loginSceneName = "MongoDB"; 
+    public string loginSceneName = "MongoDB";
+    public TMP_Text loginStatus;
+
 
     void Awake()
     {
@@ -37,7 +41,6 @@ public class SceneController : MonoBehaviour // Cannot be called SceneManager
         {
             PlayerStats.instance.DestroySingleton();
         }
-        
         StartCoroutine(SwitchScene(menuSceneName));
     }
 

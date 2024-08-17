@@ -6,6 +6,8 @@ using PlayFab.ClientModels;
 using UnityEngine.UI;
 using TMPro;
 using System.Text.RegularExpressions;
+using System;
+using Unity.VisualScripting;
 
 public class PlayFabManager : MonoBehaviour
 {
@@ -18,16 +20,73 @@ public class PlayFabManager : MonoBehaviour
     public GameObject login_Text;
     public GameObject setUsername;
     public GameObject loginPage;
-    public static string username = "Default003";
+    public GameObject Username;
+    public GameObject UserLogin;
+    public GameObject InfoText;
+    public Button ReturnToMenu;
+    public Button LogOut;
+    public Button ChangePassword;
     // Start is called before the first frame update
+
+    public void UpdateUsername(GetAccountInfoResult result)
+    {
+        if (result != null && result.AccountInfo != null)
+        {
+            // Access the email address
+            if (result.AccountInfo.PrivateInfo != null)
+            {
+                Username.GetComponent<TMP_Text>().text = result.AccountInfo.PrivateInfo.Email;
+                Username.GetComponent<TMP_Text>().color = Color.green;
+            }
+            else
+            {
+                Debug.Log("No email address found for this player.");
+            }
+        }
+        else
+        {
+            Debug.Log("Account info is null.");
+        }
+    }
+
+    public void Logout()
+    {
+        AccountManager.Instance.LogOut();
+        login_Text.GetComponent<TMP_Text>().text = "Login to continue";
+        email.GetComponent<TMP_InputField>().text = "";
+        password.GetComponent<TMP_InputField>().text = "";
+        loginPage.SetActive(true);
+        UserLogin.SetActive(false);
+    }
+
+    public void ResetPassword()
+    {
+        AccountManager.Instance.ResetPassword(Username.GetComponent<TMP_Text>().text, OnPasswordReset, OnResetError);
+        InfoText.GetComponent<TMP_Text>().text = "Reset password, log out and re-login.";
+    }
+
     void Start()
     {
         //Login();
+        if(AccountManager.Instance.isPlayerLoggedIn() == true) 
+        {
+            loginPage.SetActive(false);
+            UserLogin.SetActive(true);
+            AccountManager.Instance.GetAccountInfo(UpdateUsername);
+            ReturnToMenu.onClick.AddListener(ReturnMenu);
+            LogOut.onClick.AddListener(Logout);
+            ChangePassword.onClick.AddListener(ResetPassword);
+            return;
+        }
         setUsername.SetActive(false);
         loginPage.SetActive(true);
         create.onClick.AddListener(RegisterButton);
         login.onClick.AddListener(LoginButton);
         resetPass.onClick.AddListener(ResetPasswordButton);
+        UserLogin.SetActive(false);
+        ReturnToMenu.onClick.AddListener(ReturnMenu);
+        LogOut.onClick.AddListener(Logout);
+        ChangePassword.onClick.AddListener(ResetPassword);
     }
 
 
@@ -40,12 +99,8 @@ public class PlayFabManager : MonoBehaviour
 
     public void ResetPasswordButton()
     {
-        var request = new SendAccountRecoveryEmailRequest
-        {
-            Email = email.GetComponent<TMP_InputField>().text,
-            TitleId = "5BE20"
-        };
-        PlayFabClientAPI.SendAccountRecoveryEmail(request, OnPasswordReset, OnResetError);
+        AccountManager.Instance.ResetPassword(email.GetComponent<TMP_InputField>().text,OnPasswordReset,OnResetError);
+        login_Text.GetComponent<TMP_Text>().text = AccountManager.Instance.getOutput();
     }
 
     void OnPasswordReset(SendAccountRecoveryEmailResult result)
@@ -75,44 +130,78 @@ public class PlayFabManager : MonoBehaviour
         return true;
     }
 
+    private void UpdateTotalKills(GetLeaderboardResult result)
+    {
+        // Assuming the player is authenticated and their PlayFab ID is known
+        string playerPlayFabId = PlayFabSettings.staticPlayer.PlayFabId; // or use the player's PlayFab ID if known
+
+        foreach (var entry in result.Leaderboard)
+        {
+            if (entry.PlayFabId == playerPlayFabId)
+            {
+                PlayerPrefs.SetInt("totalKills", entry.StatValue);
+                Debug.Log($"Player Total Kills: {entry.StatValue}");
+                return; // Found the player, exit early
+            }
+        }
+
+    }
+
+    private void UpdateHighScore(GetLeaderboardResult result)
+    {
+        // Assuming the player is authenticated and their PlayFab ID is known
+        string playerPlayFabId = PlayFabSettings.staticPlayer.PlayFabId; // or use the player's PlayFab ID if known
+
+        foreach (var entry in result.Leaderboard)
+        {
+            if (entry.PlayFabId == playerPlayFabId)
+            {
+                PlayerPrefs.SetInt("highscore", entry.StatValue);
+                Debug.Log($"Player Highscore: {entry.StatValue}");
+                return; // Found the player, exit early
+            }
+        }
+
+    }
+
     public void LoginButton()
     {
-        var request = new LoginWithEmailAddressRequest
-        {
-            Email = email.GetComponent<TMP_InputField>().text,
-            Password = password.GetComponent<TMP_InputField>().text,
-            InfoRequestParameters = new GetPlayerCombinedInfoRequestParams()
-            {
-                GetPlayerProfile = true
-            }
-        };
-        PlayFabClientAPI.LoginWithEmailAddress(request, OnLoginSuccess, OnLoginError);
+        AccountManager.Instance.Login(email.GetComponent<TMP_InputField>().text, password.GetComponent<TMP_InputField>().text,OnLoginSuccess,OnLoginError);
+        login_Text.GetComponent<TMP_Text>().text = AccountManager.Instance.getOutput();
+    }
+
+    void OnLoginSuccess(LoginResult result)
+    {
+        login_Text.GetComponent<TMP_Text>().text = "Correct Details entered, logging in now";
+        AccountManager.Instance.GetAccountInfo(UpdateUsername);
+        UserLogin.SetActive(true);
+
+        //Get Player's Highscore and Highkills
+        AccountManager.Instance.GetPlayerHighScore(UpdateTotalKills, "TotalKills");
+        AccountManager.Instance.GetPlayerHighScore(UpdateHighScore, "WildScore");
+    }
+
+    void OnLoginError(PlayFabError error)
+    {
+        login_Text.GetComponent<TMP_Text>().text = "Incorrect email/password.";
     }
 
 
     public void RegisterButton()
     {
-        if (DetailCheck() == false) return;
-
-        var request = new RegisterPlayFabUserRequest
-        {
-            Email = email.GetComponent<TMP_InputField>().text,
-            Password = password.GetComponent<TMP_InputField>().text,
-            RequireBothUsernameAndEmail = false
-        };
-        PlayFabClientAPI.RegisterPlayFabUser(request, OnRegisterSuccess, OnRegisterFail);
+        bool detail = DetailCheck();
+        AccountManager.Instance.Register(detail,email.GetComponent<TMP_InputField>().text, password.GetComponent<TMP_InputField>().text,OnRegisterSuccess,OnRegisterFail);
+        login_Text.GetComponent<TMP_Text>().text = AccountManager.Instance.getOutput();
     }
-
     void OnRegisterSuccess(RegisterPlayFabUserResult result)
     {
         login_Text.GetComponent<TMP_Text>().text = "Registered successfully, login now";
     }
-
     void OnRegisterFail(PlayFabError error)
     {
         login_Text.GetComponent<TMP_Text>().text = "Registration failed";
-        Debug.Log(error.GenerateErrorReport());
     }
+
 
     void Login()
     {
@@ -135,52 +224,6 @@ public class PlayFabManager : MonoBehaviour
         Debug.Log(error.GenerateErrorReport());
     }
 
-    void OnLoginSuccess(LoginResult result)
-    {
-        login_Text.GetComponent<TMP_Text>().text = "Correct Details entered, logging in now";
-        //Always display username page for user to update username if necessary
-        if(result.InfoResultPayload.PlayerProfile != null)
-        {
-            username = result.InfoResultPayload.PlayerProfile.DisplayName;
-        }else
-        {
-            username = "Default002";
-        }
-
-        setUsername.SetActive(true);
-        loginPage.SetActive(false);
-
-    }
-    void OnLoginError(PlayFabError error)
-    {
-        login_Text.GetComponent<TMP_Text>().text = "Incorrect email/password.";
-        Debug.Log(error.GenerateErrorReport());
-    }
-
-    public static void SendLeaderboard(int score)
-    {
-        var request = new UpdatePlayerStatisticsRequest
-        {
-            Statistics = new List<StatisticUpdate>
-            {
-                new StatisticUpdate
-                {
-                    StatisticName = "WildScore",
-                    Value = score
-                }
-            }
-        }; 
-        
-        if (PlayFabClientAPI.IsClientLoggedIn())
-        {
-            PlayFabClientAPI.UpdatePlayerStatistics(request, OnLeaderboardUpdate, OnError);
-        }
-    }
-
-    static void OnLeaderboardUpdate(UpdatePlayerStatisticsResult result)
-    {
-        Debug.Log("Succsessful leaderboard sent");
-    }
 
     public void ReturnMenu()
     {
