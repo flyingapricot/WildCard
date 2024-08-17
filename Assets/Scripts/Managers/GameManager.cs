@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour
     public GameObject resultsScreen;
     public GameObject levelUpScreen;
     public GameObject settingsScreen;
+    public GameObject leaderboardScreen;
 
     [Header("Results Screen Stats")]
     public Image chosenCharacterSprite;
@@ -118,6 +119,20 @@ public class GameManager : MonoBehaviour
         DisableScreens();
     }
 
+    public void activateLeaderboard()
+    {
+        leaderboardScreen.SetActive(true);
+        pauseScreen.SetActive(false);
+        levelUpScreen.SetActive(false);
+        settingsScreen.SetActive(false);
+        resultsScreen.SetActive(false);
+    }   
+    public void disableLeaderboard()
+    {
+        leaderboardScreen.SetActive(false);
+        resultsScreen.SetActive(true);
+    }
+
     void Update()
     {      
         switch (currentState) 
@@ -149,6 +164,7 @@ public class GameManager : MonoBehaviour
         resultsScreen.SetActive(false);
         levelUpScreen.SetActive(false);
         settingsScreen.SetActive(false);
+        leaderboardScreen.SetActive(false);
     }
 
     // Define the method to change the state of the game
@@ -231,6 +247,10 @@ public class GameManager : MonoBehaviour
         SwitchBGM(gameOverBGM);
         DisplayResults();
         UpdateTotalDefeated();
+        //Send score to leaderboard
+        AccountManager.Instance.SendLeaderboardHigh();
+        AccountManager.Instance.SendLeaderboardKills();
+
     }
 
     void DisplayResults()
