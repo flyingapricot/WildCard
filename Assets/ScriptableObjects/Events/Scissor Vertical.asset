@@ -22,5 +22,5 @@ MonoBehaviour:
   activeAfter: 0
   spawnEffectPrefab: {fileID: 3530576675584005262, guid: aea72895cc4a34d4c9bc68b4e7b21347, type: 3}
   scale: {x: 1, y: 3}
-  spawnRadius: 5
+  spawnRadius: 8
   lifespan: 10
