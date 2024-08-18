@@ -25,7 +25,7 @@ public class DropRateManager : MonoBehaviour
         // New list for unique GameObjects to track multiple drops
         List<Drops> possibleDrops = new();
         // Increase drop rate by decreasing the number pool
-        float rng = Random.Range(0f, 100f - PlayerStats.instance.Actual.luck);
+        float rng = Random.Range(0f, 100f / PlayerStats.instance.Actual.luck);
 
         foreach (Drops drop in dropsList)
         {
