@@ -61,6 +61,12 @@ public class MainMenu : MonoBehaviour
         shopScreen.SetActive(true);
     }
 
+    public void LevelSelect(string levelName)
+    {
+        SceneController.instance.LoadGameplay(levelName);
+    }
+
+
     public void ToggleSettings()
     {
         settingsScreen.SetActive(!settingsScreen.activeSelf);
