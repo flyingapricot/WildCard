@@ -70,6 +70,8 @@ public class PlayerStats : MonoBehaviour
     public float invincibilityDuration;
     float invincibilityTimer;
     bool isInvincible;
+    private Collider2D playerCollider;
+    private LayerMask originalLayer; // Store the original layer to restore later
     #endregion
 
     #region Experience / Levels
@@ -90,6 +92,8 @@ public class PlayerStats : MonoBehaviour
         inventory = GetComponent<PlayerInventory>();
         collector = GetComponentInChildren<PlayerCollector>();
         audioSource = GetComponent<AudioSource>();
+        playerCollider = GetComponent<Collider2D>();
+        originalLayer = gameObject.layer; // Store the original layer of the player
 
         // Get chosen character data
         characterData = CharacterSelector.GetData();
@@ -128,6 +132,7 @@ public class PlayerStats : MonoBehaviour
         else if (isInvincible) // Will enter once invincibilityTimer <= 0
         {
             isInvincible = false; // i-frame runs out
+            ReenableCollisions(); // Re-enable collisions when invincibility ends
         }
 
         Recover(); // Call Recover in Update to enable passive recovery
@@ -150,8 +155,8 @@ public class PlayerStats : MonoBehaviour
 
     public float SetExperienceCap(int currentLevel) // Method to calculate the experience required for the next level
     {
-        float nextLevelExp = Mathf.Pow(4 * (currentLevel + 1), 2f);
-        float currentLevelExp = Mathf.Pow(4 * currentLevel, 2f);
+        float nextLevelExp = Mathf.Pow(4 * (currentLevel + 1), 2.1f);
+        float currentLevelExp = Mathf.Pow(4 * currentLevel, 2.1f);
 
         return Mathf.RoundToInt(nextLevelExp) - Mathf.RoundToInt(currentLevelExp);
     }
@@ -215,6 +220,7 @@ public class PlayerStats : MonoBehaviour
             
             invincibilityTimer = invincibilityDuration;
             isInvincible = true;
+            DisableCollisions(); // Disable collisions when invincibility starts
         }
     }
 
@@ -242,13 +248,25 @@ public class PlayerStats : MonoBehaviour
         PlayEffect(healAnimation, healEffect);
     }
 
-    void Recover() // Passive recovery
+    private void Recover() // Passive recovery
     {
         if (CurrentHealth < Stats.maxHealth)
         {
             CurrentHealth += Stats.recovery * Time.deltaTime;
             CurrentHealth = Mathf.Min(CurrentHealth, Stats.maxHealth);
         }
+    }
+
+    private void DisableCollisions()
+    {
+        // Change the layer of the player to one that doesn't collide with other layers
+        gameObject.layer = LayerMask.NameToLayer("Terrain");
+    }
+
+    private void ReenableCollisions()
+    {
+        // Restore the player's original layer
+        gameObject.layer = originalLayer;
     }
 
     public void DestroySingleton()

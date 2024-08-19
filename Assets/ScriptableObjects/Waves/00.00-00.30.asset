@@ -15,7 +15,7 @@ MonoBehaviour:
   possibleSpawnPrefabs:
   - {fileID: 3996832791091268854, guid: b7186f5a142cec44f91a0d53fa5c9a59, type: 3}
   spawnInterval: {x: 1, y: 2}
-  spawnsPerTick: {x: 1, y: 1}
+  spawnsPerTick: {x: 1, y: 2}
   duration: 30
   startingCount: 10
   totalSpawns: 4294967295

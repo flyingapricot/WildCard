@@ -88,7 +88,7 @@ public class EnemyStats : MonoBehaviour, IDamageable
         // Calculate curse boosts.
         float curse = GameManager.GetCumulativeCurse(),
         level = GameManager.GetCumulativeLevels();
-        actualStats = (baseStats * curse); //^ level;
+        actualStats = (baseStats * curse) ^ level;
     }
 
     // This function always needs at least 2 values, the amount of damage dealt <dmg>, as well as where the damage is coming from, which is passed as <sourcePosition>

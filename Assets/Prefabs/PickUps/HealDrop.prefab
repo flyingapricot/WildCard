@@ -152,15 +152,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9d975da69da117428f70a3391e97c57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifespan: 0.5
-  bobbingAnimation:
-    frequency: 2
-    direction: {x: 0, y: 0.3}
+  soundEffect: {fileID: 0}
+  lifespan: 2
   instantLevel: 0
   minExperience: 0
   maxExperience: 0
   heal: 20
   souls: 0
+  bobbingAnimation:
+    frequency: 2
+    direction: {x: 0, y: 0.3}
 --- !u!58 &7209908530886556171
 CircleCollider2D:
   m_ObjectHideFlags: 0

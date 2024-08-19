@@ -25,8 +25,8 @@ public abstract class EventData : SpawnData
         // Probability of 1 means it always happens.
         if (probability >= 1) return true;
 
-        // Otherwise, get a random number and see if we pass the probability test. NEED TO ADD LUCK STAT FIRST
-        // if(probability / Mathf.Max(1,(s.Stats.luck * luckFactor)) >= Random.Range(0f, 1f))
+        // Otherwise, get a random number and see if we pass the probability test.
+        // if(probability / Mathf.Max(1, s.Stats.luck * luckFactor) >= Random.Range(0f, 1f))
         //     return true;
 
         return false;

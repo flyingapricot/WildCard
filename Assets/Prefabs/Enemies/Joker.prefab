@@ -54,7 +54,7 @@ MonoBehaviour:
   enemyType: 2
   baseStats:
     maxHealth: 12000
-    damage: 30
+    damage: 20
     moveSpeed: 1
     knockbackMultiplier: 0
     resistances:

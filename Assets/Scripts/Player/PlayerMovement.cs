@@ -22,7 +22,9 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         player = GetComponent<PlayerStats>();
         // Give projectile initial direction (Down)
-        lastMovedVector = new Vector2(0f, -1f);
+        lastHorizontalVector = 0;
+        lastVerticalVector = -1;
+        lastMovedVector = new Vector2(lastHorizontalVector, lastVerticalVector);
     }
 
     void Update() // Frame rate dependent

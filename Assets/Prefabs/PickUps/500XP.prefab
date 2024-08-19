@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundEffect: {fileID: 8300000, guid: bf1a4a0529b51c54fa0b9762ee7fc62e, type: 3}
-  lifespan: 0.5
+  lifespan: 2
   instantLevel: 0
   minExperience: 500
   maxExperience: 600

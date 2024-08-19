@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 5672961783117540736, guid: 09c6b47211f975c4086a6af56e4ba311, type: 3}
+  damage: 15
   projSpeed: 5
   lifespan: 10
 --- !u!212 &4002768466004318317

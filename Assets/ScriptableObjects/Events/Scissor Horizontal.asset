@@ -15,12 +15,12 @@ MonoBehaviour:
   possibleSpawnPrefabs:
   - {fileID: 3996832791091268854, guid: 3aafd9a1999bec440b7dc8e38b903f3f, type: 3}
   spawnInterval: {x: 2, y: 3}
-  spawnsPerTick: {x: 40, y: 50}
+  spawnsPerTick: {x: 60, y: 60}
   duration: 1
   probability: 1
   luckFactor: 1
-  activeAfter: 0
+  activeAfter: 300
   spawnEffectPrefab: {fileID: 3530576675584005262, guid: aea72895cc4a34d4c9bc68b4e7b21347, type: 3}
   scale: {x: 3, y: 1}
-  spawnRadius: 8
-  lifespan: 10
+  spawnRadius: 6
+  lifespan: 15

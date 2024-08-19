@@ -17,8 +17,8 @@ MonoBehaviour:
   evolutionData: []
   baseStats:
     name: '>> Level 1'
-    description: You feel lucky ~ Like a hot dog, but with little cat ears on the
-      end.
+    description: You feel lucky, your gameplay experience is improved! ~ Like a hot
+      dog, but with little cat ears on the end.
     boosts:
       maxHealth: 0
       recovery: 0

@@ -153,13 +153,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9d975da69da117428f70a3391e97c57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifespan: 0.5
+  soundEffect: {fileID: 8300000, guid: bf1a4a0529b51c54fa0b9762ee7fc62e, type: 3}
+  lifespan: 2
   instantLevel: 0
   minExperience: 50
   maxExperience: 99
   heal: 0
   souls: 0
-  soundEffect: {fileID: 8300000, guid: bf1a4a0529b51c54fa0b9762ee7fc62e, type: 3}
   bobbingAnimation:
     frequency: 2
     direction: {x: 0, y: 0.3}

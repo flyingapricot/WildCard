@@ -234,7 +234,6 @@ public class GameManager : MonoBehaviour
         //Send score to leaderboard
         AccountManager.Instance.SendLeaderboardHigh();
         AccountManager.Instance.SendLeaderboardKills();
-
     }
 
     void DisplayResults()

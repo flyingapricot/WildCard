@@ -158,8 +158,8 @@ MonoBehaviour:
   enemyType: 1
   baseStats:
     maxHealth: 1000
-    damage: 40
-    moveSpeed: 3
+    damage: 30
+    moveSpeed: 2
     knockbackMultiplier: 2
     resistances:
       freeze: 0
@@ -217,7 +217,7 @@ MonoBehaviour:
   active: 0
   singular: 0
   dropsList:
-  - itemPrefab: {fileID: 5969430364891984471, guid: c5b6e8b3a1282e94181593d861dcf24b, type: 3}
+  - itemPrefab: {fileID: 5969430364891984471, guid: 85ae39b0ebe8f9b44a35b9a58a61910f, type: 3}
     dropRate: 100
   - itemPrefab: {fileID: 8427234246184733187, guid: 49291040109599b409e1b3d9db61f02b, type: 3}
     dropRate: 0.1

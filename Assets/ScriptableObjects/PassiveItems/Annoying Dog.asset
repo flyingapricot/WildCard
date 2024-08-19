@@ -17,7 +17,8 @@ MonoBehaviour:
   evolutionData: []
   baseStats:
     name: '>> Level 1'
-    description: 'Enemies are stronger ~ A little white dog. It''s fast asleep... '
+    description: 'Enemies are stronger, up for a challenge? ~ A little white dog.
+      It''s fast asleep... '
     boosts:
       maxHealth: 0
       recovery: 0
