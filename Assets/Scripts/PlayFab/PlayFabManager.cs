@@ -191,8 +191,11 @@ public class PlayFabManager : MonoBehaviour
     public void RegisterButton()
     {
         bool detail = DetailCheck();
-        AccountManager.Instance.Register(detail,email.GetComponent<TMP_InputField>().text, password.GetComponent<TMP_InputField>().text,OnRegisterSuccess,OnRegisterFail);
-        login_Text.GetComponent<TMP_Text>().text = AccountManager.Instance.getOutput();
+        if (detail)
+        {
+            AccountManager.Instance.Register(detail, email.GetComponent<TMP_InputField>().text, password.GetComponent<TMP_InputField>().text, OnRegisterSuccess, OnRegisterFail);
+            login_Text.GetComponent<TMP_Text>().text = AccountManager.Instance.getOutput();
+        }
     }
     void OnRegisterSuccess(RegisterPlayFabUserResult result)
     {

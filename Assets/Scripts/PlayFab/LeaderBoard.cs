@@ -20,7 +20,7 @@ public class LeaderBoard : MonoBehaviour
     void Start()
     {
         AccountManager.Instance.GetPlayerHighScore(OnLeaderboardGet1, "WildScore");
-        AccountManager.Instance.GetPlayerHighScore(OnLeaderboardGet2, "TotalKills");
+        //AccountManager.Instance.GetPlayerHighScore(OnLeaderboardGet2, "TotalKills");
 
     }
 
@@ -32,6 +32,7 @@ public class LeaderBoard : MonoBehaviour
             GameObject newGo = Instantiate(RowPrefab, rowsParent);
             details = newGo.GetComponentsInChildren<TextMeshProUGUI>();
             details[0].text = (item.Position + 1).ToString();
+            Debug.Log(item.DisplayName.ToString());
             details[1].text = item.DisplayName.ToString();
             details[3].text = item.StatValue.ToString();
 
