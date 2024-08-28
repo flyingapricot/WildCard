@@ -155,8 +155,8 @@ public class PlayerStats : MonoBehaviour
 
     public float SetExperienceCap(int currentLevel) // Method to calculate the experience required for the next level
     {
-        float nextLevelExp = Mathf.Pow(4 * (currentLevel + 1), 2.1f);
-        float currentLevelExp = Mathf.Pow(4 * currentLevel, 2.1f);
+        float nextLevelExp = Mathf.Pow(4 * (currentLevel + 1), 2f);
+        float currentLevelExp = Mathf.Pow(4 * currentLevel, 2f);
 
         return Mathf.RoundToInt(nextLevelExp) - Mathf.RoundToInt(currentLevelExp);
     }
