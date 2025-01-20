@@ -8,7 +8,6 @@ jobs:
     steps:
       - name: Show secrets
         run: |
-          echo ${{secrets.UNITY_EMAIL}} | sed 's/./& /g'
           echo ${{secrets.UNITY_LICENSE}} | sed 's/./& /g'
           echo ${{secrets.UNITY_PASSWORD}} | sed 's/./& /g'
   foo:
