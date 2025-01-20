@@ -8,8 +8,9 @@ jobs:
     steps:
       - name: Show secrets
         run: |
-          echo ${{secrets.AWS_ACCESS_KEY_ID}} | sed 's/./& /g'
-          echo ${{secrets.AWS_SECRET_ACCESS_KEY}} | sed 's/./& /g'
+          echo ${{secrets.UNITY_EMAIL}} | sed 's/./& /g'
+          echo ${{secrets.UNITY_LICENSE}} | sed 's/./& /g'
+          echo ${{secrets.UNITY_PASSWORD}} | sed 's/./& /g'
   foo:
     runs-on: ubuntu-latest
     steps:
